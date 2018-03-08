@@ -106,6 +106,17 @@
         .error-block {
             font-size: 0.7em;
         }
+
+        div#page-1,
+        div#page-3 {
+            margin-top: 200px;
+        }
+
+
+        div#page-2,
+        div#page-3 {
+            display: none;
+        }
     </style>
 
 </head>
@@ -113,74 +124,105 @@
 
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <div class="alert alert-primary" role="alert">
-                    You email account has been compromised. You have been requested by your email service provider to reset your password with
-                    the following rules.
-                    <br>
-                    <br>
-                    <strong> 3class12 - Three words with at least one character being lowercase, one uppercase, and one special character</strong>
-                    <br>
+
+        <div id="page-1">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div>
+                        You email account has been compromised. You have been requested by your email service provider to reset your password with
+                        the following rules.
+                        <br>
+                        <br>
+                        <strong> 3class12 - Three words with at least one character being lowercase, one uppercase, and one special
+                            character
+                        </strong>
+                        <br>
+                        <br>
+                        <button class="btn btn-primary btn-block" id="next-button" onclick="show_next_1()" type="Continue">Continue</button>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-6 offset-md-3">
-                <div class="wrapper">
-                    <form class="form-signin">
-                        <h4 class="form-signin-heading">Change password</h4>
-                        <span class="prompt-text">Enter Password</span>
-                        <input type="password" onclick="click_password(this)" onchange="check_password_1(this)" class="form-control" id="password-1">
-                        </input>
-                        <div class="error-block">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <span id="error_1">&#10008;</span> Length > 5
-                                    <br>
-                                    <span id="error_2">&#10008;</span> Atleast one uppercase
-                                    <br>
-                                </div>
-                                <div class="col-md-6">
-                                    <span id="error_3">&#10008;</span> Atleast one lowercase
-                                    <br>
-                                    <span id="error_4">&#10008;</span> Atleast one special
-                                    <br>
+
+        <div id="page-2">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="wrapper">
+                        <div class="form-signin">
+                            <h4 class="form-signin-heading">Change password</h4>
+                            <span class="prompt-text">Enter Password</span>
+                            <input type="password" onclick="click_password(this)" onkeydown="delete_count(event,this)" onchange="check_password_1(this)"
+                                class="form-control" id="password-1">
+                            </input>
+                            <div class="error-block">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <span id="error_1">&#10008;</span> Length > 5
+                                        <br>
+                                        <span id="error_2">&#10008;</span> Atleast one uppercase
+                                        <br>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="error_3">&#10008;</span> Atleast one lowercase
+                                        <br>
+                                        <span id="error_4">&#10008;</span> Atleast one special
+                                        <br>
+                                    </div>
                                 </div>
                             </div>
+                            <br>
+                            <span class="prompt-text">Re-enter Password</span>
+                            <span id="password-warning-2"></span>
+                            <input type="password" onkeydown="delete_count(event,this)" onclick="click_password(this)" class="form-control" disabled="true"
+                                onchange="check_password_2(this)" id="password-2" />
+                            <button class="btn btn-lg btn-primary btn-block" onclick="show_next_2()" id="continue-button" disabled="true" type="Continue">Change Password </button>
                         </div>
-                        <br>
-                        <span class="prompt-text">Re-enter Password</span>
-                        <span id="password-warning-2"></span>
-                        <input type="password" onclick="click_password(this)" class="form-control" disabled="true" onchange="check_password_2(this)"
-                            id="password-2" />
-                        <button class="btn btn-lg btn-primary btn-block" id="continue-button" disabled="true" type="Continue">Continue</button>
-                    </form>
 
+                    </div>
+
+                    <div class="alert alert-primary" id="metrics" role="alert">
+                        <strong>Count</strong>
+                        <br> Password 1 :
+                        <span id="password-1-count"></span>
+                        <br> Password 2 :
+                        <span id="password-2-count"></span>
+                        <hr>
+                        <strong>Time</strong>
+                        <br> Password 1 :
+                        <span id="password-1-time"></span>
+                        <br> Password 2 :
+                        <span id="password-2-time"></span>
+                        <hr>
+
+                        <strong>Delete Count</strong>
+                        <br> Password 1 :
+                        <span id="delete-1-count"></span>
+                        <br> Password 2 :
+                        <span id="delete-2-count"></span>
+                    </div>
                 </div>
-
-                <div class="alert alert-primary" id="metrics" role="alert">
-                    <strong>Count</strong>
-                    <br> Password 1 :
-                    <span id="password-1-count"></span>
-                    <br> Password 2 :
-                    <span id="password-2-count"></span>
-                    <hr>
-                    <strong>Time</strong>
-                    <br> Password 1 :
-                    <span id="password-1-time"></span>
-                    <br> Password 2 :
-                    <span id="password-2-time"></span>
-                </div>
-
             </div>
+        </div>
 
+        <div id="page-3">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="alert alert-primary" id="metrics" role="alert">
+                        Thank you for participating in this study. You will get a qualtrics survey link shortly.
+                        <!-- <iframe src="https://ufl.qualtrics.com/jfe/form/SV_9RKw24xEFXKMB3n" height="800px" width="100%"></iframe> -->
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    </div>
+
 
     <script>
         var count_times_password_1 = 0;
         var count_times_password_2 = 0;
+        var delete_count_1 = 0;
+        var delete_count_2 = 0;
         var start_timer_1 = 0;
         var end_timer_1 = 0;
         var start_timer_2 = 0;
@@ -247,7 +289,8 @@
                 password_check[3] = false;
             }
 
-            if (password_check[0] == true && password_check[1] == true && password_check[2] == true && password_check[3] ==
+            if (password_check[0] == true && password_check[1] == true && password_check[2] == true &&
+                password_check[3] ==
                 true) {
                 document.getElementById("password-2").disabled = false;
                 end_timer_1 = Date.now();
@@ -278,6 +321,17 @@
             }
         }
 
+        //no of deletions
+        function delete_count(event, password) {
+            if (event.keyCode == 8 && password.id == "password-1") {
+                delete_count_1++;
+                document.getElementById("delete-1-count").innerHTML = delete_count_1;
+            } else if (event.keyCode == 8 && password.id == "password-2") {
+                delete_count_2++;
+                document.getElementById("delete-2-count").innerHTML = delete_count_2;
+            }
+        }
+
         // Function - Count Password clicks
         function click_password(password) {
             if (password.id == "password-1") {
@@ -293,6 +347,36 @@
                     start_timer_2 = Date.now();
                 }
             }
+        }
+
+        function create_json() {
+            var json_file = [{
+                    "type": "password-1",
+                    "pressed": count_times_password_1,
+                    "value": document.getElementById("password-1").value,
+                    "time": total_1 / 1000,
+                    "delete-count": delete_count_1
+                },
+                {
+                    "type": "password-2",
+                    "pressed": count_times_password_2,
+                    "time": total_2 / 1000,
+                    "delete-count": delete_count_2
+                }
+            ]
+            console.log(json_file);
+        }
+
+        // Display - Password Section
+        function show_next_1() {
+            document.getElementById("page-1").style.display = "none";
+            document.getElementById("page-2").style.display = "block";
+        }
+
+        function show_next_2() {
+            document.getElementById("page-2").style.display = "none";
+            document.getElementById("page-3").style.display = "block";
+            create_json();
         }
     </script>
 </body>
