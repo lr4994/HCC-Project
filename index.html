@@ -1,0 +1,300 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <script src="./js/bootstrap.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+    <style>
+        body {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            background: #eee !important;
+        }
+
+        h4 {
+            text-align: center;
+        }
+
+
+        .wrapper {
+            margin-top: 80px;
+            margin-bottom: 80px;
+        }
+
+        #metrics {
+            max-width: 380px;
+            margin: 0 auto;
+
+        }
+
+        .form-signin {
+            max-width: 380px;
+            padding: 15px 35px 45px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .form-signin .form-signin-heading,
+        .form-signin .checkbox {
+            margin-bottom: 30px;
+            margin-top: 30px;
+        }
+
+        .form-signin .checkbox {
+            font-weight: normal;
+        }
+
+        .form-signin .form-control {
+            position: relative;
+            font-size: 16px;
+            height: auto;
+            padding: 10px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .form-signin .form-control:focus {
+            z-index: 2;
+        }
+
+
+        .form-signin input[type="password"] {
+            margin-bottom: 20px;
+            /* max-width: 250px; */
+            /* display: inline-block; */
+            /* border: none; */
+            /* border-bottom: 1px solid black; */
+            /* border-radius: 0px; */
+        }
+
+        button.view-password {
+            /* display: inline-block; */
+            border: none;
+            /* border-bottom: 1px solid black; */
+            padding-bottom: 14px;
+        }
+
+        .prompt-text {
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        span#password-warning-1,
+        span#password-warning-2 {
+            color: red;
+            /* padding: 0px; */
+            /* margin: 0px; */
+            font-size: 0.8em;
+            margin-top: 2px;
+            float: right;
+
+        }
+
+        #password-2 {
+            margin-bottom: 45px;
+        }
+
+        #continue-button {
+            font-size: 0.9em;
+            height: 50px;
+        }
+
+        .error-block {
+            font-size: 0.7em;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="alert alert-primary" role="alert">
+                    You email account has been compromised. You have been requested by your email service provider to reset your password with
+                    the following rules.
+                    <br>
+                    <br>
+                    <strong> 3class12 - Three words with at least one character being lowercase, one uppercase, and one special character</strong>
+                    <br>
+                </div>
+            </div>
+
+            <div class="col-md-6 offset-md-3">
+                <div class="wrapper">
+                    <form class="form-signin">
+                        <h4 class="form-signin-heading">Change password</h4>
+                        <span class="prompt-text">Enter Password</span>
+                        <input type="password" onclick="click_password(this)" onchange="check_password_1(this)" class="form-control" id="password-1">
+                        </input>
+                        <div class="error-block">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span id="error_1">&#10008;</span> Length > 5
+                                    <br>
+                                    <span id="error_2">&#10008;</span> Atleast one uppercase
+                                    <br>
+                                </div>
+                                <div class="col-md-6">
+                                    <span id="error_3">&#10008;</span> Atleast one lowercase
+                                    <br>
+                                    <span id="error_4">&#10008;</span> Atleast one special
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <span class="prompt-text">Re-enter Password</span>
+                        <span id="password-warning-2"></span>
+                        <input type="password" onclick="click_password(this)" class="form-control" disabled="true" onchange="check_password_2(this)"
+                            id="password-2" />
+                        <button class="btn btn-lg btn-primary btn-block" id="continue-button" disabled="true" type="Continue">Continue</button>
+                    </form>
+
+                </div>
+
+                <div class="alert alert-primary" id="metrics" role="alert">
+                    <strong>Count</strong>
+                    <br> Password 1 :
+                    <span id="password-1-count"></span>
+                    <br> Password 2 :
+                    <span id="password-2-count"></span>
+                    <hr>
+                    <strong>Time</strong>
+                    <br> Password 1 :
+                    <span id="password-1-time"></span>
+                    <br> Password 2 :
+                    <span id="password-2-time"></span>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+    <script>
+        var count_times_password_1 = 0;
+        var count_times_password_2 = 0;
+        var start_timer_1 = 0;
+        var end_timer_1 = 0;
+        var start_timer_2 = 0;
+        var end_timer_2 = 0;
+
+        var count = 0;
+
+        var total_1 = 0;
+        var total_2 = 0;
+
+        var password_check = [false, false, false, false];
+        // [0] - Length
+        // [1] - Upper Case
+        // [2] - Lower Case
+        // [3] - Special Character
+
+
+        // Function - Enter Password Error Feedback
+        function check_password_1(password) {
+            // check length
+            if (password.value.length > 4) {
+                document.getElementById("error_1").innerHTML = "&#10004;";
+                password_check[0] = true;
+                count++;
+            } else {
+                document.getElementById("error_1").innerHTML = "&#10008;";
+                password_check[0] = false;
+            }
+
+            // check upper case
+            for (var i = 0; i < password.value.length; i++) {
+                var pattern = new RegExp(/[A-Z]/);
+                if (pattern.test(password.value)) {
+                    document.getElementById("error_2").innerHTML = "&#10004;";
+                    password_check[1] = true;
+                    count++;
+                } else {
+                    document.getElementById("error_2").innerHTML = "&#10008;";
+                    password_check[1] = false;
+                }
+            }
+
+            // check lower case
+            for (var i = 0; i < password.value.length; i++) {
+                var pattern = new RegExp(/[a-z]/);
+                if (pattern.test(password.value)) {
+                    document.getElementById("error_3").innerHTML = "&#10004;";
+                    password_check[2] = true;
+                    count++;
+                } else {
+                    document.getElementById("error_3").innerHTML = "&#10008;";
+                    password_check[2] = false;
+                }
+            }
+
+            // check special
+            var pattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
+            if (pattern.test(password.value)) {
+                document.getElementById("error_4").innerHTML = "&#10004;";
+                password_check[3] = true;
+                count++;
+            } else {
+                document.getElementById("error_4").innerHTML = "&#10008;";
+                password_check[3] = false;
+            }
+
+            if (password_check[0] == true && password_check[1] == true && password_check[2] == true && password_check[3] ==
+                true) {
+                document.getElementById("password-2").disabled = false;
+                end_timer_1 = Date.now();
+                total_1 += end_timer_1 - start_timer_1;
+                start_timer_1 = 0;
+                document.getElementById("password-1-time").innerHTML = (total_1) / 1000 + "s";
+            } else {
+                document.getElementById("password-2").disabled = true;
+            }
+        }
+
+        // Function - Re-enter Password Error Feedback
+        function check_password_2(password) {
+            if (password.value != document.getElementById("password-1").value) {
+                document.getElementById("password-warning-2").innerHTML = "Passwords do not match";
+                document.getElementById("password-warning-2").color = "red";
+                document.getElementById("continue-button").disabled = true;
+                start_timer_1 = 0;
+            } else {
+                document.getElementById("password-warning-2").innerHTML = "Passwords match";
+                document.getElementById("password-warning-2").style.color = "#006bde";
+                document.getElementById("continue-button").disabled = false;
+
+                end_timer_2 = Date.now();
+                total_2 += end_timer_2 - start_timer_2;
+                start_timer_2 = 0;
+                document.getElementById("password-2-time").innerHTML = (total_2) / 1000 + "s";
+            }
+        }
+
+        // Function - Count Password clicks
+        function click_password(password) {
+            if (password.id == "password-1") {
+                count_times_password_1++;
+                document.getElementById("password-1-count").innerHTML = count_times_password_1;
+                if (start_timer_1 == 0 && end_timer_1 != 0 || start_timer_1 == 0 && end_timer_1 == 0) {
+                    start_timer_1 = Date.now();
+                }
+            } else if (password.id == "password-2") {
+                count_times_password_2++;
+                document.getElementById("password-2-count").innerHTML = count_times_password_2;
+                if (start_timer_2 == 0 && end_timer_2 != 0 || start_timer_2 == 0 && end_timer_2 == 0) {
+                    start_timer_2 = Date.now();
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
