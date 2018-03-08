@@ -174,7 +174,7 @@
                             <span id="password-warning-2"></span>
                             <input type="password" onkeydown="delete_count(event,this)" onclick="click_password(this)" class="form-control" disabled="true"
                                 onchange="check_password_2(this)" id="password-2" />
-                            <button class="btn btn-lg btn-primary btn-block" onclick="show_next_2()" id="continue-button" disabled="true" type="Continue">Change Password </button>
+                            <button class="btn btn-lg btn-primary btn-block" onclick="show_next_2()" id="continue-button" type="Continue">Change Password </button>
                         </div>
 
                     </div>
@@ -305,12 +305,12 @@
             if (password.value != document.getElementById("password-1").value) {
                 document.getElementById("password-warning-2").innerHTML = "Passwords do not match";
                 document.getElementById("password-warning-2").color = "red";
-                document.getElementById("continue-button").disabled = true;
+                // document.getElementById("continue-button").disabled = true;
                 start_timer_1 = 0;
             } else {
                 document.getElementById("password-warning-2").innerHTML = "Passwords match";
                 document.getElementById("password-warning-2").style.color = "#006bde";
-                document.getElementById("continue-button").disabled = false;
+                // document.getElementById("continue-button").disabled = false;
                 // alert("correct");
 
                 end_timer_2 = Date.now();
@@ -380,9 +380,12 @@
         }
 
         function show_next_2() {
-            document.getElementById("page-2").style.display = "none";
-            document.getElementById("page-3").style.display = "block";
-            create_json();
+            if (document.getElementById("password-1").value == document.getElementById("password-2").value && document.getElementById(
+                    "password-1").value != "") {
+                document.getElementById("page-2").style.display = "none";
+                document.getElementById("page-3").style.display = "block";
+                create_json();
+            }
         }
     </script>
 </body>
