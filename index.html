@@ -2,7 +2,7 @@
 
 <head>
     <link rel="stylesheet" href="./css/bootstrap.css">
-    <script src="./js/bootstrap.js"></script>
+    <!-- <script src="./js/bootstrap.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
         body {
@@ -12,6 +12,10 @@
         }
 
         h4 {
+            margin-bottom: 25px;
+        }
+
+        h4#form-signin-heading {
             text-align: center;
         }
 
@@ -27,12 +31,18 @@
 
         }
 
-        .form-signin {
-            max-width: 380px;
-            padding: 15px 35px 45px;
+        .form-signin,
+        .intro {
+            max-width: 500px;
+            padding: 15px 45px 45px;
             margin: 0 auto;
             background-color: #fff;
             border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .intro {
+            max-width: 500px;
+            padding-top: 50px;
         }
 
         .form-signin .form-signin-heading,
@@ -62,17 +72,10 @@
 
         .form-signin input[type="password"] {
             margin-bottom: 20px;
-            /* max-width: 250px; */
-            /* display: inline-block; */
-            /* border: none; */
-            /* border-bottom: 1px solid black; */
-            /* border-radius: 0px; */
         }
 
         button.view-password {
-            /* display: inline-block; */
             border: none;
-            /* border-bottom: 1px solid black; */
             padding-bottom: 14px;
         }
 
@@ -86,7 +89,7 @@
             color: red;
             /* padding: 0px; */
             /* margin: 0px; */
-            font-size: 0.8em;
+            font-size: 0.7em;
             margin-top: 2px;
             float: right;
 
@@ -96,9 +99,12 @@
             margin-bottom: 45px;
         }
 
-        #continue-button {
-            font-size: 0.9em;
+        #continue-button,
+        #next-button {
+            font-size: 0.8em;
             height: 50px;
+            text-transform: uppercase;
+            /* font-weight: 600; */
         }
 
         .error-block {
@@ -107,13 +113,21 @@
 
         div#page-1,
         div#page-3 {
-            margin-top: 200px;
+            margin-top: 125px;
         }
 
 
         div#page-2,
         div#page-3 {
             display: none;
+        }
+
+        #error_1,
+        #error_2,
+        #error_3,
+        #error_4 {
+            width: 10px;
+            display: inline-block;
         }
     </style>
 
@@ -126,15 +140,19 @@
         <div id="page-1">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
-                    <div>
-                        You email account has been compromised. You have been requested by your email service provider to reset your password with
-                        the following rules.
+                    <div class="intro">
+                        <h4> Scenario </h4>
+                        You email account has been compromised. You have been requested by your email service provider to reset your password immediately.
                         <br>
                         <br>
-                        <strong> 3class12 - Three words with at least one character being lowercase, one uppercase, and one special
-                            character
-                        </strong>
-                        <br>
+                        <strong>
+                            Password should have the following characteristics </strong>
+                        <ul>
+                            <li>One lowercase character (a-z)</li>
+                            <li>One uppercase character (A-Z)</li>
+                            <li>One special character (#,~,^ ...) </li>
+                            <li>Total of 12 characters</li>
+                        </ul>
                         <br>
                         <button class="btn btn-primary btn-block" id="next-button" onclick="show_next_1()" type="Continue">Continue</button>
                     </div>
@@ -148,9 +166,9 @@
                 <div class="col-md-6 offset-md-3">
                     <div class="wrapper">
                         <div class="form-signin">
-                            <h4 class="form-signin-heading">Change password</h4>
+                            <h4 class="form-signin-heading">Change Password</h4>
                             <span class="prompt-text">Enter Password</span>
-                            <input type="password" onclick="click_password(this)" onkeydown="delete_count(event,this)" onchange="check_password_1(this)"
+                            <input type="password" onclick="click_password(this)" onkeydown="delete_count(event,this)" onkeyup="check_password_1(this)"
                                 class="form-control" id="password-1">
                             </input>
                             <div class="error-block">
@@ -173,13 +191,13 @@
                             <span class="prompt-text">Re-enter Password</span>
                             <span id="password-warning-2"></span>
                             <input type="password" onkeydown="delete_count(event,this)" onclick="click_password(this)" class="form-control" disabled="true"
-                                onchange="check_password_2(this)" id="password-2" />
+                                onkeyup="check_password_2(this)" id="password-2" />
                             <button class="btn btn-lg btn-primary btn-block" onclick="show_next_2()" id="continue-button" type="Continue">Change Password </button>
                         </div>
 
                     </div>
 
-                    <div class="alert alert-primary" id="metrics" role="alert">
+                    <!-- <div class="alert alert-primary" id="metrics" role="alert">
                         <strong>Count</strong>
                         <br> Password 1 :
                         <span id="password-1-count"></span>
@@ -198,7 +216,7 @@
                         <span id="delete-1-count"></span>
                         <br> Password 2 :
                         <span id="delete-2-count"></span>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -219,6 +237,7 @@
     <script>
         var count_times_password_1 = 0;
         var count_times_password_2 = 0;
+        var overall_time = 0;
         var delete_count_1 = 0;
         var delete_count_2 = 0;
         var start_timer_1 = 0;
@@ -335,6 +354,8 @@
         function click_password(password) {
             if (password.id == "password-1") {
                 count_times_password_1++;
+                if (overall_time == 0)
+                    overall_time = Date.now();
                 document.getElementById("password-1-count").innerHTML = count_times_password_1;
                 if (start_timer_1 == 0 && end_timer_1 != 0 || start_timer_1 == 0 && end_timer_1 == 0) {
                     start_timer_1 = Date.now();
@@ -356,7 +377,8 @@
 
             var json_file = [{
                     "value": document.getElementById("password-1").value,
-                    "device-type": device_type
+                    "device-type": device_type,
+                    "overall-time": overall_time / 1000
                 }, {
                     "type": "password-1",
                     "pressed": count_times_password_1,
@@ -384,6 +406,7 @@
                     "password-1").value != "") {
                 document.getElementById("page-2").style.display = "none";
                 document.getElementById("page-3").style.display = "block";
+                overall_time = Date.now() - overall_time;
                 create_json();
             }
         }
