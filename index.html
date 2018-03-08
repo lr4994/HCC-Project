@@ -65,12 +65,13 @@
             box-sizing: border-box;
         }
 
+
         .form-signin .form-control:focus {
             z-index: 2;
         }
 
 
-        .form-signin input[type="password"] {
+        .form-signin input {
             margin-bottom: 20px;
         }
 
@@ -129,6 +130,14 @@
             width: 10px;
             display: inline-block;
         }
+
+        .password-1 {
+            display: inline-block;
+        }
+
+        .toggle {
+            display: inline-block;
+        }
     </style>
 
 </head>
@@ -153,6 +162,8 @@
                             <li>One special character (#,~,^ ...) </li>
                             <li>Total of 12 characters</li>
                         </ul>
+                        <br> Enter Email ID
+                        <input type="text" id="email_id" class="form-control" />
                         <br>
                         <button class="btn btn-primary btn-block" id="next-button" onclick="show_next_1()" type="Continue">Continue</button>
                     </div>
@@ -168,9 +179,11 @@
                         <div class="form-signin">
                             <h4 class="form-signin-heading">Change Password</h4>
                             <span class="prompt-text">Enter Password</span>
+                            Enter
                             <input type="password" onclick="click_password(this)" onkeydown="delete_count(event,this)" onkeyup="check_password_1(this)"
                                 class="form-control" id="password-1">
                             </input>
+                            <button class="toggle" id="toggle1" onclick="view_password_1()"> View </button>
                             <div class="error-block">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -369,6 +382,7 @@
             }
         }
 
+        // Create JSON
         function create_json() {
             var device_type = "laptop";
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -378,7 +392,8 @@
             var json_file = [{
                     "value": document.getElementById("password-1").value,
                     "device-type": device_type,
-                    "overall-time": overall_time / 1000
+                    "overall-time": overall_time / 1000,
+                    // "unique-ID":
                 }, {
                     "type": "password-1",
                     "pressed": count_times_password_1,
@@ -395,8 +410,11 @@
             console.log(json_file);
         }
 
+
+
         // Display - Password Section
         function show_next_1() {
+            // ajax_post();
             document.getElementById("page-1").style.display = "none";
             document.getElementById("page-2").style.display = "block";
         }
@@ -408,6 +426,15 @@
                 document.getElementById("page-3").style.display = "block";
                 overall_time = Date.now() - overall_time;
                 create_json();
+            }
+        }
+
+        // View password toggle
+        function view_password_1() {
+            if (document.getElementById("password-1").type == "password") {
+                document.getElementById("password-1").type = "text";
+            } else {
+                document.getElementById("password-1").type = "password"
             }
         }
     </script>
