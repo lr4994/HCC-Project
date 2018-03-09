@@ -88,11 +88,9 @@
         span#password-warning-2 {
             color: red;
             /* padding: 0px; */
-            /* margin: 0px; */
+            margin-top: 5px;
             font-size: 0.7em;
-            margin-top: 2px;
             float: right;
-
         }
 
         #password-2 {
@@ -145,18 +143,19 @@
             padding-left: 10px;
             width: 80%;
             border-radius: 5px;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
         }
 
         button.toggle {
             border: none;
             float: right;
             height: 38px;
-            /* background-color: #e9ecef; */
             background-image: url("eye-close.png");
             background-repeat: no-repeat;
             background-size: 25px 25px;
             background-position: center center;
-            width: 50px;
+            width: 20%;
             border-radius: 5px;
         }
 
@@ -165,6 +164,10 @@
             height: 40px;
             margin-bottom: 20px;
             border-radius: 5px;
+        }
+
+        input#password-2 {
+            background-color: #eee;
         }
 
         div.password-block.disabled {
@@ -210,6 +213,7 @@
                     <div class="wrapper">
                         <div class="form-signin">
                             <h4 class="form-signin-heading">Change Password</h4>
+                            <span id="password-warning-1"></span>
                             <div class="prompt-text">Enter Password</div>
                             <div class="password-block">
                                 <input class="password" type="password" onclick="click_password(this)" onkeydown="delete_count(event,this)" onkeyup="check_password_1(this)"
@@ -217,25 +221,9 @@
                                 </input>
                                 <button class="toggle" id="toggle1" onclick="view_password_1()"> </button>
                             </div>
-                            <div class="error-block">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <span id="error_1">&#10008;</span> Length > 5
-                                        <br>
-                                        <span id="error_2">&#10008;</span> Atleast one uppercase
-                                        <br>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span id="error_3">&#10008;</span> Atleast one lowercase
-                                        <br>
-                                        <span id="error_4">&#10008;</span> Atleast one special
-                                        <br>
-                                    </div>
-                                </div>
-                            </div>
                             <br>
-                            <span class="prompt-text">Re-enter Password</span>
                             <span id="password-warning-2"></span>
+                            <div class="prompt-text">Re-enter Password</div>
                             <div class="password-block">
                                 <input type="password" onkeydown="delete_count(event,this)" onclick="click_password(this)" class="password" disabled="true"
                                     onkeyup="check_password_2(this)" id="password-2" />
@@ -245,27 +233,6 @@
                         </div>
 
                     </div>
-
-                    <!-- <div class="alert alert-primary" id="metrics" role="alert">
-                        <strong>Count</strong>
-                        <br> Password 1 :
-                        <span id="password-1-count"></span>
-                        <br> Password 2 :
-                        <span id="password-2-count"></span>
-                        <hr>
-                        <strong>Time</strong>
-                        <br> Password 1 :
-                        <span id="password-1-time"></span>
-                        <br> Password 2 :
-                        <span id="password-2-time"></span>
-                        <hr>
-
-                        <strong>Delete Count</strong>
-                        <br> Password 1 :
-                        <span id="delete-1-count"></span>
-                        <br> Password 2 :
-                        <span id="delete-2-count"></span>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -288,12 +255,18 @@
         var count_times_password_1 = 0;
         var count_times_password_2 = 0;
         var overall_time = 0;
+        var end_overall_time = 0;
         var delete_count_1 = 0;
         var delete_count_2 = 0;
         var start_timer_1 = 0;
         var end_timer_1 = 0;
         var start_timer_2 = 0;
         var end_timer_2 = 0;
+
+        var count_1 = count_2 = count_3 = count_4 = 0;
+
+
+        var password_error_json = {};
 
         var count = 0;
 
@@ -302,69 +275,91 @@
 
         var password_check = [false, false, false, false];
         // [0] - Length
-        // [1] - Upper Case
-        // [2] - Lower Case
+        // [1] - lower Case
+        // [2] - upper Case
         // [3] - Special Character
 
 
         // Function - Enter Password Error Feedback
         function check_password_1(password) {
-            // check length
-            if (password.value.length > 4) {
-                document.getElementById("error_1").innerHTML = "&#10004;";
-                password_check[0] = true;
-                count++;
-            } else {
-                document.getElementById("error_1").innerHTML = "&#10008;";
+            var upperPattern = new RegExp(/[A-Z]/);
+            var lowerPattern = new RegExp(/[a-z]/);
+            var specialPattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
+
+            if (password.value.length < 4) {
+                document.getElementById("password-warning-1").innerHTML = "Less than 5 characters";
                 password_check[0] = false;
-            }
-
-            // check upper case
-            for (var i = 0; i < password.value.length; i++) {
-                var pattern = new RegExp(/[A-Z]/);
-                if (pattern.test(password.value)) {
-                    document.getElementById("error_2").innerHTML = "&#10004;";
-                    password_check[1] = true;
-                    count++;
-                } else {
-                    document.getElementById("error_2").innerHTML = "&#10008;";
-                    password_check[1] = false;
-                }
-            }
-
-            // check lower case
-            for (var i = 0; i < password.value.length; i++) {
-                var pattern = new RegExp(/[a-z]/);
-                if (pattern.test(password.value)) {
-                    document.getElementById("error_3").innerHTML = "&#10004;";
-                    password_check[2] = true;
-                    count++;
-                } else {
-                    document.getElementById("error_3").innerHTML = "&#10008;";
-                    password_check[2] = false;
-                }
-            }
-
-            // check special
-            var pattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
-            if (pattern.test(password.value)) {
-                document.getElementById("error_4").innerHTML = "&#10004;";
-                password_check[3] = true;
-                count++;
             } else {
-                document.getElementById("error_4").innerHTML = "&#10008;";
-                password_check[3] = false;
+                // alert(Date.now() - overall_time);
+                password_check[0] = true;
+                if (!lowerPattern.test(password.value)) {
+                    document.getElementById("password-warning-1").innerHTML = "No lowercase character";
+                    password_check[1] = false;
+                } else {
+                    // alert(Date.now() - overall_time);
+                    password_check[1] = true;
+
+                    if (!upperPattern.test(password.value)) {
+                        document.getElementById("password-warning-1").innerHTML = "No uppercase character";
+                        password_check[2] = false;
+                    } else {
+                        password_check[2] = true;
+
+                        if (!specialPattern.test(password.value)) {
+                            document.getElementById("password-warning-1").innerHTML = "No special character";
+                            password_check[3] = false;
+                        } else {
+                            document.getElementById("password-warning-1").innerHTML = "";
+                            password_check[3] = true;
+                        }
+                    }
+                }
+            }
+
+
+            if (password.value.length > 4) {
+                if (count_1 == 0)
+                    password_error_json["less5"] = {
+                        "time": Date.now() - overall_time
+                    };
+                count_1++;
+            }
+
+            if (lowerPattern.test(password.value)) {
+                if (count_2 == 0)
+                    password_error_json["lowercase"] = {
+                        "time": Date.now() - overall_time
+                    };
+                count_2++;
+            }
+
+            if (upperPattern.test(password.value)) {
+                if (count_3 == 0)
+                    password_error_json["uppercase"] = {
+                        "time": Date.now() - overall_time
+                    }
+                count_3++;
+            }
+            if (specialPattern.test(password.value)) {
+                if (count_4 == 0)
+                    password_error_json["special"] = {
+                        "time": Date.now() - overall_time
+                    }
+                count_4++;
             }
 
             if (password_check[0] == true && password_check[1] == true && password_check[2] == true &&
                 password_check[3] == true) {
                 document.getElementById("password-2").disabled = false;
+                document.getElementById("password-2").style.backgroundColor = "white";
                 end_timer_1 = Date.now();
                 total_1 += end_timer_1 - start_timer_1;
                 start_timer_1 = 0;
                 document.getElementById("password-1-time").innerHTML = (total_1) / 1000 + "s";
             } else {
                 document.getElementById("password-2").disabled = true;
+                document.getElementById("password-2").style.backgroundColor = "#eee";
+
             }
         }
 
@@ -428,21 +423,23 @@
             var json_file = [{
                     "value": document.getElementById("password-1").value,
                     "device-type": device_type,
-                    "overall-time": overall_time / 1000,
+                    "end_overall-time": end_overall_time / 1000,
                     // "unique-ID":
                 }, {
                     "type": "password-1",
                     "pressed": count_times_password_1,
-                    "time": total_1 / 1000,
+                    // "time": total_1 / 1000,
                     "delete-count": delete_count_1
                 },
                 {
                     "type": "password-2",
                     "pressed": count_times_password_2,
-                    "time": total_2 / 1000,
+                    // "time": total_2 / 1000,
                     "delete-count": delete_count_2
                 }
-            ]
+            ];
+
+            json_file = json_file.concat(password_error_json)
             console.log(json_file);
         }
 
@@ -463,7 +460,7 @@
                     "password-1").value != "") {
                 document.getElementById("page-2").style.display = "none";
                 document.getElementById("page-3").style.display = "block";
-                overall_time = Date.now() - overall_time;
+                end_overall_time = Date.now() - overall_time;
                 create_json();
             }
         }
