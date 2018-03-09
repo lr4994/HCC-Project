@@ -2,7 +2,6 @@
 
 <head>
     <link rel="stylesheet" href="./css/bootstrap.css">
-    <!-- <script src="./js/bootstrap.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
         body {
@@ -93,9 +92,6 @@
             float: right;
         }
 
-        #password-2 {
-            margin-bottom: 45px;
-        }
 
         #continue-button,
         #next-button {
@@ -109,13 +105,17 @@
             font-size: 0.7em;
         }
 
-        div#page-1,
-        div#page-3 {
-            margin-top: 125px;
+        div#page-1 {
+            margin-top: 100px;
+        }
+
+        iframe {
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
+            border: 5px solid white;
         }
 
 
-        div#page-1,
+        div#page-2,
         div#page-3 {
             display: none;
         }
@@ -162,9 +162,13 @@
         div.password-block {
             border: 1px solid #9299a0;
             height: 40px;
-            margin-bottom: 20px;
             border-radius: 5px;
         }
+
+        div.password-block:last-of-type {
+            margin-bottom: 50px;
+        }
+
 
         input#password-2 {
             background-color: #eee;
@@ -197,7 +201,8 @@
                             <li>One special character (#,~,^ ...) </li>
                             <li>Total of 12 characters</li>
                         </ul>
-                        <br> Enter Email ID
+                        <hr>
+                        <div class="prompt-text">Enter Email ID</div>
                         <input type="text" id="email_id" class="form-control" />
                         <br>
                         <button class="btn btn-primary btn-block" id="next-button" onclick="show_next_1()" type="Continue">Continue</button>
@@ -222,7 +227,7 @@
                                 <button class="toggle" id="toggle1" onclick="view_password_1()"> </button>
                             </div>
                             <br>
-                            <span id="password-warning-2"></span>
+                            <span id="password-warning-2"> Disabled</span>
                             <div class="prompt-text">Re-enter Password</div>
                             <div class="password-block">
                                 <input type="password" onkeydown="delete_count(event,this)" onclick="click_password(this)" class="password" disabled="true"
@@ -240,11 +245,21 @@
         <div id="page-3">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
-                    <div class="alert alert-primary" id="metrics" role="alert">
-                        Thank you for participating in this study. You will get a qualtrics survey link shortly.
+                    <div id="hide-1" style="display:none">
+                        <h4> Thank you! </h4>
+                        <p id="hide-para-1" style="display:none">
+                            Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
+                            <strong>mobile</strong>.
+                        </p>
+                        <p id="hide-para-2">
+                            Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
+                            <strong>laptop</strong>.
+                        </p>
                     </div>
-                    <iframe id="qualtrics-embed" src="https://ufl.qualtrics.com/jfe/form/SV_9RKw24xEFXKMB3n" height="800px" width="100%"></iframe>
-
+                    <div id="hide-2">
+                        <h4> Please fill the following survey, thank you! </h4>
+                        <iframe id="qualtrics-embed" src="https://ufl.qualtrics.com/jfe/form/SV_9RKw24xEFXKMB3n" height="500px" width="100%"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
@@ -262,6 +277,8 @@
         var end_timer_1 = 0;
         var start_timer_2 = 0;
         var end_timer_2 = 0;
+        var log_password_1;
+        var log_password_2;
 
         var count_1 = count_2 = count_3 = count_4 = 0;
 
@@ -316,7 +333,7 @@
                 }
             }
 
-
+            //code to log time in json
             if (password.value.length > 4) {
                 if (count_1 == 0)
                     password_error_json["less5"] = {
@@ -348,6 +365,7 @@
                 count_4++;
             }
 
+            //check if all password conditions met
             if (password_check[0] == true && password_check[1] == true && password_check[2] == true &&
                 password_check[3] == true) {
                 document.getElementById("password-2").disabled = false;
@@ -359,7 +377,6 @@
             } else {
                 document.getElementById("password-2").disabled = true;
                 document.getElementById("password-2").style.backgroundColor = "#eee";
-
             }
         }
 
@@ -367,15 +384,11 @@
         function check_password_2(password) {
             if (password.value != document.getElementById("password-1").value) {
                 document.getElementById("password-warning-2").innerHTML = "Passwords do not match";
-                document.getElementById("password-warning-2").color = "red";
-                // document.getElementById("continue-button").disabled = true;
+                document.getElementById("password-warning-2").style.color = "red";
                 start_timer_1 = 0;
             } else {
                 document.getElementById("password-warning-2").innerHTML = "Passwords match";
                 document.getElementById("password-warning-2").style.color = "#006bde";
-                // document.getElementById("continue-button").disabled = false;
-                // alert("correct");
-
                 end_timer_2 = Date.now();
                 total_2 += end_timer_2 - start_timer_2;
                 start_timer_2 = 0;
@@ -387,26 +400,28 @@
         function delete_count(event, password) {
             if (event.keyCode == 8 && password.id == "password-1") {
                 delete_count_1++;
-                document.getElementById("delete-1-count").innerHTML = delete_count_1;
             } else if (event.keyCode == 8 && password.id == "password-2") {
                 delete_count_2++;
-                document.getElementById("delete-2-count").innerHTML = delete_count_2;
             }
         }
 
         // Function - Count Password clicks
         function click_password(password) {
             if (password.id == "password-1") {
-                count_times_password_1++;
-                if (overall_time == 0)
+                if (password.value != log_password_1) {
+                    count_times_password_1++;
+                    log_password_1 = password.value;
+                }
+                if (overall_time == 0) //total time to create password
                     overall_time = Date.now();
-                document.getElementById("password-1-count").innerHTML = count_times_password_1;
                 if (start_timer_1 == 0) {
                     start_timer_1 = Date.now();
                 }
             } else if (password.id == "password-2") {
-                count_times_password_2++;
-                document.getElementById("password-2-count").innerHTML = count_times_password_2;
+                if (password.value != log_password_2) {
+                    count_times_password_2++;
+                    log_password_2 = password.value;
+                }
                 if (start_timer_2 == 0) {
                     start_timer_2 = Date.now();
                 }
@@ -439,6 +454,7 @@
                 }
             ];
 
+            //concating password error time json with original json
             json_file = json_file.concat(password_error_json)
             console.log(json_file);
         }
