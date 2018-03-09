@@ -303,8 +303,8 @@
             var lowerPattern = new RegExp(/[a-z]/);
             var specialPattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
 
-            if (password.value.length < 4) {
-                document.getElementById("password-warning-1").innerHTML = "Less than 5 characters";
+            if (password.value.length < 12) {
+                document.getElementById("password-warning-1").innerHTML = "Less than 12 characters";
                 password_check[0] = false;
             } else {
                 // alert(Date.now() - overall_time);
@@ -334,9 +334,9 @@
             }
 
             //code to log time in json
-            if (password.value.length > 4) {
+            if (password.value.length > 11) {
                 if (count_1 == 0)
-                    password_error_json["less5"] = {
+                    password_error_json["lessthan"] = {
                         "time": Date.now() - overall_time
                     };
                 count_1++;
@@ -429,6 +429,8 @@
         }
 
         // Create JSON
+        // works on clicking the change password button
+        // json_file is the file to be exported
         function create_json() {
             var device_type = "laptop";
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
