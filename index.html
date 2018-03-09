@@ -81,7 +81,6 @@
         }
 
         .prompt-text {
-            display: inline-block;
             margin-bottom: 10px;
         }
 
@@ -118,7 +117,7 @@
         }
 
 
-        div#page-2,
+        div#page-1,
         div#page-3 {
             display: none;
         }
@@ -131,12 +130,45 @@
             display: inline-block;
         }
 
-        .password-1 {
-            display: inline-block;
+        *:focus {
+            outline: none;
         }
 
-        .toggle {
+        button:focus {
+            outline: none;
+        }
+
+        input.password {
             display: inline-block;
+            border: none;
+            height: 38px;
+            padding-left: 10px;
+            width: 80%;
+            border-radius: 5px;
+        }
+
+        button.toggle {
+            border: none;
+            float: right;
+            height: 38px;
+            /* background-color: #e9ecef; */
+            background-image: url("eye-close.png");
+            background-repeat: no-repeat;
+            background-size: 25px 25px;
+            background-position: center center;
+            width: 50px;
+            border-radius: 5px;
+        }
+
+        div.password-block {
+            border: 1px solid #9299a0;
+            height: 40px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        div.password-block.disabled {
+            background-color: black;
         }
     </style>
 
@@ -178,12 +210,13 @@
                     <div class="wrapper">
                         <div class="form-signin">
                             <h4 class="form-signin-heading">Change Password</h4>
-                            <span class="prompt-text">Enter Password</span>
-                            Enter
-                            <input type="password" onclick="click_password(this)" onkeydown="delete_count(event,this)" onkeyup="check_password_1(this)"
-                                class="form-control" id="password-1">
-                            </input>
-                            <button class="toggle" id="toggle1" onclick="view_password_1()"> View </button>
+                            <div class="prompt-text">Enter Password</div>
+                            <div class="password-block">
+                                <input class="password" type="password" onclick="click_password(this)" onkeydown="delete_count(event,this)" onkeyup="check_password_1(this)"
+                                    class="form-control" id="password-1">
+                                </input>
+                                <button class="toggle" id="toggle1" onclick="view_password_1()"> </button>
+                            </div>
                             <div class="error-block">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -203,8 +236,11 @@
                             <br>
                             <span class="prompt-text">Re-enter Password</span>
                             <span id="password-warning-2"></span>
-                            <input type="password" onkeydown="delete_count(event,this)" onclick="click_password(this)" class="form-control" disabled="true"
-                                onkeyup="check_password_2(this)" id="password-2" />
+                            <div class="password-block">
+                                <input type="password" onkeydown="delete_count(event,this)" onclick="click_password(this)" class="password" disabled="true"
+                                    onkeyup="check_password_2(this)" id="password-2" />
+                                <button class="toggle" id="toggle2" onclick="view_password_2()"> </button>
+                            </div>
                             <button class="btn btn-lg btn-primary btn-block" onclick="show_next_2()" id="continue-button" type="Continue">Change Password </button>
                         </div>
 
@@ -321,8 +357,7 @@
             }
 
             if (password_check[0] == true && password_check[1] == true && password_check[2] == true &&
-                password_check[3] ==
-                true) {
+                password_check[3] == true) {
                 document.getElementById("password-2").disabled = false;
                 end_timer_1 = Date.now();
                 total_1 += end_timer_1 - start_timer_1;
@@ -371,13 +406,13 @@
                 if (overall_time == 0)
                     overall_time = Date.now();
                 document.getElementById("password-1-count").innerHTML = count_times_password_1;
-                if (start_timer_1 == 0 && end_timer_1 != 0 || start_timer_1 == 0 && end_timer_1 == 0) {
+                if (start_timer_1 == 0) {
                     start_timer_1 = Date.now();
                 }
             } else if (password.id == "password-2") {
                 count_times_password_2++;
                 document.getElementById("password-2-count").innerHTML = count_times_password_2;
-                if (start_timer_2 == 0 && end_timer_2 != 0 || start_timer_2 == 0 && end_timer_2 == 0) {
+                if (start_timer_2 == 0) {
                     start_timer_2 = Date.now();
                 }
             }
@@ -416,12 +451,15 @@
         // Display - Password Section
         function show_next_1() {
             // ajax_post();
-            document.getElementById("page-1").style.display = "none";
-            document.getElementById("page-2").style.display = "block";
+            if (document.getElementById("email_id").value != "") {
+                document.getElementById("page-1").style.display = "none";
+                document.getElementById("page-2").style.display = "block";
+            }
         }
 
         function show_next_2() {
-            if (document.getElementById("password-1").value == document.getElementById("password-2").value && document.getElementById(
+            if (document.getElementById("password-1").value == document.getElementById("password-2").value &&
+                document.getElementById(
                     "password-1").value != "") {
                 document.getElementById("page-2").style.display = "none";
                 document.getElementById("page-3").style.display = "block";
@@ -434,8 +472,22 @@
         function view_password_1() {
             if (document.getElementById("password-1").type == "password") {
                 document.getElementById("password-1").type = "text";
+                document.getElementById("toggle1").style.backgroundImage = "url(eye-open.png)";
+
             } else {
-                document.getElementById("password-1").type = "password"
+                document.getElementById("password-1").type = "password";
+                document.getElementById("toggle1").style.backgroundImage = "url(eye-close.png)";
+            }
+        }
+
+        function view_password_2() {
+            if (document.getElementById("password-2").type == "password") {
+                document.getElementById("password-2").type = "text";
+                document.getElementById("toggle2").style.backgroundImage = "url(eye-open.png)";
+
+            } else {
+                document.getElementById("password-2").type = "password";
+                document.getElementById("toggle2").style.backgroundImage = "url(eye-close.png)";
             }
         }
     </script>
