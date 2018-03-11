@@ -154,7 +154,10 @@
                             <li>Total of 12 characters</li>
                         </ul>
                         <br>
-                        <button class="btn btn-primary btn-block" id="next-button" onclick="show_next_1()" type="Continue">Continue</button>
+                        Email: <input id="email" name="email" type="text"> <br><br>
+                        <input type="hidden" id="isValidUser" value="false">
+                        <div id="status"></div>
+                        <button class="btn btn-primary btn-block" id="next-button" onclick="ajax_post_1()" type="Continue">Continue</button>
                     </div>
                 </div>
             </div>
@@ -235,6 +238,7 @@
 
 
     <script>
+        var isValidUser = false;
         var count_times_password_1 = 0;
         var count_times_password_2 = 0;
         var overall_time = 0;
@@ -375,7 +379,8 @@
                 device_type = "mobile";
             }
 
-            var json_file = [{
+            var json_file = [{"id": user_info.userId},
+              {
                     "value": document.getElementById("password-1").value,
                     "device-type": device_type,
                     "overall-time": overall_time / 1000
@@ -393,12 +398,46 @@
                 }
             ]
             console.log(json_file);
+            return JSON.stringify(json_file);
         }
 
+        function ajax_post_1(){
+            // Create our XMLHttpRequest object
+            var hr = new XMLHttpRequest();
+            // Create some variables we need to send to our PHP file
+            var url = "user-validate.php";
+            var email = document.getElementById("email").value;
+            var vars = "email="+email;
+            hr.open("POST", url, true);
+            // Set content type header information for sending url encoded variables in the request
+            hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            // Access the onreadystatechange event for the XMLHttpRequest object
+            hr.onreadystatechange = function() {
+        	    if(hr.readyState == 4 && hr.status == 200) {
+        		   // var return_data = hr.responseText;
+                var return_json = JSON.parse(hr.responseText);
+                console.log(return_json);
+        			//document.getElementById("status").innerHTML = return_data;
+              document.getElementById("isValidUser").value = return_json.valid;
+              show_next_1();
+              if(return_json.valid == false){
+                document.getElementById("status").innerHTML = "<b>Invalid user email!</b>";
+              }
+        	    }
+            }
+            // Send the data to PHP now... and wait for response to update the status div
+            hr.send(vars); // Actually execute the request
+            document.getElementById("status").innerHTML = "processing...";
+
+        }
         // Display - Password Section
         function show_next_1() {
-            document.getElementById("page-1").style.display = "none";
-            document.getElementById("page-2").style.display = "block";
+          //  ajax_post_1();
+            if(document.getElementById("isValidUser").value == "true"){
+              document.getElementById("page-1").style.display = "none";
+              document.getElementById("page-2").style.display = "block";
+
+            }
         }
 
         function show_next_2() {
