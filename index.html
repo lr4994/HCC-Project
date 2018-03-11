@@ -237,7 +237,7 @@
                 onkeyup="check_password_2(this)" id="password-2" />
                 <button class="toggle" id="toggle2" onclick="view_password_2()"> </button>
               </div>
-              <button class="btn btn-lg btn-primary btn-block" onclick="show_next_2()" id="continue-button" type="Continue">Change Password </button>
+              <button class="btn btn-lg btn-primary btn-block" onclick="ajax_post_2()" id="continue-button" type="Continue">Change Password </button>
             </div>
 
           </div>
@@ -306,7 +306,7 @@
   function check_password_1(password) {
     var upperPattern = new RegExp(/[A-Z]/);
     var lowerPattern = new RegExp(/[a-z]/);
-    var specialPattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
+    var specialPattern = new RegExp(/[~`!#$%\^_&*+=\-\[\]\\'.;,/{}()|\\":<>\?@]/);
 
     if (password.value.length < 12) {
       document.getElementById("password-warning-1").innerHTML = "Less than 12 characters";
@@ -466,7 +466,7 @@
     //concating password error time json with original json
     json_file = json_file.concat(password_error_json)
     console.log(json_file);
-    return JSON.stringify(json_file);
+    return json_file;
   }
 
   function ajax_post_1(){
@@ -514,11 +514,10 @@
     var hr = new XMLHttpRequest();
     // Create some variables we need to send to our PHP file
     var url = "backend-data-store.php";
-    var email = document.getElementById("email_id").value;
     var jsondata = JSON.stringify(create_json());
     hr.open("POST", url, true);
     // Set content type header information for sending url encoded variables in the request
-    hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    hr.setRequestHeader("Content-type", "application/json");
     // Access the onreadystatechange event for the XMLHttpRequest object
     hr.onreadystatechange = function() {
       if(hr.readyState == 4 && hr.status == 200) {
@@ -535,14 +534,16 @@
   }
 
   function show_next_2() {
-    if (document.getElementById("password-1").value == document.getElementById("password-2").value &&
-    document.getElementById(
-      "password-1").value != "") {
-        document.getElementById("page-2").style.display = "none";
-        document.getElementById("page-3").style.display = "block";
-        // end_overall_time = Date.now() - overall_time;
-        // create_json();
-      }
+    // if (document.getElementById("password-1").value == document.getElementById("password-2").value &&
+    // document.getElementById(
+    //   "password-1").value != "") {
+    //     document.getElementById("page-2").style.display = "none";
+    //     document.getElementById("page-3").style.display = "block";
+    //     // end_overall_time = Date.now() - overall_time;
+    //     // create_json();
+    //   }
+      document.getElementById("page-2").style.display = "none";
+      document.getElementById("page-3").style.display = "block";
     }
 
     // View password toggle
