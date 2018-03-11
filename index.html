@@ -1,455 +1,573 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="./css/bootstrap.css">
-    <!-- <script src="./js/bootstrap.js"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <style>
-        body {
-            margin-top: 50px;
-            margin-bottom: 50px;
-            background: #eee !important;
-        }
+  <link rel="stylesheet" href="./css/bootstrap.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <style>
+  body {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background: #eee !important;
+  }
 
-        h4 {
-            margin-bottom: 25px;
-        }
+  h4 {
+    margin-bottom: 25px;
+  }
 
-        h4#form-signin-heading {
-            text-align: center;
-        }
-
-
-        .wrapper {
-            margin-top: 80px;
-            margin-bottom: 80px;
-        }
-
-        #metrics {
-            max-width: 380px;
-            margin: 0 auto;
-
-        }
-
-        .form-signin,
-        .intro {
-            max-width: 500px;
-            padding: 15px 45px 45px;
-            margin: 0 auto;
-            background-color: #fff;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .intro {
-            max-width: 500px;
-            padding-top: 50px;
-        }
-
-        .form-signin .form-signin-heading,
-        .form-signin .checkbox {
-            margin-bottom: 30px;
-            margin-top: 30px;
-        }
-
-        .form-signin .checkbox {
-            font-weight: normal;
-        }
-
-        .form-signin .form-control {
-            position: relative;
-            font-size: 16px;
-            height: auto;
-            padding: 10px;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-
-        .form-signin .form-control:focus {
-            z-index: 2;
-        }
+  h4#form-signin-heading {
+    text-align: center;
+  }
 
 
-        .form-signin input[type="password"] {
-            margin-bottom: 20px;
-        }
+  .wrapper {
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
 
-        button.view-password {
-            border: none;
-            padding-bottom: 14px;
-        }
+  #metrics {
+    max-width: 380px;
+    margin: 0 auto;
 
-        .prompt-text {
-            display: inline-block;
-            margin-bottom: 10px;
-        }
+  }
 
-        span#password-warning-1,
-        span#password-warning-2 {
-            color: red;
-            /* padding: 0px; */
-            /* margin: 0px; */
-            font-size: 0.7em;
-            margin-top: 2px;
-            float: right;
+  .form-signin,
+  .intro {
+    max-width: 500px;
+    padding: 15px 45px 45px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
 
-        }
+  .intro {
+    max-width: 500px;
+    padding-top: 50px;
+  }
 
-        #password-2 {
-            margin-bottom: 45px;
-        }
+  .form-signin .form-signin-heading,
+  .form-signin .checkbox {
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
 
-        #continue-button,
-        #next-button {
-            font-size: 0.8em;
-            height: 50px;
-            text-transform: uppercase;
-            /* font-weight: 600; */
-        }
+  .form-signin .checkbox {
+    font-weight: normal;
+  }
 
-        .error-block {
-            font-size: 0.7em;
-        }
-
-        div#page-1,
-        div#page-3 {
-            margin-top: 125px;
-        }
+  .form-signin .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
 
 
-        div#page-2,
-        div#page-3 {
-            display: none;
-        }
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
 
-        #error_1,
-        #error_2,
-        #error_3,
-        #error_4 {
-            width: 10px;
-            display: inline-block;
-        }
-    </style>
+
+  .form-signin input {
+    margin-bottom: 20px;
+  }
+
+  button.view-password {
+    border: none;
+    padding-bottom: 14px;
+  }
+
+  .prompt-text {
+    margin-bottom: 10px;
+  }
+
+  span#password-warning-1,
+  span#password-warning-2 {
+    color: red;
+    /* padding: 0px; */
+    margin-top: 5px;
+    font-size: 0.7em;
+    float: right;
+  }
+
+
+  #continue-button,
+  #next-button {
+    font-size: 0.8em;
+    height: 50px;
+    text-transform: uppercase;
+    /* font-weight: 600; */
+  }
+
+  .error-block {
+    font-size: 0.7em;
+  }
+
+  div#page-1 {
+    margin-top: 100px;
+  }
+
+  iframe {
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
+    border: 5px solid white;
+  }
+
+
+  div#page-2,
+  div#page-3 {
+    display: none;
+  }
+
+  #error_1,
+  #error_2,
+  #error_3,
+  #error_4 {
+    width: 10px;
+    display: inline-block;
+  }
+
+  *:focus {
+    outline: none;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  input.password {
+    display: inline-block;
+    border: none;
+    height: 38px;
+    padding-left: 10px;
+    width: 80%;
+    border-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+
+  button.toggle {
+    border: none;
+    float: right;
+    height: 38px;
+    background-image: url("eye-close.png");
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    background-position: center center;
+    width: 20%;
+    border-radius: 5px;
+  }
+
+  div.password-block {
+    border: 1px solid #9299a0;
+    height: 40px;
+    border-radius: 5px;
+  }
+
+  div.password-block:last-of-type {
+    margin-bottom: 50px;
+  }
+
+
+  input#password-2 {
+    background-color: #eee;
+  }
+
+  div.password-block.disabled {
+    background-color: black;
+  }
+  </style>
 
 </head>
 
 
 <body>
-    <div class="container">
+  <div class="container">
 
-        <div id="page-1">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <div class="intro">
-                        <h4> Scenario </h4>
-                        You email account has been compromised. You have been requested by your email service provider to reset your password immediately.
-                        <br>
-                        <br>
-                        <strong>
-                            Password should have the following characteristics </strong>
-                        <ul>
-                            <li>One lowercase character (a-z)</li>
-                            <li>One uppercase character (A-Z)</li>
-                            <li>One special character (#,~,^ ...) </li>
-                            <li>Total of 12 characters</li>
-                        </ul>
-                        <br>
-                        Email: <input id="email" name="email" type="text"> <br><br>
-                        <input type="hidden" id="isValidUser" value="false">
-                        <div id="status"></div>
-                        <button class="btn btn-primary btn-block" id="next-button" onclick="ajax_post_1()" type="Continue">Continue</button>
-                    </div>
-                </div>
+    <div id="page-1">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="intro">
+            <h4> Scenario </h4>
+            You email account has been compromised. You have been requested by your email service provider to reset your password immediately.
+            <br>
+            <br>
+            <strong>
+              Password should have the following characteristics </strong>
+              <ul>
+                <li>One lowercase character (a-z)</li>
+                <li>One uppercase character (A-Z)</li>
+                <li>One special character (#,~,^ ...) </li>
+                <li>Total of 12 characters</li>
+              </ul>
+              <hr>
+              <div class="prompt-text">Enter Email ID</div>
+              <input type="text" id="email_id" class="form-control" />
+              <br>
+              <!--    Email: <input id="email" name="email" type="text"> <br><br> -->
+              <input type="hidden" id="isValidUser" value="false">
+              <div id="status"></div>
+              <button class="btn btn-primary btn-block" id="next-button" onclick="ajax_post_1()" type="Continue">Continue</button>
             </div>
+          </div>
         </div>
+      </div>
 
 
-        <div id="page-2">
-            <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <div class="wrapper">
-                        <div class="form-signin">
-                            <h4 class="form-signin-heading">Change Password</h4>
-                            <span class="prompt-text">Enter Password</span>
-                            <input type="password" onclick="click_password(this)" onkeydown="delete_count(event,this)" onkeyup="check_password_1(this)"
-                                class="form-control" id="password-1">
-                            </input>
-                            <div class="error-block">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <span id="error_1">&#10008;</span> Length > 5
-                                        <br>
-                                        <span id="error_2">&#10008;</span> Atleast one uppercase
-                                        <br>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span id="error_3">&#10008;</span> Atleast one lowercase
-                                        <br>
-                                        <span id="error_4">&#10008;</span> Atleast one special
-                                        <br>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <span class="prompt-text">Re-enter Password</span>
-                            <span id="password-warning-2"></span>
-                            <input type="password" onkeydown="delete_count(event,this)" onclick="click_password(this)" class="form-control" disabled="true"
-                                onkeyup="check_password_2(this)" id="password-2" />
-                            <button class="btn btn-lg btn-primary btn-block" onclick="show_next_2()" id="continue-button" type="Continue">Change Password </button>
-                        </div>
-
-                    </div>
-
-                    <!-- <div class="alert alert-primary" id="metrics" role="alert">
-                        <strong>Count</strong>
-                        <br> Password 1 :
-                        <span id="password-1-count"></span>
-                        <br> Password 2 :
-                        <span id="password-2-count"></span>
-                        <hr>
-                        <strong>Time</strong>
-                        <br> Password 1 :
-                        <span id="password-1-time"></span>
-                        <br> Password 2 :
-                        <span id="password-2-time"></span>
-                        <hr>
-
-                        <strong>Delete Count</strong>
-                        <br> Password 1 :
-                        <span id="delete-1-count"></span>
-                        <br> Password 2 :
-                        <span id="delete-2-count"></span>
-                    </div> -->
-                </div>
+      <div id="page-2">
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <div class="wrapper">
+              <div class="form-signin">
+                <h4 class="form-signin-heading">Change Password</h4>
+                <span id="password-warning-1"></span>
+                <div class="prompt-text">Enter Password</div>
+                <div class="password-block">
+                  <input class="password" type="password" onclick="click_password(this)" onkeydown="delete_count(event,this)" onkeyup="check_password_1(this)"
+                  class="form-control" id="password-1">
+                </input>
+                <button class="toggle" id="toggle1" onclick="view_password_1()"> </button>
+              </div>
+              <br>
+              <span id="password-warning-2"> Disabled</span>
+              <div class="prompt-text">Re-enter Password</div>
+              <div class="password-block">
+                <input type="password" onkeydown="delete_count(event,this)" onclick="click_password(this)" class="password" disabled="true"
+                onkeyup="check_password_2(this)" id="password-2" />
+                <button class="toggle" id="toggle2" onclick="view_password_2()"> </button>
+              </div>
+              <button class="btn btn-lg btn-primary btn-block" onclick="show_next_2()" id="continue-button" type="Continue">Change Password </button>
             </div>
-        </div>
 
-        <div id="page-3">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <div class="alert alert-primary" id="metrics" role="alert">
-                        Thank you for participating in this study. You will get a qualtrics survey link shortly.
-                        <!-- <iframe src="https://ufl.qualtrics.com/jfe/form/SV_9RKw24xEFXKMB3n" height="800px" width="100%"></iframe> -->
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
 
+    <div id="page-3">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div id="hide-1" style="display:none">
+            <h4> Thank you! </h4>
+            <p id="hide-para-1" style="display:none">
+              Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
+              <strong>mobile</strong>.
+            </p>
+            <p id="hide-para-2">
+              Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
+              <strong>laptop</strong>.
+            </p>
+          </div>
+          <div id="hide-2">
+            <h4> Please fill the following survey, thank you! </h4>
+            <iframe id="qualtrics-embed" src="https://ufl.qualtrics.com/jfe/form/SV_9RKw24xEFXKMB3n" height="500px" width="100%"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script>
-        var isValidUser = false;
-        var count_times_password_1 = 0;
-        var count_times_password_2 = 0;
-        var overall_time = 0;
-        var delete_count_1 = 0;
-        var delete_count_2 = 0;
-        var start_timer_1 = 0;
-        var end_timer_1 = 0;
-        var start_timer_2 = 0;
-        var end_timer_2 = 0;
 
-        var count = 0;
+  <script>
+  var user_info = {}; //an empty JSON object to store user info after calling ajax_post_1
+  var isValidUser = false;
+  var count_times_password_1 = 0;
+  var count_times_password_2 = 0;
+  var overall_time = 0;
+  var end_overall_time = 0;
+  var delete_count_1 = 0;
+  var delete_count_2 = 0;
+  var start_timer_1 = 0;
+  var end_timer_1 = 0;
+  var start_timer_2 = 0;
+  var end_timer_2 = 0;
+  var log_password_1;
+  var log_password_2;
 
-        var total_1 = 0;
-        var total_2 = 0;
-
-        var password_check = [false, false, false, false];
-        // [0] - Length
-        // [1] - Upper Case
-        // [2] - Lower Case
-        // [3] - Special Character
+  var count_1 = count_2 = count_3 = count_4 = 0;
 
 
-        // Function - Enter Password Error Feedback
-        function check_password_1(password) {
-            // check length
-            if (password.value.length > 4) {
-                document.getElementById("error_1").innerHTML = "&#10004;";
-                password_check[0] = true;
-                count++;
-            } else {
-                document.getElementById("error_1").innerHTML = "&#10008;";
-                password_check[0] = false;
-            }
+  var password_error_json = {};
 
-            // check upper case
-            for (var i = 0; i < password.value.length; i++) {
-                var pattern = new RegExp(/[A-Z]/);
-                if (pattern.test(password.value)) {
-                    document.getElementById("error_2").innerHTML = "&#10004;";
-                    password_check[1] = true;
-                    count++;
-                } else {
-                    document.getElementById("error_2").innerHTML = "&#10008;";
-                    password_check[1] = false;
-                }
-            }
+  var count = 0;
 
-            // check lower case
-            for (var i = 0; i < password.value.length; i++) {
-                var pattern = new RegExp(/[a-z]/);
-                if (pattern.test(password.value)) {
-                    document.getElementById("error_3").innerHTML = "&#10004;";
-                    password_check[2] = true;
-                    count++;
-                } else {
-                    document.getElementById("error_3").innerHTML = "&#10008;";
-                    password_check[2] = false;
-                }
-            }
+  var total_1 = 0;
+  var total_2 = 0;
 
-            // check special
-            var pattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
-            if (pattern.test(password.value)) {
-                document.getElementById("error_4").innerHTML = "&#10004;";
-                password_check[3] = true;
-                count++;
-            } else {
-                document.getElementById("error_4").innerHTML = "&#10008;";
-                password_check[3] = false;
-            }
+  var password_check = [false, false, false, false];
+  // [0] - Length
+  // [1] - lower Case
+  // [2] - upper Case
+  // [3] - Special Character
 
-            if (password_check[0] == true && password_check[1] == true && password_check[2] == true &&
-                password_check[3] ==
-                true) {
-                document.getElementById("password-2").disabled = false;
-                end_timer_1 = Date.now();
-                total_1 += end_timer_1 - start_timer_1;
-                start_timer_1 = 0;
-                document.getElementById("password-1-time").innerHTML = (total_1) / 1000 + "s";
-            } else {
-                document.getElementById("password-2").disabled = true;
-            }
+
+  // Function - Enter Password Error Feedback
+  function check_password_1(password) {
+    var upperPattern = new RegExp(/[A-Z]/);
+    var lowerPattern = new RegExp(/[a-z]/);
+    var specialPattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
+
+    if (password.value.length < 12) {
+      document.getElementById("password-warning-1").innerHTML = "Less than 12 characters";
+      password_check[0] = false;
+    } else {
+      // alert(Date.now() - overall_time);
+      password_check[0] = true;
+      if (!lowerPattern.test(password.value)) {
+        document.getElementById("password-warning-1").innerHTML = "No lowercase character";
+        password_check[1] = false;
+      } else {
+        // alert(Date.now() - overall_time);
+        password_check[1] = true;
+
+        if (!upperPattern.test(password.value)) {
+          document.getElementById("password-warning-1").innerHTML = "No uppercase character";
+          password_check[2] = false;
+        } else {
+          password_check[2] = true;
+
+          if (!specialPattern.test(password.value)) {
+            document.getElementById("password-warning-1").innerHTML = "No special character";
+            password_check[3] = false;
+          } else {
+            document.getElementById("password-warning-1").innerHTML = "";
+            password_check[3] = true;
+          }
         }
+      }
+    }
 
-        // Function - Re-enter Password Error Feedback
-        function check_password_2(password) {
-            if (password.value != document.getElementById("password-1").value) {
-                document.getElementById("password-warning-2").innerHTML = "Passwords do not match";
-                document.getElementById("password-warning-2").color = "red";
-                // document.getElementById("continue-button").disabled = true;
-                start_timer_1 = 0;
-            } else {
-                document.getElementById("password-warning-2").innerHTML = "Passwords match";
-                document.getElementById("password-warning-2").style.color = "#006bde";
-                // document.getElementById("continue-button").disabled = false;
-                // alert("correct");
+    //code to log time in json
+    if (password.value.length > 11) {
+      if (count_1 == 0)
+      password_error_json["lessthan"] = {
+        "time": Date.now() - overall_time
+      };
+      count_1++;
+    }
 
-                end_timer_2 = Date.now();
-                total_2 += end_timer_2 - start_timer_2;
-                start_timer_2 = 0;
-                document.getElementById("password-2-time").innerHTML = (total_2) / 1000 + "s";
-            }
+    if (lowerPattern.test(password.value)) {
+      if (count_2 == 0)
+      password_error_json["lowercase"] = {
+        "time": Date.now() - overall_time
+      };
+      count_2++;
+    }
+
+    if (upperPattern.test(password.value)) {
+      if (count_3 == 0)
+      password_error_json["uppercase"] = {
+        "time": Date.now() - overall_time
+      }
+      count_3++;
+    }
+    if (specialPattern.test(password.value)) {
+      if (count_4 == 0)
+      password_error_json["special"] = {
+        "time": Date.now() - overall_time
+      }
+      count_4++;
+    }
+
+    //check if all password conditions met
+    if (password_check[0] == true && password_check[1] == true && password_check[2] == true &&
+      password_check[3] == true) {
+        document.getElementById("password-2").disabled = false;
+        document.getElementById("password-warning-2").innerHTML = "";
+        document.getElementById("password-2").style.backgroundColor = "white";
+        end_timer_1 = Date.now();
+        total_1 += end_timer_1 - start_timer_1;
+        start_timer_1 = 0;
+        document.getElementById("password-1-time").innerHTML = (total_1) / 1000 + "s";
+      } else {
+        document.getElementById("password-2").disabled = true;
+        document.getElementById("password-2").style.backgroundColor = "#eee";
+      }
+    }
+
+    // Function - Re-enter Password Error Feedback
+    function check_password_2(password) {
+      if (password.value != document.getElementById("password-1").value) {
+        document.getElementById("password-warning-2").innerHTML = "Passwords do not match";
+        document.getElementById("password-warning-2").style.color = "red";
+        start_timer_1 = 0;
+      } else {
+        document.getElementById("password-warning-2").innerHTML = "Passwords match";
+        document.getElementById("password-warning-2").style.color = "#006bde";
+        end_timer_2 = Date.now();
+        total_2 += end_timer_2 - start_timer_2;
+        start_timer_2 = 0;
+        document.getElementById("password-2-time").innerHTML = (total_2) / 1000 + "s";
+      }
+    }
+
+    //no of deletions
+    function delete_count(event, password) {
+      if (event.keyCode == 8 && password.id == "password-1") {
+        delete_count_1++;
+      } else if (event.keyCode == 8 && password.id == "password-2") {
+        delete_count_2++;
+      }
+    }
+
+    // Function - Count Password clicks
+    function click_password(password) {
+      if (password.id == "password-1") {
+        if (password.value != log_password_1) {
+          count_times_password_1++;
+          log_password_1 = password.value;
         }
-
-        //no of deletions
-        function delete_count(event, password) {
-            if (event.keyCode == 8 && password.id == "password-1") {
-                delete_count_1++;
-                document.getElementById("delete-1-count").innerHTML = delete_count_1;
-            } else if (event.keyCode == 8 && password.id == "password-2") {
-                delete_count_2++;
-                document.getElementById("delete-2-count").innerHTML = delete_count_2;
-            }
+        if (overall_time == 0) //total time to create password
+        overall_time = Date.now();
+        if (start_timer_1 == 0) {
+          start_timer_1 = Date.now();
         }
-
-        // Function - Count Password clicks
-        function click_password(password) {
-            if (password.id == "password-1") {
-                count_times_password_1++;
-                if (overall_time == 0)
-                    overall_time = Date.now();
-                document.getElementById("password-1-count").innerHTML = count_times_password_1;
-                if (start_timer_1 == 0 && end_timer_1 != 0 || start_timer_1 == 0 && end_timer_1 == 0) {
-                    start_timer_1 = Date.now();
-                }
-            } else if (password.id == "password-2") {
-                count_times_password_2++;
-                document.getElementById("password-2-count").innerHTML = count_times_password_2;
-                if (start_timer_2 == 0 && end_timer_2 != 0 || start_timer_2 == 0 && end_timer_2 == 0) {
-                    start_timer_2 = Date.now();
-                }
-            }
+      } else if (password.id == "password-2") {
+        if (password.value != log_password_2) {
+          count_times_password_2++;
+          log_password_2 = password.value;
         }
-
-        function create_json() {
-            var device_type = "laptop";
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                device_type = "mobile";
-            }
-
-            var json_file = [{"id": user_info.userId},
-              {
-                    "value": document.getElementById("password-1").value,
-                    "device-type": device_type,
-                    "overall-time": overall_time / 1000
-                }, {
-                    "type": "password-1",
-                    "pressed": count_times_password_1,
-                    "time": total_1 / 1000,
-                    "delete-count": delete_count_1
-                },
-                {
-                    "type": "password-2",
-                    "pressed": count_times_password_2,
-                    "time": total_2 / 1000,
-                    "delete-count": delete_count_2
-                }
-            ]
-            console.log(json_file);
-            return JSON.stringify(json_file);
+        if (start_timer_2 == 0) {
+          start_timer_2 = Date.now();
         }
+      }
+    }
 
-        function ajax_post_1(){
-            // Create our XMLHttpRequest object
-            var hr = new XMLHttpRequest();
-            // Create some variables we need to send to our PHP file
-            var url = "user-validate.php";
-            var email = document.getElementById("email").value;
-            var vars = "email="+email;
-            hr.open("POST", url, true);
-            // Set content type header information for sending url encoded variables in the request
-            hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            // Access the onreadystatechange event for the XMLHttpRequest object
-            hr.onreadystatechange = function() {
-        	    if(hr.readyState == 4 && hr.status == 200) {
-        		   // var return_data = hr.responseText;
-                var return_json = JSON.parse(hr.responseText);
-                console.log(return_json);
-        			//document.getElementById("status").innerHTML = return_data;
-              document.getElementById("isValidUser").value = return_json.valid;
-              show_next_1();
-              if(return_json.valid == false){
-                document.getElementById("status").innerHTML = "<b>Invalid user email!</b>";
-              }
-        	    }
-            }
-            // Send the data to PHP now... and wait for response to update the status div
-            hr.send(vars); // Actually execute the request
-            document.getElementById("status").innerHTML = "processing...";
+    // Create JSON
+    // works on clicking the change password button
+    // json_file is the file to be exported
+    function create_json() {
+      var device_type = "laptop";
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        device_type = "mobile";
+      }
 
+      var json_file = [{"id": user_info.userId},
+      {
+        "value": document.getElementById("password-1").value,
+        "device-type": device_type,
+        "end_overall-time": end_overall_time / 1000,
+        // "unique-ID":
+      }, {
+        "type": "password-1",
+        "pressed": count_times_password_1,
+        // "time": total_1 / 1000,
+        "delete-count": delete_count_1
+      },
+      {
+        "type": "password-2",
+        "pressed": count_times_password_2,
+        // "time": total_2 / 1000,
+        "delete-count": delete_count_2
+      }
+    ];
+
+    //concating password error time json with original json
+    json_file = json_file.concat(password_error_json)
+    console.log(json_file);
+    return JSON.stringify(json_file);
+  }
+
+  function ajax_post_1(){
+    // Create our XMLHttpRequest object
+    var hr = new XMLHttpRequest();
+    // Create some variables we need to send to our PHP file
+    var url = "user-validate.php";
+    var email = document.getElementById("email_id").value;
+    var vars = "email="+email;
+    hr.open("POST", url, true);
+    // Set content type header information for sending url encoded variables in the request
+    hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // Access the onreadystatechange event for the XMLHttpRequest object
+    hr.onreadystatechange = function() {
+      if(hr.readyState == 4 && hr.status == 200) {
+        // var return_data = hr.responseText;
+        var return_json = JSON.parse(hr.responseText);
+        user_info = return_json;
+        console.log(return_json);
+        //document.getElementById("status").innerHTML = return_data;
+        document.getElementById("isValidUser").value = return_json.valid;
+        show_next_1();
+        if(return_json.valid == false){
+          document.getElementById("status").innerHTML = "<b>Invalid user email!</b>";
         }
-        // Display - Password Section
-        function show_next_1() {
-          //  ajax_post_1();
-            if(document.getElementById("isValidUser").value == "true"){
-              document.getElementById("page-1").style.display = "none";
-              document.getElementById("page-2").style.display = "block";
+      }
+    }
+    // Send the data to PHP now... and wait for response to update the status div
+    hr.send(vars); // Actually execute the request
+    document.getElementById("status").innerHTML = "processing...";
 
-            }
-        }
+  }
+  // Display - Password Section
+  function show_next_1() {
+    if(document.getElementById("isValidUser").value == "true"){
+      document.getElementById("page-1").style.display = "none";
+      document.getElementById("page-2").style.display = "block";
 
-        function show_next_2() {
-            if (document.getElementById("password-1").value == document.getElementById("password-2").value && document.getElementById(
-                    "password-1").value != "") {
-                document.getElementById("page-2").style.display = "none";
-                document.getElementById("page-3").style.display = "block";
-                overall_time = Date.now() - overall_time;
-                create_json();
-            }
-        }
+    }
+  }
+
+  function ajax_post_2(){
+    end_overall_time = Date.now() - overall_time;
+    // Create our XMLHttpRequest object
+    var hr = new XMLHttpRequest();
+    // Create some variables we need to send to our PHP file
+    var url = "backend-data-store.php";
+    var email = document.getElementById("email_id").value;
+    var jsondata = JSON.stringify(create_json());
+    hr.open("POST", url, true);
+    // Set content type header information for sending url encoded variables in the request
+    hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // Access the onreadystatechange event for the XMLHttpRequest object
+    hr.onreadystatechange = function() {
+      if(hr.readyState == 4 && hr.status == 200) {
+        var return_data = hr.responseText;
+        // var return_json = JSON.parse(hr.responseText);
+        console.log(return_data);
+        show_next_2();
+      }
+    }
+    // Send the data to PHP now... and wait for response to update the status div
+    hr.send(jsondata); // Actually execute the request
+    // document.getElementById("status").innerHTML = "processing...";
+
+  }
+
+  function show_next_2() {
+    if (document.getElementById("password-1").value == document.getElementById("password-2").value &&
+    document.getElementById(
+      "password-1").value != "") {
+        document.getElementById("page-2").style.display = "none";
+        document.getElementById("page-3").style.display = "block";
+        // end_overall_time = Date.now() - overall_time;
+        // create_json();
+      }
+    }
+
+    // View password toggle
+    function view_password_1() {
+      if (document.getElementById("password-1").type == "password") {
+        document.getElementById("password-1").type = "text";
+        document.getElementById("toggle1").style.backgroundImage = "url(eye-open.png)";
+
+      } else {
+        document.getElementById("password-1").type = "password";
+        document.getElementById("toggle1").style.backgroundImage = "url(eye-close.png)";
+      }
+    }
+
+    function view_password_2() {
+      if (document.getElementById("password-2").type == "password") {
+        document.getElementById("password-2").type = "text";
+        document.getElementById("toggle2").style.backgroundImage = "url(eye-open.png)";
+
+      } else {
+        document.getElementById("password-2").type = "password";
+        document.getElementById("toggle2").style.backgroundImage = "url(eye-close.png)";
+      }
+    }
     </script>
-</body>
+  </body>
 
-</html>
+  </html>
