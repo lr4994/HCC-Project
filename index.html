@@ -369,6 +369,7 @@
             if (password_check[0] == true && password_check[1] == true && password_check[2] == true &&
                 password_check[3] == true) {
                 document.getElementById("password-2").disabled = false;
+                document.getElementById("password-warning-2").innerHTML = "";
                 document.getElementById("password-2").style.backgroundColor = "white";
                 end_timer_1 = Date.now();
                 total_1 += end_timer_1 - start_timer_1;
