@@ -490,7 +490,7 @@
         document.getElementById("isValidUser").value = return_json.valid;
         show_next_1();
         if(return_json.valid == false){
-          document.getElementById("status").innerHTML = "<b>Invalid user email!</b>";
+          document.getElementById("status").innerHTML = "<b>Invalid user email or too many attempts!! Please contact administrator if you think this is an error.</b>";
         }
       }
     }
