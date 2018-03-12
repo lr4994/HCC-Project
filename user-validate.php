@@ -1,28 +1,39 @@
 <?php
-$user_ids=array("Peter"=>"7d9ac729",
-"Ben"=>"6981b333","Joe"=>"68290bdc",
-"Mac"=>"e7e62733","Dick"=>"74fbdd77",
-"Ben10"=>"b31d56cc","Harry"=>"d22ce255",
-"Benton"=>"67b24eae","Joann"=>"0faccc12",
-"Bob"=>"903b88e7","Jack"=>"71dcae74",
-);
+/* AJAX check  */
+if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 
-$myObj = new stdClass();
-$email = $_POST['email'];
+$jsonString = file_get_contents('participants.json');
+$data = json_decode($jsonString, true);
 
+// $myObj = new stdClass();
+$email = strtolower($_POST['email']);
+//echo $email;
 $valid_user = 0;
 
-foreach($user_ids as $x=>$x_value)
-  {
-    if($x === trim($email)){
-      $valid_user = 1;
-      $myObj->valid = true;
-      $myObj->userId = $x_value;
-      $myJSON = json_encode($myObj);
-      echo $myJSON;
+$responseJson = new stdClass();
+
+foreach ($data as $key => $entry) {
+    if ($entry['email'] == $email && $entry['attempt'] < 2) {
+        $valid_user = 1;
+        $responseJson->valid = true;
+        $responseJson->userId = $entry['id'];
+        $responseJson->turn = $entry['attempt'] == 0? $entry['first'] : $entry['second'];
+        // update no. of attempts taken so far
+        $data[$key]['attempt'] = $entry['attempt'] + 1;
+        //update json file
+        $newJsonString = json_encode($data);
+        file_put_contents('participants.json', $newJsonString);
+        // send user data
+        echo json_encode($responseJson);
+        exit;
+    }elseif ($entry['email'] == $email && $entry['attempt'] == 2) {
+      // user already finished two attempts
+      $responseJson->valid = false;
+      echo json_encode($responseJson);
       exit;
     }
-  }
+}
 
   if($valid_user==0){
     $err = new stdClass();
@@ -31,9 +42,9 @@ foreach($user_ids as $x=>$x_value)
     $error = json_encode($err);
     echo $error;
   }
+}else{
+  http_response_code(403);
+  die('Aceess is Forbidden!!!');
+}
 
-  
-  //  echo "User not found!!";
-
-//echo "I like " . $cars[0] . ", " . $cars[1] . " and " . $cars[2] . ".";
 ?>

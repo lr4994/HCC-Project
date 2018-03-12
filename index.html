@@ -415,7 +415,7 @@
                 end_timer_1 = Date.now();
                 total_1 += end_timer_1 - start_timer_1;
                 start_timer_1 = 0;
-                document.getElementById("password-1-time").innerHTML = (total_1) / 1000 + "s";
+                // document.getElementById("password-1-time").innerHTML = (total_1) / 1000 + "s";
             } else {
                 document.getElementById("password-2").disabled = true;
                 document.getElementById("password-2").style.backgroundColor = "#eee";
@@ -434,7 +434,7 @@
                 end_timer_2 = Date.now();
                 total_2 += end_timer_2 - start_timer_2;
                 start_timer_2 = 0;
-                document.getElementById("password-2-time").innerHTML = (total_2) / 1000 + "s";
+                // document.getElementById("password-2-time").innerHTML = (total_2) / 1000 + "s";
             }
         }
 
@@ -516,6 +516,7 @@
             var email = document.getElementById("email_id").value;
             var vars = "email=" + email;
             hr.open("POST", url, true);
+            hr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
             // Set content type header information for sending url encoded variables in the request
             hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             // Access the onreadystatechange event for the XMLHttpRequest object
@@ -529,7 +530,8 @@
                     document.getElementById("isValidUser").value = return_json.valid;
                     show_next_1();
                     if (return_json.valid == false) {
-                        document.getElementById("status").innerHTML = "<b>Invalid user email!</b>";
+                        document.getElementById("status").innerHTML =
+                            "<b>Invalid user email or too many attempts!! Please contact administrator if you think this is an error.</b>";
                     }
                 }
             }
@@ -555,6 +557,7 @@
             var url = "backend-data-store.php";
             var jsondata = JSON.stringify(create_json());
             hr.open("POST", url, true);
+            hr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
             // Set content type header information for sending url encoded variables in the request
             hr.setRequestHeader("Content-type", "application/json");
             // Access the onreadystatechange event for the XMLHttpRequest object
