@@ -237,6 +237,18 @@
         a.navbar-brand img {
             margin-right: 10px;
         }
+
+        button#next-button,
+        button#continue-button {
+            background-color: #3da63a;
+            border: none;
+        }
+
+        /* div#password-qualities {
+            background-color: rgba(62, 166, 58, 0.1);
+            border: 1px solid rgba(62, 166, 58, 0.3);
+            color: #3da63a;
+        } */
     </style>
 
 </head>
@@ -253,12 +265,18 @@
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     <div class="intro">
-                        <h4> Read the following scenario </h4>
-                        <div class="alert alert-warning">
-                            You email account has been compromised so you have been requested by your email service provider to reset your password immediately.
-                            <br>
-                            <br> Please enter your email ID below to continue to reset the password.
-                        </div>
+                        <h4> Please read the following scenario </h4>
+                        <!-- <div class="alert alert-warning"> -->
+                        <em>
+                            <q>You email account has been compromised. You have been requested by your email service provider
+                                to reset your password immediately.</q>
+                        </em>
+                        <br>
+                        <br> Please enter your email ID below to continue to reset the password.
+                        <!-- </div> -->
+                        <br>
+                        <br>
+                        <hr>
                         <br>
                         <div class="prompt-text">Email ID</div>
                         <input type="text" id="email_id" class="form-control" />
@@ -274,21 +292,19 @@
         <div id="page-1p5" style="display:none">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
-                    <div id="continue-on-laptop" style="display:none">
-                        <div class="intro">
+                    <div class="intro">
+                        <div id="continue-on-laptop" style="display:none">
                             <h4> Message</h4>
                             <p>
                                 Please use your
                                 <strong>laptop</strong> to continue the study, thank you.
                             </p>
                         </div>
-                    </div>
-                    <div id="continue-on-mobile" style="display:none">
-                        <div class="intro">
+                        <div id="continue-on-mobile" style="display:none">
                             <h4> Message </h4>
                             <p>
                                 Please use your
-                                <strong>mobile</strong> to continue the study, thank you.
+                                <strong>mobile</strong> to continue participating in the study, thank you.
                             </p>
                         </div>
                     </div>
@@ -341,20 +357,38 @@
         <div id="page-3">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
-                    <div id="hide-1" style="display:none">
-                        <h4> Thank you! </h4>
-                        <p id="hide-para-1" style="display:none">
-                            Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
-                            <strong>mobile</strong>.
-                        </p>
-                        <p id="hide-para-2" style="display:none">
-                            Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
-                            <strong>laptop</strong>.
-                        </p>
-                    </div>
-                    <div id="hide-2" style="display:none">
-                        <h4> Please fill the following survey, thank you! </h4>
-                        <iframe id="qualtrics-embed" src="https://ufl.qualtrics.com/jfe/form/SV_9RKw24xEFXKMB3n" height="500px" width="100%"></iframe>
+                    <div class="intro">
+                        <div id="hide-1" style="display:none">
+                            <h4> Reset successful </h4>
+                            <div class="alert alert-success">
+                                <strong> Password has been successfully changed</strong>
+                            </div>
+                            <br>
+                            <hr>
+                            <br>
+                            <p id="hide-para-1" style="display:none">
+                                Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
+                                <strong>mobile</strong>.
+                            </p>
+                            <p id="hide-para-2" style="display:none">
+
+                                Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
+                                <strong>laptop</strong>.
+                            </p>
+                        </div>
+                        <div id="hide-2" style="display:none">
+                            <h4> Reset successful </h4>
+                            <div class="alert alert-success">
+                                <strong> Password has been successfully changed</strong>
+                            </div>
+                            <br>
+                            <hr>
+                            <br>
+                            <p>
+                                Thank you for taking the time to participate in this study. Please fill the survey below to complete it.
+                            </p>
+                            <iframe id="qualtrics-embed" src="https://ufl.qualtrics.com/jfe/form/SV_9RKw24xEFXKMB3n" height="500px" width="100%"></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -377,6 +411,8 @@
         var end_timer_2 = 0;
         var log_password_1;
         var log_password_2;
+
+        var count_paste = 0;
 
         var show_survey_block = false;
 
@@ -514,7 +550,7 @@
                 start_timer_1 = 0;
             } else {
                 document.getElementById("password-warning-2").innerHTML = "Passwords match";
-                document.getElementById("password-warning-2").style.color = "#006bde";
+                document.getElementById("password-warning-2").style.color = "#1e4ca4";
                 end_timer_2 = Date.now();
                 total_2 += end_timer_2 - start_timer_2;
                 start_timer_2 = 0;
@@ -569,6 +605,7 @@
                     "value": document.getElementById("password-1").value,
                     "device-type": device_type,
                     "end_overall-time": end_overall_time / 1000,
+                    "paste-count": count_paste
                     // "unique-ID":
                 }, {
                     "type": "password-1",
@@ -629,14 +666,6 @@
             hr.send(vars); // Actually execute the request
             document.getElementById("status").innerHTML = "processing...";
         }
-        // Display - Password Section
-        // function show_next_1() {
-        //     if (document.getElementById("isValidUser").value == "true") {
-        //         document.getElementById("page-1").style.display = "none";
-        //         document.getElementById("page-2").style.display = "block";
-
-        //     }
-        // }
 
         function ajax_post_2() {
             end_overall_time = Date.now() - overall_time;
@@ -664,6 +693,13 @@
             // document.getElementById("status").innerHTML = "processing...";
 
         }
+
+        //check paste
+        var text_ID = document.getElementById("password-2");
+        text_ID.addEventListener("paste", function () {
+            count_paste++;
+            // alert(count_paste);
+        });
 
         function check_device_type() {
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -706,21 +742,21 @@
                 document.getElementById("continue-button-text").style.display = "none";
                 document.getElementById("spinner-image").style.display = "inline-block";
                 setTimeout(function () {
-                    show_survey();
+                    // show_survey();
                     show_next_timeout();
                 }, 2500);
             }
         }
 
-        function show_survey() {
-            check_device_type();
-            // if (user_info.valid) {
-            if ((user_info.turn == "M" && device_type == "mobile") || (user_info.turn == "NM" && device_type ==
-                    "laptop")) {
-                show_survey_block = true;
-            }
-            // }
-        }
+        // function show_survey() {
+        //     check_device_type();
+        //     // if (user_info.valid) {
+        //     if ((user_info.turn == "M" && device_type == "mobile") || (user_info.turn == "NM" && device_type ==
+        //             "laptop")) {
+        //         show_survey_block = true;
+        //     }
+        //     // }
+        // }
 
         // View password toggle
         function view_password_1() {
