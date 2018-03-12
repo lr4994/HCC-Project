@@ -2,7 +2,6 @@
 /* AJAX check  */
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
 strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-	/* special ajax here */
 
 $jsonString = file_get_contents('participants.json');
 $data = json_decode($jsonString, true);

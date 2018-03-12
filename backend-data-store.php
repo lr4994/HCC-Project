@@ -1,7 +1,6 @@
 <?php
 /* AJAX check  */
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-	/* special ajax here */
   # Get JSON as a string
   $json_str = file_get_contents('php://input');
 
@@ -13,7 +12,6 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     echo "JSON file created successfully...";
   else
     echo "Oops! Error creating json file...";
-	die($content);
 }else{
   http_response_code(403);
   die('Aceess is Forbidden!!!');
