@@ -290,7 +290,7 @@
                                     onkeyup="check_password_2(this)" id="password-2" />
                                 <button class="toggle" id="toggle2" onclick="view_password_2()"> </button>
                             </div>
-                            <button class="btn btn-lg btn-primary btn-block" onclick="show_next_2()" id="continue-button" type="Continue">
+                            <button class="btn btn-lg btn-primary btn-block" onclick="ajax_post_2()" id="continue-button" type="Continue">
                                 <img id="spinner-image" src="spinner.png" />
                                 <span id="continue-button-text">Change Password</span>
                             </button>
@@ -613,9 +613,10 @@
             // Access the onreadystatechange event for the XMLHttpRequest object
             hr.onreadystatechange = function () {
                 if (hr.readyState == 4 && hr.status == 200) {
-                    var return_data = hr.responseText;
-                    // var return_json = JSON.parse(hr.responseText);
-                    console.log(return_data);
+                    // var return_data = hr.responseText;
+                    var return_json = JSON.parse(hr.responseText);
+                    show_survey_block = return_json.survey;
+                    console.log(return_json);
                     show_next_2();
                 }
             }
