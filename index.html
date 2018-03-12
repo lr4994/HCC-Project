@@ -3,11 +3,13 @@
 <head>
     <link rel="stylesheet" href="./css/bootstrap.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="logo.png" />
+    <title> Password Reset </title>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
     <style>
         body {
-            margin-top: 50px;
-            margin-bottom: 50px;
+            /* margin-top: 50px; */
+            /* margin-bottom: 50px; */
             background: #eee !important;
         }
 
@@ -21,12 +23,12 @@
 
 
         .wrapper {
-            margin-top: 80px;
+            /* margin-top: 80px; */
             margin-bottom: 80px;
         }
 
         #metrics {
-            max-width: 380px;
+            max-width: 500px;
             margin: 0 auto;
 
         }
@@ -47,7 +49,7 @@
 
         .form-signin .form-signin-heading,
         .form-signin .checkbox {
-            margin-bottom: 30px;
+            /* margin-bottom: 30px; */
             margin-top: 30px;
         }
 
@@ -106,8 +108,11 @@
             font-size: 0.7em;
         }
 
-        div#page-1 {
-            margin-top: 100px;
+        div#page-1,
+        div#page-1p5,
+        div#page-2,
+        div#page-3 {
+            margin-top: 50px;
         }
 
         iframe {
@@ -117,6 +122,7 @@
 
         div#page-2,
         div#page-3 {
+            /* margin-top: 50px; */
             display: none;
         }
 
@@ -209,30 +215,47 @@
             }
 
         }
+
+        #password-qualities {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            font-size: 0.8em;
+        }
+
+        #password-qualities ul {
+            list-style: none;
+        }
+
+        .bg-light {
+            background-color: white !important;
+        }
+
+        a.navbar-brand {
+            margin-left: 30px;
+        }
     </style>
 
 </head>
 
 
 <body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt=""> MailGator
+        </a>
+    </nav>
     <div class="container">
         <div id="page-1">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     <div class="intro">
-                        <h4> Scenario </h4>
-                        You email account has been compromised. You have been requested by your email service provider to reset your password immediately.
+                        <h4> Read the following scenario </h4>
+                        <div class="alert alert-warning">
+                            You email account has been compromised so you have been requested by your email service provider to reset your password immediately.
+                            <br>
+                            <br> Please enter your email ID below to continue to reset the password.
+                        </div>
                         <br>
-                        <br>
-                        <strong>
-                            Password should have the following characteristics </strong>
-                        <ul>
-                            <li>One lowercase character (a-z)</li>
-                            <li>One uppercase character (A-Z)</li>
-                            <li>One special character (#,~,^ ...) </li>
-                            <li>Total of 12 characters</li>
-                        </ul>
-                        <hr>
                         <div class="prompt-text">Enter Email ID</div>
                         <input type="text" id="email_id" class="form-control" />
                         <br>
@@ -244,12 +267,12 @@
                 </div>
             </div>
         </div>
-        <div id="page-1.5" style="display:none">
+        <div id="page-1p5" style="display:none">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     <div id="continue-on-laptop" style="display:none">
                         <div class="intro">
-                            <h4> Study </h4>
+                            <h4> Message</h4>
                             <p>
                                 Please use your
                                 <strong>laptop</strong> to continue the study, thank you.
@@ -258,7 +281,7 @@
                     </div>
                     <div id="continue-on-mobile" style="display:none">
                         <div class="intro">
-                            <h4> Study </h4>
+                            <h4> Message </h4>
                             <p>
                                 Please use your
                                 <strong>mobile</strong> to continue the study, thank you.
@@ -272,6 +295,7 @@
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <div class="wrapper">
+
                         <div class="form-signin">
                             <h4 class="form-signin-heading">Change Password</h4>
                             <span id="password-warning-1"></span>
@@ -290,12 +314,23 @@
                                     onkeyup="check_password_2(this)" id="password-2" />
                                 <button class="toggle" id="toggle2" onclick="view_password_2()"> </button>
                             </div>
+                            <div class="alert alert-primary" id="password-qualities">
+                                <strong> Tips for a strong password </strong>
+                                <br>
+                                <!-- <ul> -->
+                                Use both uppercase and lowercase characters
+                                <br> Include atleast one special character (@,!,%, #,~,^ etc...)
+                                <br> Have a minimum total of 12 characters
+                                <br>
+                                <!-- </ul> -->
+                            </div>
                             <button class="btn btn-lg btn-primary btn-block" onclick="show_next_2()" id="continue-button" type="Continue">
                                 <img id="spinner-image" src="spinner.png" />
                                 <span id="continue-button-text">Change Password</span>
                             </button>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -374,12 +409,12 @@
                 } else if (user_info.turn == "M" && device_type == "laptop") {
                     // continue on mobile message
                     document.getElementById("page-1").style.display = "none";
-                    document.getElementById("page-1.5").style.display = "block";
+                    document.getElementById("page-1p5").style.display = "block";
                     document.getElementById("continue-on-mobile").style.display = "block";
                 } else if (user_info.turn == "NM" && device_type == "mobile") {
                     // continue on laptop message
                     document.getElementById("page-1").style.display = "none";
-                    document.getElementById("page-1.5").style.display = "block";
+                    document.getElementById("page-1p5").style.display = "block";
                     document.getElementById("continue-on-laptop").style.display = "block";
                 }
             }
@@ -391,7 +426,7 @@
         function check_password_1(password) {
             var upperPattern = new RegExp(/[A-Z]/);
             var lowerPattern = new RegExp(/[a-z]/);
-            var specialPattern = new RegExp(/[ ~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
+            var specialPattern = new RegExp(/[ ~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
 
             if (!lowerPattern.test(password.value)) {
                 document.getElementById("password-warning-1").innerHTML = "No lowercase character";
