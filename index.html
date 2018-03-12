@@ -477,6 +477,7 @@
     var email = document.getElementById("email_id").value;
     var vars = "email="+email;
     hr.open("POST", url, true);
+    hr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     // Set content type header information for sending url encoded variables in the request
     hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     // Access the onreadystatechange event for the XMLHttpRequest object
@@ -516,6 +517,7 @@
     var url = "backend-data-store.php";
     var jsondata = JSON.stringify(create_json());
     hr.open("POST", url, true);
+    hr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     // Set content type header information for sending url encoded variables in the request
     hr.setRequestHeader("Content-type", "application/json");
     // Access the onreadystatechange event for the XMLHttpRequest object
