@@ -233,6 +233,10 @@
         a.navbar-brand {
             margin-left: 30px;
         }
+
+        a.navbar-brand img {
+            margin-right: 10px;
+        }
     </style>
 
 </head>
@@ -240,7 +244,7 @@
 
 <body>
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="./">
             <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt=""> MailGator
         </a>
     </nav>
@@ -256,7 +260,7 @@
                             <br> Please enter your email ID below to continue to reset the password.
                         </div>
                         <br>
-                        <div class="prompt-text">Enter Email ID</div>
+                        <div class="prompt-text">Email ID</div>
                         <input type="text" id="email_id" class="form-control" />
                         <br>
                         <!--    Email: <input id="email" name="email" type="text"> <br><br> -->
@@ -324,7 +328,7 @@
                                 <br>
                                 <!-- </ul> -->
                             </div>
-                            <button class="btn btn-lg btn-primary btn-block" onclick="show_next_2()" id="continue-button" type="Continue">
+                            <button class="btn btn-lg btn-primary btn-block" onclick="ajax_post_2()" id="continue-button" type="Continue">
                                 <img id="spinner-image" src="spinner.png" />
                                 <span id="continue-button-text">Change Password</span>
                             </button>
@@ -648,9 +652,10 @@
             // Access the onreadystatechange event for the XMLHttpRequest object
             hr.onreadystatechange = function () {
                 if (hr.readyState == 4 && hr.status == 200) {
-                    var return_data = hr.responseText;
-                    // var return_json = JSON.parse(hr.responseText);
-                    console.log(return_data);
+                    // var return_data = hr.responseText;
+                    var return_json = JSON.parse(hr.responseText);
+                    show_survey_block = return_json.survey;
+                    console.log(return_json);
                     show_next_2();
                 }
             }

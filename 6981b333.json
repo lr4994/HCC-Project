@@ -1,0 +1,90 @@
+[{
+    "id": "6981b333"
+}, {
+    "value": "Apple123!1234",
+    "device-type": "laptop",
+    "end_overall-time": 6.513
+}, {
+    "type": "password-1",
+    "pressed": 1,
+    "delete-count": 0,
+    "toggle-count": 0
+}, {
+    "type": "password-2",
+    "pressed": 1,
+    "delete-count": 0,
+    "toggle-count": 0
+}, {
+    "uppercase": {
+        "time": 409
+    },
+    "lowercase": {
+        "time": 585
+    },
+    "special": {
+        "time": 1610
+    },
+    "lessthan": {
+        "time": 2082
+    }
+}]
+[{
+    "id": "6981b333"
+}, {
+    "value": "Apple123!1234",
+    "device-type": "laptop",
+    "end_overall-time": 7.558
+}, {
+    "type": "password-1",
+    "pressed": 1,
+    "delete-count": 0,
+    "toggle-count": 0
+}, {
+    "type": "password-2",
+    "pressed": 1,
+    "delete-count": 0,
+    "toggle-count": 0
+}, {
+    "uppercase": {
+        "time": 318
+    },
+    "lowercase": {
+        "time": 493
+    },
+    "special": {
+        "time": 1531
+    },
+    "lessthan": {
+        "time": 1878
+    }
+}]
+[{
+    "id": "6981b333"
+}, {
+    "value": "Apple123!1234",
+    "device-type": "laptop",
+    "end_overall-time": 50.637
+}, {
+    "type": "password-1",
+    "pressed": 1,
+    "delete-count": 0,
+    "toggle-count": 1
+}, {
+    "type": "password-2",
+    "pressed": 1,
+    "delete-count": 0,
+    "toggle-count": 0
+}, {
+    "uppercase": {
+        "time": 342
+    },
+    "lowercase": {
+        "time": 504
+    },
+    "special": {
+        "time": 1364
+    },
+    "lessthan": {
+        "time": 1619
+    }
+}]

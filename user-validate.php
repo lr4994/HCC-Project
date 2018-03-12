@@ -19,11 +19,11 @@ foreach ($data as $key => $entry) {
         $responseJson->valid = true;
         $responseJson->userId = $entry['id'];
         $responseJson->turn = $entry['attempt'] == 0? $entry['first'] : $entry['second'];
-        // update no. of attempts taken so far
-        $data[$key]['attempt'] = $entry['attempt'] + 1;
-        //update json file
-        $newJsonString = json_encode($data);
-        file_put_contents('participants.json', $newJsonString);
+        // // update no. of attempts taken so far
+        // $data[$key]['attempt'] = $entry['attempt'] + 1;
+        // //update json file
+        // $newJsonString = json_encode($data);
+        // file_put_contents('participants.json', $newJsonString);
         // send user data
         echo json_encode($responseJson);
         exit;
