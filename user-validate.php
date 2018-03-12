@@ -8,7 +8,7 @@ $jsonString = file_get_contents('participants.json');
 $data = json_decode($jsonString, true);
 
 // $myObj = new stdClass();
-$email = $_POST['email'];
+$email = strtolower($_POST['email']);
 //echo $email;
 $valid_user = 0;
 
