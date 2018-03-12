@@ -115,7 +115,6 @@
             border: 5px solid white;
         }
 
-
         div#page-2,
         div#page-3 {
             display: none;
@@ -216,7 +215,6 @@
 
 
 <body>
-
     <div class="container">
         <div id="page-1">
             <div class="row">
@@ -246,8 +244,30 @@
                 </div>
             </div>
         </div>
-
-
+        <div id="page-1.5" style="display:none">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div id="continue-on-laptop" style="display:none">
+                        <div class="intro">
+                            <h4> Study </h4>
+                            <p>
+                                Please use your
+                                <strong>laptop</strong> to continue the study, thank you.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="continue-on-mobile" style="display:none">
+                        <div class="intro">
+                            <h4> Study </h4>
+                            <p>
+                                Please use your
+                                <strong>mobile</strong> to continue the study, thank you.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="page-2">
             <div class="row">
                 <div class="col-md-6 offset-md-3">
@@ -340,6 +360,31 @@
         // [1] - lower Case
         // [2] - upper Case
         // [3] - Special Character
+
+        //Initial Check
+        function initial_check() {
+            check_device_type();
+            // alert(device_type);
+            if (user_info.valid) {
+                if ((user_info.turn == "M" && device_type == "mobile") || (user_info.turn == "NM" && device_type ==
+                        "laptop")) {
+                    //correct device
+                    document.getElementById("page-1").style.display = "none";
+                    document.getElementById("page-2").style.display = "block";
+                } else if (user_info.turn == "M" && device_type == "laptop") {
+                    // continue on mobile message
+                    document.getElementById("page-1").style.display = "none";
+                    document.getElementById("page-1.5").style.display = "block";
+                    document.getElementById("continue-on-mobile").style.display = "block";
+                } else if (user_info.turn == "NM" && device_type == "mobile") {
+                    // continue on laptop message
+                    document.getElementById("page-1").style.display = "none";
+                    document.getElementById("page-1.5").style.display = "block";
+                    document.getElementById("continue-on-laptop").style.display = "block";
+                }
+            }
+
+        }
 
 
         // Function - Enter Password Error Feedback
@@ -528,26 +573,31 @@
                     console.log(return_json);
                     //document.getElementById("status").innerHTML = return_data;
                     document.getElementById("isValidUser").value = return_json.valid;
-                    show_next_1();
+                    // show_next_1();
+                    // initial_check();
                     if (return_json.valid == false) {
+                        var statusClass = document.getElementById("status");
+                        statusClass.className += " alert";
+                        statusClass.className += " alert-danger";
+
                         document.getElementById("status").innerHTML =
-                            "<b>Invalid user email or too many attempts!! Please contact administrator if you think this is an error.</b>";
+                            "<b>Invalid user email or too many attempts. <br>Please contact administrator if you think this is an error.</b>";
                     }
+                    initial_check();
                 }
             }
             // Send the data to PHP now... and wait for response to update the status div
             hr.send(vars); // Actually execute the request
             document.getElementById("status").innerHTML = "processing...";
-
         }
         // Display - Password Section
-        function show_next_1() {
-            if (document.getElementById("isValidUser").value == "true") {
-                document.getElementById("page-1").style.display = "none";
-                document.getElementById("page-2").style.display = "block";
+        // function show_next_1() {
+        //     if (document.getElementById("isValidUser").value == "true") {
+        //         document.getElementById("page-1").style.display = "none";
+        //         document.getElementById("page-2").style.display = "block";
 
-            }
-        }
+        //     }
+        // }
 
         function ajax_post_2() {
             end_overall_time = Date.now() - overall_time;
