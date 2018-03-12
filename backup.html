@@ -2,8 +2,8 @@
 
 <head>
     <link rel="stylesheet" href="./css/bootstrap.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
     <style>
         body {
             margin-top: 50px;
@@ -87,7 +87,6 @@
         span#password-warning-1,
         span#password-warning-2 {
             color: red;
-            /* padding: 0px; */
             margin-top: 5px;
             font-size: 0.7em;
             float: right;
@@ -99,7 +98,6 @@
             font-size: 0.8em;
             height: 50px;
             text-transform: uppercase;
-            /* font-weight: 600; */
         }
 
         .error-block {
@@ -116,7 +114,7 @@
         }
 
 
-        div#page-2,
+        div#page-2a,
         div#page-3 {
             display: none;
         }
@@ -218,6 +216,7 @@
 <body>
 
     <div class="container">
+
         <div id="page-1">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
@@ -229,8 +228,8 @@
                         <strong>
                             Password should have the following characteristics </strong>
                         <ul>
-                            <li>One lowercase character (a-z)</li>
-                            <li>One uppercase character (A-Z)</li>
+                            <li>One lowercase character</li>
+                            <li>One uppercase character</li>
                             <li>One special character (#,~,^ ...) </li>
                             <li>Total of 12 characters</li>
                         </ul>
@@ -238,10 +237,7 @@
                         <div class="prompt-text">Enter Email ID</div>
                         <input type="text" id="email_id" class="form-control" />
                         <br>
-                        <!--    Email: <input id="email" name="email" type="text"> <br><br> -->
-                        <input type="hidden" id="isValidUser" value="false">
-                        <div id="status"></div>
-                        <button class="btn btn-primary btn-block" id="next-button" onclick="ajax_post_1()" type="Continue">Continue</button>
+                        <button class="btn btn-primary btn-block" id="next-button" onclick="show_next_1()" type="Continue">Continue</button>
                     </div>
                 </div>
             </div>
@@ -275,10 +271,12 @@
                                 <span id="continue-button-text">Change Password</span>
                             </button>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
+
         <div id="page-3">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
@@ -288,12 +286,12 @@
                             Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
                             <strong>mobile</strong>.
                         </p>
-                        <p id="hide-para-2" style="display:none">
+                        <p id="hide-para-2">
                             Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
                             <strong>laptop</strong>.
                         </p>
                     </div>
-                    <div id="hide-2" style="display:none">
+                    <div id="hide-2">
                         <h4> Please fill the following survey, thank you! </h4>
                         <iframe id="qualtrics-embed" src="https://ufl.qualtrics.com/jfe/form/SV_9RKw24xEFXKMB3n" height="500px" width="100%"></iframe>
                     </div>
@@ -304,8 +302,6 @@
 
 
     <script>
-        var user_info = {}; //an empty JSON object to store user info after calling ajax_post_1
-        var isValidUser = false;
         var count_times_password_1 = 0;
         var count_times_password_2 = 0;
         var overall_time = 0;
@@ -318,11 +314,6 @@
         var end_timer_2 = 0;
         var log_password_1;
         var log_password_2;
-
-        var show_survey_block = false;
-
-        var device_type = "laptop";
-
 
         var password_toggle_1 = password_toggle_2 = 0;
         var count_1 = count_2 = count_3 = count_4 = 0;
@@ -346,7 +337,7 @@
         function check_password_1(password) {
             var upperPattern = new RegExp(/[A-Z]/);
             var lowerPattern = new RegExp(/[a-z]/);
-            var specialPattern = new RegExp(/[ ~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
+            var specialPattern = new RegExp(/[ !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/);
 
             if (!lowerPattern.test(password.value)) {
                 document.getElementById("password-warning-1").innerHTML = "No lowercase character";
@@ -474,14 +465,12 @@
         // works on clicking the change password button
         // json_file is the file to be exported
         function create_json() {
-            // if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            //     device_type = "mobile";
-            // }
+            var device_type = "laptop";
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                device_type = "mobile";
+            }
 
             var json_file = [{
-                    "id": user_info.userId
-                },
-                {
                     "value": document.getElementById("password-1").value,
                     "device-type": device_type,
                     "end_overall-time": end_overall_time / 1000,
@@ -489,14 +478,12 @@
                 }, {
                     "type": "password-1",
                     "pressed": count_times_password_1,
-                    // "time": total_1 / 1000,
                     "delete-count": delete_count_1,
                     "toggle-count": password_toggle_1
                 },
                 {
                     "type": "password-2",
                     "pressed": count_times_password_2,
-                    // "time": total_2 / 1000,
                     "delete-count": delete_count_2,
                     "toggle-count": password_toggle_2
                 }
@@ -505,128 +492,37 @@
             //concating password error time json with original json
             json_file = json_file.concat(password_error_json)
             console.log(json_file);
-            return json_file;
         }
 
-        function ajax_post_1() {
-            // Create our XMLHttpRequest object
-            var hr = new XMLHttpRequest();
-            // Create some variables we need to send to our PHP file
-            var url = "user-validate.php";
-            var email = document.getElementById("email_id").value;
-            var vars = "email=" + email;
-            hr.open("POST", url, true);
-            // Set content type header information for sending url encoded variables in the request
-            hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            // Access the onreadystatechange event for the XMLHttpRequest object
-            hr.onreadystatechange = function () {
-                if (hr.readyState == 4 && hr.status == 200) {
-                    // var return_data = hr.responseText;
-                    var return_json = JSON.parse(hr.responseText);
-                    user_info = return_json;
-                    console.log(return_json);
-                    //document.getElementById("status").innerHTML = return_data;
-                    document.getElementById("isValidUser").value = return_json.valid;
-                    show_next_1();
-                    if (return_json.valid == false) {
-                        document.getElementById("status").innerHTML = "<b>Invalid user email!</b>";
-                    }
-                }
-            }
-            // Send the data to PHP now... and wait for response to update the status div
-            hr.send(vars); // Actually execute the request
-            document.getElementById("status").innerHTML = "processing...";
 
-        }
+
         // Display - Password Section
         function show_next_1() {
-            if (document.getElementById("isValidUser").value == "true") {
+            // ajax_post();
+            if (document.getElementById("email_id").value != "") {
                 document.getElementById("page-1").style.display = "none";
                 document.getElementById("page-2").style.display = "block";
-
-            }
-        }
-
-        function ajax_post_2() {
-            end_overall_time = Date.now() - overall_time;
-            // Create our XMLHttpRequest object
-            var hr = new XMLHttpRequest();
-            // Create some variables we need to send to our PHP file
-            var url = "backend-data-store.php";
-            var jsondata = JSON.stringify(create_json());
-            hr.open("POST", url, true);
-            // Set content type header information for sending url encoded variables in the request
-            hr.setRequestHeader("Content-type", "application/json");
-            // Access the onreadystatechange event for the XMLHttpRequest object
-            hr.onreadystatechange = function () {
-                if (hr.readyState == 4 && hr.status == 200) {
-                    var return_data = hr.responseText;
-                    // var return_json = JSON.parse(hr.responseText);
-                    console.log(return_data);
-                    show_next_2();
-                }
-            }
-            // Send the data to PHP now... and wait for response to update the status div
-            hr.send(jsondata); // Actually execute the request
-            // document.getElementById("status").innerHTML = "processing...";
-
-        }
-
-        function check_device_type() {
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                device_type = "mobile";
             }
         }
 
         function show_next_timeout() {
             document.getElementById("page-2").style.display = "none";
-            if (show_survey_block) {
-                document.getElementById("hide-2").style.display = "block";
-            } else {
-                if (device_type == "mobile") {
-                    document.getElementById("hide-para-2").style.display = "block";
-                } else {
-                    document.getElementById("hide-para-1").style.display = "block";
-                }
-                document.getElementById("hide-1").style.display = "block";
-            }
             document.getElementById("page-3").style.display = "block";
+            end_overall_time = Date.now() - overall_time;
             create_json();
         }
 
         function show_next_2() {
-            // if (document.getElementById("password-1").value == document.getElementById("password-2").value &&
-            // document.getElementById(
-            //   "password-1").value != "") {
-            //     document.getElementById("page-2").style.display = "none";
-            //     document.getElementById("page-3").style.display = "block";
-            //     // end_overall_time = Date.now() - overall_time;
-            //     // create_json();
-            //   }
-
-            // document.getElementById("page-2").style.display = "none";
-            // document.getElementById("page-3").style.display = "block";
             if (document.getElementById("password-1").value == document.getElementById("password-2").value &&
                 document.getElementById(
                     "password-1").value != "") {
-                end_overall_time = Date.now() - overall_time;
                 document.getElementById("continue-button-text").style.display = "none";
                 document.getElementById("spinner-image").style.display = "inline-block";
+
                 setTimeout(function () {
-                    show_survey();
                     show_next_timeout();
                 }, 2500);
             }
-        }
-
-        function show_survey() {
-            check_device_type();
-            // if (user_info.valid) {
-            if ((user_info.turn == "M" && device_type == "mobile") || (user_info.turn == "NM" && device_type ==
-                    "laptop")) {
-                show_survey_block = true;
-            }
-            // }
         }
 
         // View password toggle
