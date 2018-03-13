@@ -366,7 +366,7 @@
                 <div class="col-md-8 offset-md-2">
                     <div class="intro">
                         <div id="hide-1" style="display:none">
-                            <h4> Reset successful </h4>
+                            <h4> Password Reset </h4>
                             <div class="alert alert-success">
                                 <strong> The password reset process has now been started.</strong>
                             </div>
@@ -607,10 +607,10 @@
             // if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             //     device_type = "mobile";
             // }
-
+            var current_time = new Date();
             var json_file = [{
                     "id": user_info.userId,
-                    "timestamp": Date.now()
+                    "timestamp": current_time
                 },
                 {
                     "value": document.getElementById("password-1").value,
