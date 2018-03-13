@@ -265,14 +265,21 @@
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     <div class="intro">
-                        <h4> Please read the following scenario </h4>
+                        <h4> <font color="#FF0000">Reset your password</font> </h4>
                         <!-- <div class="alert alert-warning"> -->
                         <em>
-                            <q>You email account has been compromised. You have been requested by your email service provider
-                                to reset your password immediately.</q>
+                        <!--    <q>
+                              You email account has been compromised. You have been requested by your email service provider
+                                to reset your password immediately.</q> -->
+                            Dear Valued User,
+                            <br><br>
+                            We believe that your GatorCloud account credentials may have been included in a recent
+                            release of email addresses and passwords from a data breach in another company. Just to be safe,
+                            we highly recommend you to reset your password as a precautionary measure.
+                            <br>
                         </em>
                         <br>
-                        <br> Please enter your email ID below to continue to reset the password.
+                        <br> Please enter your GatorCloud email ID below to continue to reset the password.
                         <!-- </div> -->
                         <br>
                         <br>
@@ -317,7 +324,7 @@
                     <div class="wrapper">
 
                         <div class="form-signin">
-                            <h4 class="form-signin-heading">Change Password</h4>
+                            <h4 class="form-signin-heading">Reset Password</h4>
                             <span id="password-warning-1"></span>
                             <div class="prompt-text">Enter Password</div>
                             <div class="password-block">
@@ -338,10 +345,10 @@
                                 <strong> Tips for a strong password </strong>
                                 <br>
                                 <!-- <ul> -->
-                                Use both uppercase and lowercase characters
-                                <br> Include atleast one special character (@,!,%, #,~,^ etc...)
-                                <br> Have a minimum total of 12 characters
-                                <br>
+                                - Use both uppercase and lowercase characters
+                                <br>- Include atleast one special character (@,!,%, #,~,^ etc.)
+                                <br>- Make it <em>at least</em> 12 characters long
+                                <br>- Don't use dictionary words (e.g. rain_Umbrella etc.)
                                 <!-- </ul> -->
                             </div>
                             <button class="btn btn-lg btn-primary btn-block" onclick="ajax_post_2()" id="continue-button" type="Continue">
@@ -361,25 +368,28 @@
                         <div id="hide-1" style="display:none">
                             <h4> Reset successful </h4>
                             <div class="alert alert-success">
-                                <strong> Password has been successfully changed</strong>
+                                <strong> The password reset process has now been started.</strong>
                             </div>
                             <br>
                             <hr>
                             <br>
                             <p id="hide-para-1" style="display:none">
-                                Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
-                                <strong>mobile</strong>.
+                              Please check your email
+                                for instructions on what to do next. Thank you!
+                              <!--  Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
+                                <strong>mobile</strong>. -->
                             </p>
                             <p id="hide-para-2" style="display:none">
-
-                                Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
-                                <strong>laptop</strong>.
+                              Please check your email
+                                for instructions on what to do next. Thank you!
+                              <!--  Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
+                                <strong>laptop</strong>. -->
                             </p>
                         </div>
                         <div id="hide-2" style="display:none">
                             <h4> Reset successful </h4>
                             <div class="alert alert-success">
-                                <strong> Password has been successfully changed</strong>
+                                <strong>Congratulations! Your Gatorcloud password has been successfully reset.</strong>
                             </div>
                             <br>
                             <hr>
@@ -599,7 +609,8 @@
             // }
 
             var json_file = [{
-                    "id": user_info.userId
+                    "id": user_info.userId,
+                    "timestamp": Date.now()
                 },
                 {
                     "value": document.getElementById("password-1").value,
