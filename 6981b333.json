@@ -87,4 +87,33 @@
     "lessthan": {
         "time": 1619
     }
-}]
+}][{
+    "id": "6981b333"
+}, {
+    "value": "Apple123!1234",
+    "device-type": "laptop",
+    "end_overall-time": 40.723
+}, {
+    "type": "password-1",
+    "pressed": 2,
+    "delete-count": 0,
+    "toggle-count": 3
+}, {
+    "type": "password-2",
+    "pressed": 3,
+    "delete-count": 0,
+    "toggle-count": 2
+}, {
+    "uppercase": {
+        "time": 390
+    },
+    "lowercase": {
+        "time": 584
+    },
+    "special": {
+        "time": 1576
+    },
+    "lessthan": {
+        "time": 1978
+    }
+}][{"id":"6981b333"},{"value":"Apple!234!1234","device-type":"laptop","end_overall-time":10.614},{"type":"password-1","pressed":2,"delete-count":0,"toggle-count":1},{"type":"password-2","pressed":2,"delete-count":1,"toggle-count":0},{"uppercase":{"time":2048},"lowercase":{"time":2151},"special":{"time":2865},"lessthan":{"time":4478}}][{"id":"6981b333"},{"value":"Apple!234!1234","device-type":"laptop","end_overall-time":4.297},{"type":"password-1","pressed":1,"delete-count":1,"toggle-count":0},{"type":"password-2","pressed":1,"delete-count":0,"toggle-count":0},{"uppercase":{"time":435},"lowercase":{"time":640},"lessthan":{"time":2560},"special":{"time":2560}}][{"id":"6981b333"},{"value":"Apple!234!1234","device-type":"laptop","end_overall-time":1.609},{"type":"password-1","pressed":1,"delete-count":0,"toggle-count":0},{"type":"password-2","pressed":1,"delete-count":0,"toggle-count":0},{"lessthan":{"time":265},"lowercase":{"time":265},"uppercase":{"time":265},"special":{"time":265}}][{"id":"6981b333"},{"value":"Apple!234!1234","device-type":"mobile","end_overall-time":1.931},{"type":"password-1","pressed":1,"delete-count":0,"toggle-count":0},{"type":"password-2","pressed":1,"delete-count":0,"toggle-count":0},{"lessthan":{"time":328},"lowercase":{"time":328},"uppercase":{"time":328},"special":{"time":328}}][{"id":"6981b333"},{"value":"Apple!234!1234","device-type":"laptop","end_overall-time":1.426},{"type":"password-1","pressed":1,"delete-count":0,"toggle-count":0},{"type":"password-2","pressed":1,"delete-count":0,"toggle-count":0},{"lessthan":{"time":433},"lowercase":{"time":433},"uppercase":{"time":433},"special":{"time":433}}][{"id":"6981b333"},{"value":"Apple!234!1234","device-type":"mobile","end_overall-time":5.1},{"type":"password-1","pressed":1,"delete-count":0,"toggle-count":0},{"type":"password-2","pressed":1,"delete-count":0,"toggle-count":0},{"lessthan":{"time":269},"lowercase":{"time":269},"uppercase":{"time":269},"special":{"time":269}}][{"id":"6981b333"},{"value":"Apple123!1234","device-type":"laptop","end_overall-time":15.389,"paste-count":2},{"type":"password-1","pressed":2,"delete-count":0,"toggle-count":3},{"type":"password-2","pressed":1,"delete-count":1,"toggle-count":1},{"lowercase":{"time":399},"uppercase":{"time":2075},"special":{"time":3639},"lessthan":{"time":4030}}][{"id":"6981b333"},{"value":"Apple123!12345","device-type":"laptop","end_overall-time":9.715,"paste-count":1},{"type":"password-1","pressed":1,"delete-count":0,"toggle-count":1},{"type":"password-2","pressed":1,"delete-count":0,"toggle-count":0},{"lessthan":{"time":1232},"lowercase":{"time":1232},"uppercase":{"time":1232},"special":{"time":1232}}][{"id":"6981b333"},{"value":"Apple123!1234","device-type":"laptop","end_overall-time":5.881,"paste-count":1},{"type":"password-1","pressed":1,"delete-count":1,"toggle-count":0},{"type":"password-2","pressed":1,"delete-count":0,"toggle-count":0},{"lowercase":{"time":289},"special":{"time":289},"lessthan":{"time":2871},"uppercase":{"time":2871}}][{"id":"6981b333"},{"value":"Apple123!1234","device-type":"laptop","end_overall-time":31.109,"paste-count":1},{"type":"password-1","pressed":1,"delete-count":0,"toggle-count":0},{"type":"password-2","pressed":1,"delete-count":0,"toggle-count":0},{"lessthan":{"time":240},"lowercase":{"time":240},"uppercase":{"time":240},"special":{"time":240}}][{"id":"6981b333"},{"value":"Apple123!1234","device-type":"laptop","end_overall-time":1.444,"paste-count":1},{"type":"password-1","pressed":1,"delete-count":0,"toggle-count":0},{"type":"password-2","pressed":1,"delete-count":0,"toggle-count":0},{"lessthan":{"time":436},"lowercase":{"time":436},"uppercase":{"time":436},"special":{"time":436}}][{"id":"6981b333"},{"value":"                            <h4> Reset successful </h4>","device-type":"laptop","end_overall-time":1.643,"paste-count":1},{"type":"password-1","pressed":1,"delete-count":0,"toggle-count":0},{"type":"password-2","pressed":1,"delete-count":0,"toggle-count":0},{"lessthan":{"time":199},"lowercase":{"time":199},"uppercase":{"time":199},"special":{"time":199}}][{"id":"6981b333"},{"value":"                            <h4> Reset successful </h4>","device-type":"laptop","end_overall-time":1.414,"paste-count":1},{"type":"password-1","pressed":1,"delete-count":0,"toggle-count":0},{"type":"password-2","pressed":1,"delete-count":0,"toggle-count":0},{"lessthan":{"time":230},"lowercase":{"time":230},"uppercase":{"time":230},"special":{"time":230}}]
