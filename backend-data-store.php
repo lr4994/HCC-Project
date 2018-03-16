@@ -21,9 +21,10 @@ strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 
           // update no. of attempts taken so far
           $data[$key]['attempt'] = $entry['attempt'] + 1;
-          if($data[$key]['attempt'] == 2){
-            $responseJson->survey = true;
-          }
+          $responseJson->survey = true;
+          // if($data[$key]['attempt'] == 2){
+          //   $responseJson->survey = true;
+          // }
           //update participants.json file
           $newJsonString = json_encode($data);
           file_put_contents('participants.json', $newJsonString);
