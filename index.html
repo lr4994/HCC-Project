@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="./css/bootstrap.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="logo.png" />
-    <title> Password Reset </title>
+    <title>Buzzmail - Password Reset</title>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
     <style>
         body {
@@ -257,7 +257,9 @@
 <body>
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="./">
-            <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt=""> Buzzmail
+            <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+             <h8 style="background-color:MediumSeaGreen;"> Buzzmail</h8>
+             <p style="background-color:Tomato;font-size:12px">Fast and Secure Email Service</p>
         </a>
     </nav>
     <div class="container">
@@ -270,23 +272,19 @@
                         </h4>
                         <!-- <div class="alert alert-warning"> -->
                         <em>
-                            <!--    <q>
-                              You email account has been compromised. You have been requested by your email service provider
-                                to reset your password immediately.</q> -->
                             Dear Valued User,
                             <br>
                             <br> We believe that your Buzzmail account credentials may have been included in a recent release
                             of email addresses and passwords from a data breach in another company. Just to be safe, we highly
                             recommend you to reset your password as a precautionary measure.
-                            <br>
+                            <br><br>
+                            - Buzzmail Team
                         </em>
                         <br>
-                        <br> Please enter your Buzzmail email ID below to continue to reset the password.
-                        <!-- </div> -->
-                        <br>
-                        <br>
+                        <div class="alert alert-success">
+                            <strong> Please enter your Buzzmail ID (which was sent in email) below to continue. Choose a password that you can remember when you log in again.</strong>
+                        </div>
                         <hr>
-                        <br>
                         <div class="prompt-text">Email ID</div>
                         <input type="text" id="email_id" class="form-control" />
                         <br>
@@ -351,7 +349,6 @@
                                 <br>- Include atleast one special character (@,!,%, #,~,^ etc.)
                                 <br>- Make it
                                 <em>at least</em> 12 characters long
-                                <br>- Don't use dictionary words (e.g. rain_Umbrella etc.)
                                 <!-- </ul> -->
                             </div>
                             <button class="btn btn-lg btn-primary btn-block" onclick="ajax_post_2()" id="continue-button" type="Continue">
@@ -565,7 +562,6 @@
                 end_timer_2 = Date.now();
                 total_2 += end_timer_2 - start_timer_2;
                 start_timer_2 = 0;
-                // document.getElementById("password-2-time").innerHTML = (total_2) / 1000 + "s";
             }
         }
 
@@ -637,14 +633,13 @@
 
             //concating password error time json with original json
             json_file = json_file.concat(password_error_json)
-            console.log(json_file);
+            //console.log(json_file);
             return json_file;
         }
 
         function ajax_post_1() {
             // Create our XMLHttpRequest object
             var hr = new XMLHttpRequest();
-            // Create some variables we need to send to our PHP file
             var url = "user-validate.php";
             var email = document.getElementById("email_id").value;
             var vars = "email=" + email;
@@ -658,11 +653,8 @@
                     // var return_data = hr.responseText;
                     var return_json = JSON.parse(hr.responseText);
                     user_info = return_json;
-                    console.log(return_json);
-                    //document.getElementById("status").innerHTML = return_data;
+                    //console.log(return_json);
                     document.getElementById("isValidUser").value = return_json.valid;
-                    // show_next_1();
-                    // initial_check();
                     if (return_json.valid == false) {
                         var statusClass = document.getElementById("status");
                         statusClass.className += " alert";
@@ -696,7 +688,7 @@
                     // var return_data = hr.responseText;
                     var return_json = JSON.parse(hr.responseText);
                     show_survey_block = return_json.survey;
-                    console.log(return_json);
+                    //console.log(return_json);
                     show_next_2();
                 }
             }

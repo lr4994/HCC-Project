@@ -14,7 +14,7 @@ $valid_user = 0;
 $responseJson = new stdClass();
 
 foreach ($data as $key => $entry) {
-    if ($entry['email'] == $email && $entry['attempt'] < 2) {
+    if ($entry['email'] == $email && $entry['attempt'] < 1) {
         $valid_user = 1;
         $responseJson->valid = true;
         $responseJson->userId = $entry['id'];
@@ -27,7 +27,7 @@ foreach ($data as $key => $entry) {
         // send user data
         echo json_encode($responseJson);
         exit;
-    }elseif ($entry['email'] == $email && $entry['attempt'] == 2) {
+    }elseif ($entry['email'] == $email && $entry['attempt'] == 1) {
       // user already finished two attempts
       $responseJson->valid = false;
       echo json_encode($responseJson);
