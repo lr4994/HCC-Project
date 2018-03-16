@@ -461,6 +461,8 @@
                     //correct device
                     document.getElementById("page-1").style.display = "none";
                     document.getElementById("page-2").style.display = "block";
+                    if (overall_time == 0) //total time to create password
+                        overall_time = Date.now();
                 } else if (user_info.turn == "M" && device_type == "laptop") {
                     // continue on mobile message
                     document.getElementById("page-1").style.display = "none";
@@ -593,19 +595,19 @@
                     count_times_password_1++;
                     log_password_1 = password.value;
                 }
-                if (overall_time == 0) //total time to create password
-                    overall_time = Date.now();
-                if (start_timer_1 == 0) {
-                    start_timer_1 = Date.now();
-                }
+                // if (overall_time == 0) //total time to create password
+                //     overall_time = Date.now();
+                // if (start_timer_1 == 0) {
+                //     start_timer_1 = Date.now();
+                // }
             } else if (password.id == "password-2") {
                 if (password.value != log_password_2) {
                     count_times_password_2++;
                     log_password_2 = password.value;
                 }
-                if (start_timer_2 == 0) {
-                    start_timer_2 = Date.now();
-                }
+                // if (start_timer_2 == 0) {
+                //     start_timer_2 = Date.now();
+                // }
             }
         }
 
