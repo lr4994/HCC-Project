@@ -44,7 +44,7 @@
 
         .intro {
             max-width: 500px;
-            padding-top: 50px;
+            padding-top: 30px;
         }
 
         .form-signin .form-signin-heading,
@@ -258,7 +258,9 @@
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="./">
             <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt=""> Buzzmail
-            <div style="margin-left: 45px;font-size:12px; opacity: 0.5">Fast and Secure Email Service</div>
+            <span style="margin-left: 10px;font-size:14px; opacity: 0.5">
+                <em>Fast and Secure Email Service</em>
+            </span>
         </a>
     </nav>
     <div class="container">
@@ -273,10 +275,10 @@
                         <em>
                             Dear Valued User,
                             <!-- <br> -->
-                            <br> We believe that your Buzzmail account credentials may have been included in a recent release
-                            of email addresses and passwords from a data breach in another company. Just to be safe, we highly
-                            recommend you to reset your password as a precautionary measure.
-                            <br>
+                            <br> We believe that your Buzzmail account credentials may have been included in a recent data breach
+                            from another company. Just to be safe, we highly recommend you to reset your password as a precautionary
+                            measure.
+
                             <br> - Buzzmail Team
                             <br>
                         </em>
@@ -371,25 +373,28 @@
                             <div class="alert alert-success">
                                 <strong> The password reset process has now been started.</strong>
                             </div>
+                            <p>
+                                Please check your email for instructions on what to do next. Thank you!
+                            </p>
                             <br>
                             <hr>
                             <br>
-                            <p id="hide-para-1" style="display:none">
-                                Please check your email for instructions on what to do next. Thank you!
-                                <!--  Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
+                            <!-- <p id="hide-para-1" style="display:none">
+                                Please check your email for instructions on what to do next. Thank you! -->
+                            <!--  Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
                                 <strong>mobile</strong>. -->
-                            </p>
-                            <p id="hide-para-2" style="display:none">
-                                Please check your email for instructions on what to do next. Thank you!
-                                <!--  Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
+                            <!-- </p> -->
+                            <!-- <p id="hide-para-2" style="display:none">
+                                Please check your email for instructions on what to do next. Thank you! -->
+                            <!--  Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
                                 <strong>laptop</strong>. -->
-                            </p>
+                            <!-- </p> -->
                         </div>
                         <div id="hide-2" style="display:none">
-                            <h4> Reset successful </h4>
-                            <div class="alert alert-success">
+                            <!-- <h4> Reset successful </h4> -->
+                            <!-- <div class="alert alert-success">
                                 <strong>Congratulations! Your Gatorcloud password has been successfully reset.</strong>
-                            </div>
+                            </div> -->
                             <br>
                             <hr>
                             <br>
@@ -721,18 +726,20 @@
 
         function show_next_timeout() {
             document.getElementById("page-2").style.display = "none";
+            document.getElementById("hide-1").style.display = "block";
+
+            // if (device_type == "mobile") {
+            //     document.getElementById("hide-para-2").style.display = "block";
+            // } else {
+            //     document.getElementById("hide-para-1").style.display = "block";
+            // }
             if (show_survey_block) {
                 document.getElementById("hide-2").style.display = "block";
-            } else {
-                if (device_type == "mobile") {
-                    document.getElementById("hide-para-2").style.display = "block";
-                } else {
-                    document.getElementById("hide-para-1").style.display = "block";
-                }
-                document.getElementById("hide-1").style.display = "block";
             }
+            // document.getElementById("hide-1").style.display = "block";
+
             document.getElementById("page-3").style.display = "block";
-            create_json();
+            // create_json();
         }
 
         function show_next_2() {
