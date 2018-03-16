@@ -257,9 +257,8 @@
 <body>
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="./">
-            <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-             <h8 style="background-color:MediumSeaGreen;"> Buzzmail</h8>
-             <p style="background-color:Tomato;font-size:12px">Fast and Secure Email Service</p>
+            <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt=""> Buzzmail
+            <div style="margin-left: 45px;font-size:12px; opacity: 0.5">Fast and Secure Email Service</div>
         </a>
     </nav>
     <div class="container">
@@ -273,16 +272,18 @@
                         <!-- <div class="alert alert-warning"> -->
                         <em>
                             Dear Valued User,
-                            <br>
+                            <!-- <br> -->
                             <br> We believe that your Buzzmail account credentials may have been included in a recent release
                             of email addresses and passwords from a data breach in another company. Just to be safe, we highly
                             recommend you to reset your password as a precautionary measure.
-                            <br><br>
-                            - Buzzmail Team
+                            <br>
+                            <br> - Buzzmail Team
+                            <br>
                         </em>
                         <br>
                         <div class="alert alert-success">
-                            <strong> Please enter your Buzzmail ID (which was sent in email) below to continue. Choose a password that you can remember when you log in again.</strong>
+                            Please enter your Buzzmail ID (which was sent in email) below to continue.
+                            <strong>Choose a password that you can remember when you log in again.</strong>
                         </div>
                         <hr>
                         <div class="prompt-text">Email ID</div>
@@ -395,7 +396,7 @@
                             <p>
                                 Thank you for taking the time to participate in this study. Please fill the survey below to complete it.
                             </p>
-                            <iframe id="qualtrics-embed" src="https://ufl.qualtrics.com/jfe/form/SV_9RKw24xEFXKMB3n" height="500px" width="100%"></iframe>
+                            <iframe id="qualtrics-embed" src="https://goo.gl/iQnR2W" height="500px" width="100%"></iframe>
                         </div>
                     </div>
                 </div>
@@ -419,6 +420,7 @@
         var end_timer_2 = 0;
         var log_password_1;
         var log_password_2;
+        var missmatch = 0;
 
         var count_paste = 0;
 
@@ -552,9 +554,14 @@
 
         // Function - Re-enter Password Error Feedback
         function check_password_2(password) {
+            var password_1 = document.getElementById("password-1");
             if (password.value != document.getElementById("password-1").value) {
                 document.getElementById("password-warning-2").innerHTML = "Passwords do not match";
                 document.getElementById("password-warning-2").style.color = "red";
+                if (password.value.length >= password_1.value.length) {
+                    missmatch++;
+                    // console.log(missmatch);
+                }
                 start_timer_1 = 0;
             } else {
                 document.getElementById("password-warning-2").innerHTML = "Passwords match";
@@ -607,7 +614,8 @@
             var current_time = new Date();
             var json_file = [{
                     "id": user_info.userId,
-                    "timestamp": current_time
+                    "timestamp": current_time,
+                    "missmatch": missmatch
                 },
                 {
                     "value": document.getElementById("password-1").value,
