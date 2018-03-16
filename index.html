@@ -331,7 +331,7 @@
                             <span id="password-warning-1"></span>
                             <div class="prompt-text">Enter Password</div>
                             <div class="password-block">
-                                <input class="password" type="password" onclick="click_password(this)" onkeydown="delete_count(event,this)" onkeyup="check_password_1(this)"
+                                <input class="password" type="password" onclick="click_password(this)" onkeydown="delete_count(event,this)" onkeyup="check_password_1(this, event)"
                                     class="form-control" id="password-1">
                                 </input>
                                 <button class="toggle" id="toggle1" onclick="view_password_1()"> </button>
@@ -341,11 +341,11 @@
                             <div class="prompt-text">Re-enter Password</div>
                             <div class="password-block">
                                 <input type="password" onkeydown="delete_count(event,this)" onclick="click_password(this)" class="password" disabled="true"
-                                    onkeyup="check_password_2(this)" id="password-2" />
+                                    onkeyup="check_password_2(this, event)" id="password-2" />
                                 <button class="toggle" id="toggle2" onclick="view_password_2()"> </button>
                             </div>
                             <div class="alert alert-primary" id="password-qualities">
-                                <strong> Tips for a strong password </strong>
+                                <strong> Conditions for password </strong>
                                 <br>
                                 <!-- <ul> -->
                                 - Use both uppercase and lowercase characters
@@ -425,13 +425,16 @@
         var end_timer_2 = 0;
         var log_password_1;
         var log_password_2;
-        var missmatch = 0;
+        var mismatch = 0;
+        var creation_attempt = 0;
 
         var count_paste = 0;
 
         var show_survey_block = false;
 
         var device_type = "laptop";
+
+        var conditions = "All conditions not satisfied";
 
 
         var password_toggle_1 = password_toggle_2 = 0;
@@ -480,28 +483,28 @@
 
 
         // Function - Enter Password Error Feedback
-        function check_password_1(password) {
+        function check_password_1(password, event) {
             var upperPattern = new RegExp(/[A-Z]/);
             var lowerPattern = new RegExp(/[a-z]/);
             var specialPattern = new RegExp(/[ ~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
 
             if (!lowerPattern.test(password.value)) {
-                document.getElementById("password-warning-1").innerHTML = "No lowercase character";
+                document.getElementById("password-warning-1").innerHTML = conditions;
                 password_check[1] = false;
             } else {
                 password_check[1] = true;
                 if (!upperPattern.test(password.value)) {
-                    document.getElementById("password-warning-1").innerHTML = "No uppercase character";
+                    document.getElementById("password-warning-1").innerHTML = conditions;
                     password_check[2] = false;
                 } else {
                     password_check[2] = true;
                     if (!specialPattern.test(password.value)) {
-                        document.getElementById("password-warning-1").innerHTML = "No special character";
+                        document.getElementById("password-warning-1").innerHTML = conditions;
                         password_check[3] = false;
                     } else {
                         password_check[3] = true;
                         if (password.value.length < 12) {
-                            document.getElementById("password-warning-1").innerHTML = "Less than 12 characters";
+                            document.getElementById("password-warning-1").innerHTML = conditions;
                             password_check[0] = false;
                         } else {
                             document.getElementById("password-warning-1").innerHTML = "";
@@ -518,6 +521,13 @@
                         "time": Date.now() - overall_time
                     };
                 count_1++;
+                if (password_check[0] == false || password_check[1] == false || password_check[2] == false ||
+                    password_check[3] == false) {
+                    if (event.keyCode != 8) {
+                        creation_attempt++;
+                    }
+                    // console.log(creation_attempt)----;
+                }
             }
 
             if (lowerPattern.test(password.value)) {
@@ -560,14 +570,17 @@
         }
 
         // Function - Re-enter Password Error Feedback
-        function check_password_2(password) {
+        function check_password_2(password, event) {
             var password_1 = document.getElementById("password-1");
             if (password.value != document.getElementById("password-1").value) {
                 document.getElementById("password-warning-2").innerHTML = "Passwords do not match";
                 document.getElementById("password-warning-2").style.color = "red";
                 if (password.value.length >= password_1.value.length) {
-                    missmatch++;
-                    // console.log(missmatch);
+                    if (event.keyCode != 8) {
+                        mismatch++;
+                        // console.log(mismatch);
+                    }
+                    // console.log(mismatch);
                 }
                 start_timer_1 = 0;
             } else {
@@ -622,7 +635,8 @@
             var json_file = [{
                     "id": user_info.userId,
                     "timestamp": current_time,
-                    "missmatch": missmatch
+                    "mismatch": mismatch,
+                    "creation_attempt": creation_attempt
                 },
                 {
                     "value": document.getElementById("password-1").value,
