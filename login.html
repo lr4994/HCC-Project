@@ -292,7 +292,7 @@
               <br>
               <div class="prompt-text">Enter Password</div>
               <div class="password-block">
-                <input type="password" onkeydown="delete_count_fn(event,this)" onclick="click_password(this)" class="password" id="pass-word"
+                <input type="password" onkeydown="delete_count_fn(event,this)" onclick="click_password(this)" class="password" id="password"
                 />
                 <button class="toggle" id="toggle" onclick="view_password()"> </button>
               </div>
@@ -444,7 +444,7 @@
       var hr = new XMLHttpRequest();
       var url = "login.php";
       var emailID = document.getElementById("emailID").value;
-      var password = document.getElementById("pass-word").value;
+      var password = document.getElementById("password").value;
       var vars = "email=" + emailID + "&pass=" + password;
       hr.open("POST", url, true);
       hr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
@@ -454,8 +454,8 @@
       hr.onreadystatechange = function () {
         if (hr.readyState == 4 && hr.status == 200) {
           console.log(hr.responseText);
-          //var return_json = JSON.parse(hr.responseText);
-          // user_info = return_json;
+          var return_json = JSON.parse(hr.responseText);
+          user_info = return_json;
           check_password();
           //console.log(return_json);
         }
@@ -557,12 +557,10 @@
           var return_json = JSON.parse(hr.responseText);
           show_survey_block = return_json.survey;
           console.log(return_json);
-          show_next_2();
         }
       }
       // Send the data to PHP now... and wait for response to update the status div
       hr.send(jsondata); // Actually execute the request
-      // document.getElementById("status").innerHTML = "processing...";
 
     }
 
