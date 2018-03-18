@@ -1,278 +1,278 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="./css/bootstrap.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/png" href="logo.png" />
-    <title>Buzzmail - Password Reset</title>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-    <style>
-        body {
-            /* margin-top: 50px; */
-            /* margin-bottom: 50px; */
-            background: #eee !important;
-        }
+  <link rel="stylesheet" href="./css/bootstrap.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/png" href="logo.png" />
+  <title>Buzzmail - Password Reset</title>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+  <style>
+    body {
+      /* margin-top: 50px; */
+      /* margin-bottom: 50px; */
+      background: #eee !important;
+    }
 
-        h4 {
-            margin-bottom: 25px;
-        }
+    h4 {
+      margin-bottom: 25px;
+    }
 
-        h4#form-signin-heading {
-            text-align: center;
-        }
-
-
-        .wrapper {
-            /* margin-top: 80px; */
-            margin-bottom: 80px;
-        }
-
-        #metrics {
-            max-width: 500px;
-            margin: 0 auto;
-
-        }
-
-        .form-signin,
-        .intro {
-            max-width: 500px;
-            padding: 15px 45px 45px;
-            margin: 0 auto;
-            background-color: #fff;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .intro {
-            max-width: 500px;
-            padding-top: 30px;
-        }
-
-        .form-signin .form-signin-heading,
-        .form-signin .checkbox {
-            /* margin-bottom: 30px; */
-            margin-top: 30px;
-        }
-
-        .form-signin .checkbox {
-            font-weight: normal;
-        }
-
-        .form-signin .form-control {
-            position: relative;
-            font-size: 16px;
-            height: auto;
-            padding: 10px;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-        }
+    h4#form-signin-heading {
+      text-align: center;
+    }
 
 
-        .form-signin .form-control:focus {
-            z-index: 2;
-        }
+    .wrapper {
+      /* margin-top: 80px; */
+      margin-bottom: 80px;
+    }
+
+    #metrics {
+      max-width: 500px;
+      margin: 0 auto;
+
+    }
+
+    .form-signin,
+    .intro {
+      max-width: 500px;
+      padding: 15px 45px 45px;
+      margin: 0 auto;
+      background-color: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .intro {
+      max-width: 500px;
+      padding-top: 30px;
+    }
+
+    .form-signin .form-signin-heading,
+    .form-signin .checkbox {
+      /* margin-bottom: 30px; */
+      margin-top: 30px;
+    }
+
+    .form-signin .checkbox {
+      font-weight: normal;
+    }
+
+    .form-signin .form-control {
+      position: relative;
+      font-size: 16px;
+      height: auto;
+      padding: 10px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
 
 
-        .form-signin input {
-            margin-bottom: 20px;
-        }
-
-        button.view-password {
-            border: none;
-            padding-bottom: 14px;
-        }
-
-        .prompt-text {
-            margin-bottom: 10px;
-        }
-
-        span#password-warning-1,
-        span#password-warning-2 {
-            color: red;
-            /* padding: 0px; */
-            margin-top: 5px;
-            font-size: 0.7em;
-            float: right;
-        }
+    .form-signin .form-control:focus {
+      z-index: 2;
+    }
 
 
-        #continue-button,
-        #next-button {
-            font-size: 0.8em;
-            height: 50px;
-            text-transform: uppercase;
-            /* font-weight: 600; */
-        }
+    .form-signin input {
+      margin-bottom: 20px;
+    }
 
-        .error-block {
-            font-size: 0.7em;
-        }
+    button.view-password {
+      border: none;
+      padding-bottom: 14px;
+    }
 
-        div#page-1,
-        div#page-1p5,
-        div#page-2,
-        div#page-3 {
-            margin-top: 50px;
-        }
+    .prompt-text {
+      margin-bottom: 10px;
+    }
 
-        iframe {
-            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
-            border: 2px solid black;
-        }
-
-        div#page-2,
-        div#page-3 {
-            /* margin-top: 50px; */
-            display: none;
-        }
-
-        #error_1,
-        #error_2,
-        #error_3,
-        #error_4 {
-            width: 10px;
-            display: inline-block;
-        }
-
-        *:focus {
-            outline: none;
-        }
-
-        button:focus {
-            outline: none;
-        }
-
-        input.password {
-            display: inline-block;
-            border: none;
-            height: 38px;
-            padding-left: 10px;
-            width: 80%;
-            border-radius: 5px;
-            border-top-right-radius: 0px;
-            border-bottom-right-radius: 0px;
-        }
-
-        button.toggle {
-            border: none;
-            float: right;
-            height: 38px;
-            background-image: url("eye-close.png");
-            background-repeat: no-repeat;
-            background-size: 25px 25px;
-            background-position: center center;
-            width: 20%;
-            border-radius: 5px;
-        }
-
-        div.password-block {
-            border: 1px solid #9299a0;
-            height: 40px;
-            border-radius: 5px;
-        }
-
-        div.password-block:last-of-type {
-            margin-bottom: 50px;
-        }
+    span#password-warning-1,
+    span#password-warning-2 {
+      color: red;
+      /* padding: 0px; */
+      margin-top: 5px;
+      font-size: 0.7em;
+      float: right;
+    }
 
 
-        input#password-2 {
-            background-color: #eee;
-        }
+    #continue-button,
+    #next-button {
+      font-size: 0.8em;
+      height: 50px;
+      text-transform: uppercase;
+      /* font-weight: 600; */
+    }
 
-        div.password-block.disabled {
-            background-color: black;
-        }
+    .error-block {
+      font-size: 0.7em;
+    }
 
-        img#spinner-image {
-            -webkit-animation: spin 3s linear infinite;
-            -moz-animation: spin 1.5s linear infinite;
-            animation: spin 2s linear infinite;
+    div#page-1,
+    div#page-1p5,
+    div#page-2,
+    div#page-3 {
+      margin-top: 50px;
+    }
 
-            width: 20px;
-            height: 20px;
-            /* left: -10px; */
-            position: relative;
-            display: none;
-        }
+    iframe {
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
+      border: 2px solid black;
+    }
 
-        @-moz-keyframes spin {
-            100% {
-                -moz-transform: rotate(360deg);
-            }
-        }
+    div#page-2,
+    div#page-3 {
+      /* margin-top: 50px; */
+      display: none;
+    }
 
-        @-webkit-keyframes spin {
-            100% {
-                -webkit-transform: rotate(360deg);
-            }
-        }
+    #error_1,
+    #error_2,
+    #error_3,
+    #error_4 {
+      width: 10px;
+      display: inline-block;
+    }
 
-        @keyframes spin {
-            100% {
-                -webkit-transform: rotate(360deg);
-                transform: rotate(360deg);
-            }
+    *:focus {
+      outline: none;
+    }
 
-        }
+    button:focus {
+      outline: none;
+    }
 
-        #password-qualities {
-            margin-top: 30px;
-            margin-bottom: 30px;
-            font-size: 0.8em;
-        }
+    input.password {
+      display: inline-block;
+      border: none;
+      height: 38px;
+      padding-left: 10px;
+      width: 80%;
+      border-radius: 5px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
 
-        #password-qualities ul {
-            list-style: none;
-        }
+    button.toggle {
+      border: none;
+      float: right;
+      height: 38px;
+      background-image: url("eye-close.png");
+      background-repeat: no-repeat;
+      background-size: 25px 25px;
+      background-position: center center;
+      width: 20%;
+      border-radius: 5px;
+    }
 
-        .bg-light {
-            background-color: white !important;
-        }
+    div.password-block {
+      border: 1px solid #9299a0;
+      height: 40px;
+      border-radius: 5px;
+    }
 
-        a.navbar-brand {
-            margin-left: 30px;
-        }
+    div.password-block:last-of-type {
+      margin-bottom: 50px;
+    }
 
-        a.navbar-brand img {
-            margin-right: 10px;
-        }
 
-        button#next-button,
-        button#continue-button {
-            background-color: #3da63a;
-            border: none;
-        }
+    input#password-2 {
+      background-color: #eee;
+    }
 
-        /* div#password-qualities {
+    div.password-block.disabled {
+      background-color: black;
+    }
+
+    img#spinner-image {
+      -webkit-animation: spin 3s linear infinite;
+      -moz-animation: spin 1.5s linear infinite;
+      animation: spin 2s linear infinite;
+
+      width: 20px;
+      height: 20px;
+      /* left: -10px; */
+      position: relative;
+      display: none;
+    }
+
+    @-moz-keyframes spin {
+      100% {
+        -moz-transform: rotate(360deg);
+      }
+    }
+
+    @-webkit-keyframes spin {
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+
+    }
+
+    #password-qualities {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      font-size: 0.8em;
+    }
+
+    #password-qualities ul {
+      list-style: none;
+    }
+
+    .bg-light {
+      background-color: white !important;
+    }
+
+    a.navbar-brand {
+      margin-left: 30px;
+    }
+
+    a.navbar-brand img {
+      margin-right: 10px;
+    }
+
+    button#next-button,
+    button#continue-button {
+      background-color: #3da63a;
+      border: none;
+    }
+
+    /* div#password-qualities {
             background-color: rgba(62, 166, 58, 0.1);
             border: 1px solid rgba(62, 166, 58, 0.3);
             color: #3da63a;
         } */
-    </style>
+  </style>
 
 </head>
 
 
 <body>
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="./">
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="./">
             <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt=""> Buzzmail
             <span style="margin-left: 10px;font-size:14px; opacity: 0.5">
                 <em>Fast and Secure Email Service</em>
             </span>
         </a>
-    </nav>
-    <div class="container">
-        <div id="page-1">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <div class="intro">
-                        <h4>
+  </nav>
+  <div class="container">
+    <div id="page-1">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="intro">
+            <h4>
                             <font color="#FF0000">Reset your password</font>
                         </h4>
-                        <!-- <div class="alert alert-warning"> -->
-                        <em>
+            <!-- <div class="alert alert-warning"> -->
+            <em>
                             Dear Valued User,
                             <!-- <br> -->
                             <br> We believe that your Buzzmail account credentials may have been included in a recent data breach
@@ -282,541 +282,538 @@
                             <br> - Buzzmail Team
                             <br>
                         </em>
-                        <br>
-                        <div class="alert alert-success">
-                            Please enter your Buzzmail ID (which was sent in email) below to continue.
-                            <strong>Choose a password that you can remember when you log in again.</strong>
-                        </div>
-                        <hr>
-                        <div class="prompt-text">Email ID</div>
-                        <input type="text" id="email_id" class="form-control" />
-                        <br>
-                        <!--    Email: <input id="email" name="email" type="text"> <br><br> -->
-                        <input type="hidden" id="isValidUser" value="false">
-                        <div id="status"></div>
-                        <button class="btn btn-primary btn-block" id="next-button" onclick="ajax_post_1()" type="Continue">Continue</button>
-                    </div>
-                </div>
+            <br>
+            <div class="alert alert-success">
+              Please enter your Buzzmail ID (which was sent in email) below to continue.
+              <strong>Choose a password that you can remember when you log in again.</strong>
             </div>
+            <hr>
+            <div class="prompt-text">Email ID</div>
+            <input type="text" id="email_id" class="form-control" />
+            <br>
+            <!--    Email: <input id="email" name="email" type="text"> <br><br> -->
+            <input type="hidden" id="isValidUser" value="false">
+            <div id="status"></div>
+            <button class="btn btn-primary btn-block" id="next-button" onclick="ajax_post_1()" type="Continue">Continue</button>
+          </div>
         </div>
-        <div id="page-1p5" style="display:none">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <div class="intro">
-                        <div id="continue-on-laptop" style="display:none">
-                            <h4> Message</h4>
-                            <p>
-                                Please use your
-                                <strong>laptop</strong> to continue the study, thank you.
-                            </p>
-                        </div>
-                        <div id="continue-on-mobile" style="display:none">
-                            <h4> Message </h4>
-                            <p>
-                                Please use your
-                                <strong>mobile</strong> to continue participating in the study, thank you.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+      </div>
+    </div>
+    <div id="page-1p5" style="display:none">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="intro">
+            <div id="continue-on-laptop" style="display:none">
+              <h4> Message</h4>
+              <p>
+                Please use your
+                <strong>laptop</strong> to continue the study, thank you.
+              </p>
             </div>
+            <div id="continue-on-mobile" style="display:none">
+              <h4> Message </h4>
+              <p>
+                Please use your
+                <strong>mobile</strong> to continue participating in the study, thank you.
+              </p>
+            </div>
+          </div>
         </div>
-        <div id="page-2">
-            <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <div class="wrapper">
+      </div>
+    </div>
+    <div id="page-2">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="wrapper">
 
-                        <div class="form-signin">
-                            <h4 class="form-signin-heading">Reset Password</h4>
-                            <span id="password-warning-1"></span>
-                            <div class="prompt-text">Enter Password</div>
-                            <div class="password-block">
-                                <input class="password" type="password" onclick="click_password(this)" onkeydown="delete_count(event,this)" onkeyup="check_password_1(this, event)"
-                                    class="form-control" id="password-1">
-                                </input>
-                                <button class="toggle" id="toggle1" onclick="view_password_1()"> </button>
-                            </div>
-                            <br>
-                            <span id="password-warning-2"> Disabled</span>
-                            <div class="prompt-text">Re-enter Password</div>
-                            <div class="password-block">
-                                <input type="password" onkeydown="delete_count(event,this)" onclick="click_password(this)" class="password" disabled="true"
-                                    onkeyup="check_password_2(this, event)" id="password-2" />
-                                <button class="toggle" id="toggle2" onclick="view_password_2()"> </button>
-                            </div>
-                            <div class="alert alert-primary" id="password-qualities">
-                                <strong> Conditions for password </strong>
-                                <br>
-                                <!-- <ul> -->
-                                - Use both uppercase and lowercase characters
-                                <br>- Include atleast one special character (@,!,%, #,~,^ etc.)
-                                <br>- Make it
-                                <em>at least</em> 12 characters long
-                                <!-- </ul> -->
-                            </div>
-                            <button class="btn btn-lg btn-primary btn-block" onclick="ajax_post_2()" id="continue-button" type="Continue">
+            <div class="form-signin">
+              <h4 class="form-signin-heading">Reset Password</h4>
+              <span id="password-warning-1"></span>
+              <div class="prompt-text">Enter Password</div>
+              <div class="password-block">
+                <input class="password" type="password" onclick="click_password(this)" onkeydown="delete_count(event,this)" onkeyup="check_password_1(this, event)" class="form-control" id="password-1">
+                </input>
+                <button class="toggle" id="toggle1" onclick="view_password_1()"> </button>
+              </div>
+              <br>
+              <span id="password-warning-2"> Disabled</span>
+              <div class="prompt-text">Re-enter Password</div>
+              <div class="password-block">
+                <input type="password" onkeydown="delete_count(event,this)" onclick="click_password(this)" class="password" disabled="true" onkeyup="check_password_2(this, event)" id="password-2" />
+                <button class="toggle" id="toggle2" onclick="view_password_2()"> </button>
+              </div>
+              <div class="alert alert-primary" id="password-qualities">
+                <strong> Conditions for password </strong>
+                <br>
+                <!-- <ul> -->
+                - Use both uppercase and lowercase characters
+                <br>- Include atleast one special character (@,!,%, #,~,^ etc.)
+                <br>- Make it
+                <em>at least</em> 12 characters long
+                <!-- </ul> -->
+              </div>
+              <button class="btn btn-lg btn-primary btn-block" onclick="ajax_post_2()" id="continue-button" type="Continue">
                                 <img id="spinner-image" src="spinner.png" />
                                 <span id="continue-button-text">Change Password</span>
                             </button>
-                        </div>
-                    </div>
-
-                </div>
             </div>
+          </div>
+
         </div>
-        <div id="page-3">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <div class="intro">
-                        <div id="hide-1" style="display:none">
-                            <h4> Password Reset </h4>
-                            <div class="alert alert-success">
-                                <strong> The password reset process has now been started.</strong>
-                            </div>
-                            <!-- <p>
+      </div>
+    </div>
+    <div id="page-3">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="intro">
+            <div id="hide-1" style="display:none">
+              <h4> Password Reset </h4>
+              <div class="alert alert-success">
+                <strong> The password reset process has now been started.</strong>
+              </div>
+              <!-- <p>
                                 Please check your email for instructions on what to do next. Thank you!
                             </p> -->
-                            <br>
-                            <!-- <hr> -->
-                            <!-- <br> -->
-                            <!-- <p id="hide-para-1" style="display:none">
+              <br>
+              <!-- <hr> -->
+              <!-- <br> -->
+              <!-- <p id="hide-para-1" style="display:none">
                                 Please check your email for instructions on what to do next. Thank you! -->
-                            <!--  Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
+              <!--  Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
                                 <strong>mobile</strong>. -->
-                            <!-- </p> -->
-                            <!-- <p id="hide-para-2" style="display:none">
+              <!-- </p> -->
+              <!-- <p id="hide-para-2" style="display:none">
                                 Please check your email for instructions on what to do next. Thank you! -->
-                            <!--  Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
+              <!--  Thank you for taking the time to participate in this study. Please continue onto the second part of the study on your
                                 <strong>laptop</strong>. -->
-                            <!-- </p> -->
-                        </div>
-                        <div id="hide-2" style="display:none">
-                            <!-- <h4> Reset successful </h4> -->
-                            <!-- <div class="alert alert-success">
+              <!-- </p> -->
+            </div>
+            <div id="hide-2" style="display:none">
+              <!-- <h4> Reset successful </h4> -->
+              <!-- <div class="alert alert-success">
                                 <strong>Congratulations! Your Gatorcloud password has been successfully reset.</strong>
                             </div> -->
-                            <!-- <br>
+              <!-- <br>
                             <hr>
                             <br> -->
-                            <p>
-                                Thank you for taking the time to participate in this study. Please fill the survey below to complete it. You will recieve
-                                an email with instructions in a few days for the second part of the study.
-                            </p>
-                            <iframe id="qualtrics-embed" src="https://goo.gl/iQnR2W" height="500px" width="100%"></iframe>
-                        </div>
-                    </div>
-                </div>
+              <p>
+                Thank you for taking the time to participate in this study. Please fill the survey below to complete it. You will recieve an email with instructions in a few days for the second part of the study.
+              </p>
+              <iframe id="qualtrics-embed" src="https://goo.gl/iQnR2W" height="500px" width="100%"></iframe>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
 
-    <script>
-        var user_info = {}; //an empty JSON object to store user info after calling ajax_post_1
-        var isValidUser = false;
-        var count_times_password_1 = 0;
-        var count_times_password_2 = 0;
-        var overall_time = 0;
-        var end_overall_time = 0;
-        var delete_count_1 = 0;
-        var delete_count_2 = 0;
-        var start_timer_1 = 0;
-        var end_timer_1 = 0;
-        var start_timer_2 = 0;
-        var end_timer_2 = 0;
-        var log_password_1;
-        var log_password_2;
-        var mismatch = 0;
-        var creation_attempt = 0;
+  <script>
+    var user_info = {}; //an empty JSON object to store user info after calling ajax_post_1
+    var isValidUser = false;
+    var count_times_password_1 = 0;
+    var count_times_password_2 = 0;
+    var overall_time = 0;
+    var end_overall_time = 0;
+    var delete_count_1 = 0;
+    var delete_count_2 = 0;
+    var start_timer_1 = 0;
+    var end_timer_1 = 0;
+    var start_timer_2 = 0;
+    var end_timer_2 = 0;
+    var log_password_1;
+    var log_password_2;
+    var mismatch = 0;
+    var creation_attempt = 0;
 
-        var count_paste = 0;
+    var count_paste = 0;
 
-        var show_survey_block = false;
+    var show_survey_block = false;
 
-        var device_type = "laptop";
+    var device_type = "laptop";
 
-        var conditions = "All conditions not satisfied";
-
-
-        var password_toggle_1 = password_toggle_2 = 0;
-        var count_1 = count_2 = count_3 = count_4 = 0;
+    var conditions = "All conditions not satisfied";
 
 
-        var password_error_json = {};
+    var password_toggle_1 = password_toggle_2 = 0;
+    var count_1 = count_2 = count_3 = count_4 = 0;
 
-        var count = 0;
 
-        var total_1 = 0;
-        var total_2 = 0;
+    var password_error_json = {};
 
-        var password_check = [false, false, false, false];
-        // [0] - Length
-        // [1] - lower Case
-        // [2] - upper Case
-        // [3] - Special Character
+    var count = 0;
 
-        //Initial Check
-        function initial_check() {
-            check_device_type();
-            // alert(device_type);
-            if (user_info.valid) {
-                if ((user_info.turn == "M" && device_type == "mobile") || (user_info.turn == "NM" && device_type ==
-                        "laptop")) {
-                    //correct device
-                    document.getElementById("page-1").style.display = "none";
-                    document.getElementById("page-2").style.display = "block";
-                    if (overall_time == 0) //total time to create password
-                        overall_time = Date.now();
-                } else if (user_info.turn == "M" && device_type == "laptop") {
-                    // continue on mobile message
-                    document.getElementById("page-1").style.display = "none";
-                    document.getElementById("page-1p5").style.display = "block";
-                    document.getElementById("continue-on-mobile").style.display = "block";
-                } else if (user_info.turn == "NM" && device_type == "mobile") {
-                    // continue on laptop message
-                    document.getElementById("page-1").style.display = "none";
-                    document.getElementById("page-1p5").style.display = "block";
-                    document.getElementById("continue-on-laptop").style.display = "block";
-                }
-            }
+    var total_1 = 0;
+    var total_2 = 0;
 
+    var password_check = [false, false, false, false];
+    // [0] - Length
+    // [1] - lower Case
+    // [2] - upper Case
+    // [3] - Special Character
+
+    //Initial Check
+    function initial_check() {
+      check_device_type();
+      // alert(device_type);
+      if (user_info.valid) {
+        if ((user_info.turn == "M" && device_type == "mobile") || (user_info.turn == "NM" && device_type ==
+            "laptop")) {
+          //correct device
+          document.getElementById("page-1").style.display = "none";
+          document.getElementById("page-2").style.display = "block";
+          if (overall_time == 0) //total time to create password
+            overall_time = Date.now();
+        } else if (user_info.turn == "M" && device_type == "laptop") {
+          // continue on mobile message
+          document.getElementById("page-1").style.display = "none";
+          document.getElementById("page-1p5").style.display = "block";
+          document.getElementById("continue-on-mobile").style.display = "block";
+        } else if (user_info.turn == "NM" && device_type == "mobile") {
+          // continue on laptop message
+          document.getElementById("page-1").style.display = "none";
+          document.getElementById("page-1p5").style.display = "block";
+          document.getElementById("continue-on-laptop").style.display = "block";
         }
+      }
+
+    }
 
 
-        // Function - Enter Password Error Feedback
-        function check_password_1(password, event) {
-            var upperPattern = new RegExp(/[A-Z]/);
-            var lowerPattern = new RegExp(/[a-z]/);
-            var specialPattern = new RegExp(/[ ~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
+    // Function - Enter Password Error Feedback
+    function check_password_1(password, event) {
+      var upperPattern = new RegExp(/[A-Z]/);
+      var lowerPattern = new RegExp(/[a-z]/);
+      var specialPattern = new RegExp(/[ ~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
 
-            if (!lowerPattern.test(password.value)) {
-                document.getElementById("password-warning-1").innerHTML = conditions;
-                password_check[1] = false;
+      if (!lowerPattern.test(password.value)) {
+        document.getElementById("password-warning-1").innerHTML = conditions;
+        password_check[1] = false;
+      } else {
+        password_check[1] = true;
+        if (!upperPattern.test(password.value)) {
+          document.getElementById("password-warning-1").innerHTML = conditions;
+          password_check[2] = false;
+        } else {
+          password_check[2] = true;
+          if (!specialPattern.test(password.value)) {
+            document.getElementById("password-warning-1").innerHTML = conditions;
+            password_check[3] = false;
+          } else {
+            password_check[3] = true;
+            if (password.value.length < 12) {
+              document.getElementById("password-warning-1").innerHTML = conditions;
+              password_check[0] = false;
             } else {
-                password_check[1] = true;
-                if (!upperPattern.test(password.value)) {
-                    document.getElementById("password-warning-1").innerHTML = conditions;
-                    password_check[2] = false;
-                } else {
-                    password_check[2] = true;
-                    if (!specialPattern.test(password.value)) {
-                        document.getElementById("password-warning-1").innerHTML = conditions;
-                        password_check[3] = false;
-                    } else {
-                        password_check[3] = true;
-                        if (password.value.length < 12) {
-                            document.getElementById("password-warning-1").innerHTML = conditions;
-                            password_check[0] = false;
-                        } else {
-                            document.getElementById("password-warning-1").innerHTML = "";
-                            password_check[0] = true;
-                        }
-                    }
-                }
+              document.getElementById("password-warning-1").innerHTML = "";
+              password_check[0] = true;
             }
-
-            //code to log time in json
-            if (password.value.length > 11) {
-                if (count_1 == 0)
-                    password_error_json["lessthan"] = {
-                        "time": Date.now() - overall_time
-                    };
-                count_1++;
-                if (password_check[0] == false || password_check[1] == false || password_check[2] == false ||
-                    password_check[3] == false) {
-                    if (event.keyCode != 8) {
-                        creation_attempt++;
-                    }
-                    // console.log(creation_attempt)----;
-                }
-            }
-
-            if (lowerPattern.test(password.value)) {
-                if (count_2 == 0)
-                    password_error_json["lowercase"] = {
-                        "time": Date.now() - overall_time
-                    };
-                count_2++;
-            }
-
-            if (upperPattern.test(password.value)) {
-                if (count_3 == 0)
-                    password_error_json["uppercase"] = {
-                        "time": Date.now() - overall_time
-                    }
-                count_3++;
-            }
-            if (specialPattern.test(password.value)) {
-                if (count_4 == 0)
-                    password_error_json["special"] = {
-                        "time": Date.now() - overall_time
-                    }
-                count_4++;
-            }
-
-            //check if all password conditions met
-            if (password_check[0] == true && password_check[1] == true && password_check[2] == true &&
-                password_check[3] == true) {
-                document.getElementById("password-2").disabled = false;
-                document.getElementById("password-warning-2").innerHTML = "";
-                document.getElementById("password-2").style.backgroundColor = "white";
-                end_timer_1 = Date.now();
-                total_1 += end_timer_1 - start_timer_1;
-                start_timer_1 = 0;
-                // document.getElementById("password-1-time").innerHTML = (total_1) / 1000 + "s";
-            } else {
-                document.getElementById("password-2").disabled = true;
-                document.getElementById("password-2").style.backgroundColor = "#eee";
-            }
+          }
         }
+      }
 
-        // Function - Re-enter Password Error Feedback
-        function check_password_2(password, event) {
-            var password_1 = document.getElementById("password-1");
-            if (password.value != document.getElementById("password-1").value) {
-                document.getElementById("password-warning-2").innerHTML = "Passwords do not match";
-                document.getElementById("password-warning-2").style.color = "red";
-                if (password.value.length >= password_1.value.length) {
-                    if (event.keyCode != 8) {
-                        mismatch++;
-                        // console.log(mismatch);
-                    }
-                    // console.log(mismatch);
-                }
-                start_timer_1 = 0;
-            } else {
-                document.getElementById("password-warning-2").innerHTML = "Passwords match";
-                document.getElementById("password-warning-2").style.color = "#1e4ca4";
-                end_timer_2 = Date.now();
-                total_2 += end_timer_2 - start_timer_2;
-                start_timer_2 = 0;
-            }
+      //code to log time in json
+      if (password.value.length > 11) {
+        if (count_1 == 0)
+          password_error_json["lessthan"] = {
+            "time": Date.now() - overall_time
+          };
+        count_1++;
+        if (password_check[0] == false || password_check[1] == false || password_check[2] == false ||
+          password_check[3] == false) {
+          if (event.keyCode != 8) {
+            creation_attempt++;
+          }
+          // console.log(creation_attempt)----;
         }
+      }
 
-        //no of deletions
-        function delete_count(event, password) {
-            if (event.keyCode == 8 && password.id == "password-1") {
-                delete_count_1++;
-            } else if (event.keyCode == 8 && password.id == "password-2") {
-                delete_count_2++;
-            }
+      if (lowerPattern.test(password.value)) {
+        if (count_2 == 0)
+          password_error_json["lowercase"] = {
+            "time": Date.now() - overall_time
+          };
+        count_2++;
+      }
+
+      if (upperPattern.test(password.value)) {
+        if (count_3 == 0)
+          password_error_json["uppercase"] = {
+            "time": Date.now() - overall_time
+          }
+        count_3++;
+      }
+      if (specialPattern.test(password.value)) {
+        if (count_4 == 0)
+          password_error_json["special"] = {
+            "time": Date.now() - overall_time
+          }
+        count_4++;
+      }
+
+      //check if all password conditions met
+      if (password_check[0] == true && password_check[1] == true && password_check[2] == true &&
+        password_check[3] == true) {
+        document.getElementById("password-2").disabled = false;
+        document.getElementById("password-warning-2").innerHTML = "";
+        document.getElementById("password-2").style.backgroundColor = "white";
+        end_timer_1 = Date.now();
+        total_1 += end_timer_1 - start_timer_1;
+        start_timer_1 = 0;
+        // document.getElementById("password-1-time").innerHTML = (total_1) / 1000 + "s";
+      } else {
+        document.getElementById("password-2").disabled = true;
+        document.getElementById("password-2").style.backgroundColor = "#eee";
+      }
+    }
+
+    // Function - Re-enter Password Error Feedback
+    function check_password_2(password, event) {
+      var password_1 = document.getElementById("password-1");
+      if (password.value != document.getElementById("password-1").value) {
+        document.getElementById("password-warning-2").innerHTML = "Passwords do not match";
+        document.getElementById("password-warning-2").style.color = "red";
+        if (password.value.length >= password_1.value.length) {
+          if (event.keyCode != 8) {
+            mismatch++;
+            // console.log(mismatch);
+          }
+          // console.log(mismatch);
         }
+        start_timer_1 = 0;
+      } else {
+        document.getElementById("password-warning-2").innerHTML = "Passwords match";
+        document.getElementById("password-warning-2").style.color = "#1e4ca4";
+        end_timer_2 = Date.now();
+        total_2 += end_timer_2 - start_timer_2;
+        start_timer_2 = 0;
+      }
+    }
 
-        // Function - Count Password clicks
-        function click_password(password) {
-            if (password.id == "password-1") {
-                if (password.value != log_password_1) {
-                    count_times_password_1++;
-                    log_password_1 = password.value;
-                }
-                // if (overall_time == 0) //total time to create password
-                //     overall_time = Date.now();
-                // if (start_timer_1 == 0) {
-                //     start_timer_1 = Date.now();
-                // }
-            } else if (password.id == "password-2") {
-                if (password.value != log_password_2) {
-                    count_times_password_2++;
-                    log_password_2 = password.value;
-                }
-                // if (start_timer_2 == 0) {
-                //     start_timer_2 = Date.now();
-                // }
-            }
+    //no of deletions
+    function delete_count(event, password) {
+      if (event.keyCode == 8 && password.id == "password-1") {
+        delete_count_1++;
+      } else if (event.keyCode == 8 && password.id == "password-2") {
+        delete_count_2++;
+      }
+    }
+
+    // Function - Count Password clicks
+    function click_password(password) {
+      if (password.id == "password-1") {
+        if (password.value != log_password_1) {
+          count_times_password_1++;
+          log_password_1 = password.value;
         }
-
-        // Create JSON
-        // works on clicking the change password button
-        // json_file is the file to be exported
-        function create_json() {
-            // if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            //     device_type = "mobile";
-            // }
-            var current_time = new Date();
-            var json_file = [{
-                    "id": user_info.userId,
-                    "timestamp": current_time,
-                    "mismatch": mismatch,
-                    "creation_attempt": creation_attempt
-                },
-                {
-                    "value": document.getElementById("password-1").value,
-                    "device-type": device_type,
-                    "end_overall-time": end_overall_time / 1000,
-                    "paste-count": count_paste
-                    // "unique-ID":
-                }, {
-                    "type": "password-1",
-                    "pressed": count_times_password_1,
-                    // "time": total_1 / 1000,
-                    "delete-count": delete_count_1,
-                    "toggle-count": password_toggle_1
-                },
-                {
-                    "type": "password-2",
-                    "pressed": count_times_password_2,
-                    // "time": total_2 / 1000,
-                    "delete-count": delete_count_2,
-                    "toggle-count": password_toggle_2
-                }
-            ];
-
-            //concating password error time json with original json
-            json_file = json_file.concat(password_error_json)
-            //console.log(json_file);
-            return json_file;
-        }
-
-        function ajax_post_1() {
-            // Create our XMLHttpRequest object
-            var hr = new XMLHttpRequest();
-            var url = "user-validate.php";
-            var email = document.getElementById("email_id").value;
-            var vars = "email=" + email;
-            hr.open("POST", url, true);
-            hr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-            // Set content type header information for sending url encoded variables in the request
-            hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            // Access the onreadystatechange event for the XMLHttpRequest object
-            hr.onreadystatechange = function () {
-                if (hr.readyState == 4 && hr.status == 200) {
-                    // var return_data = hr.responseText;
-                    var return_json = JSON.parse(hr.responseText);
-                    user_info = return_json;
-                    //console.log(return_json);
-                    document.getElementById("isValidUser").value = return_json.valid;
-                    if (return_json.valid == false) {
-                        var statusClass = document.getElementById("status");
-                        statusClass.className += " alert";
-                        statusClass.className += " alert-danger";
-
-                        document.getElementById("status").innerHTML =
-                            "<b>Invalid user email or too many attempts. <br>Please contact administrator if you think this is an error.</b>";
-                    }
-                    initial_check();
-                }
-            }
-            // Send the data to PHP now... and wait for response to update the status div
-            hr.send(vars); // Actually execute the request
-            document.getElementById("status").innerHTML = "processing...";
-        }
-
-        function ajax_post_2() {
-            end_overall_time = Date.now() - overall_time;
-            // Create our XMLHttpRequest object
-            var hr = new XMLHttpRequest();
-            // Create some variables we need to send to our PHP file
-            var url = "backend-data-store.php";
-            var jsondata = JSON.stringify(create_json());
-            hr.open("POST", url, true);
-            hr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-            // Set content type header information for sending url encoded variables in the request
-            hr.setRequestHeader("Content-type", "application/json");
-            // Access the onreadystatechange event for the XMLHttpRequest object
-            hr.onreadystatechange = function () {
-                if (hr.readyState == 4 && hr.status == 200) {
-                    // var return_data = hr.responseText;
-                    var return_json = JSON.parse(hr.responseText);
-                    show_survey_block = return_json.survey;
-                    //console.log(return_json);
-                    show_next_2();
-                }
-            }
-            // Send the data to PHP now... and wait for response to update the status div
-            hr.send(jsondata); // Actually execute the request
-            // document.getElementById("status").innerHTML = "processing...";
-
-        }
-
-        //check paste
-        var text_ID = document.getElementById("password-2");
-        text_ID.addEventListener("paste", function () {
-            count_paste++;
-            // alert(count_paste);
-        });
-
-        function check_device_type() {
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                device_type = "mobile";
-            }
-        }
-
-        function show_next_timeout() {
-            document.getElementById("page-2").style.display = "none";
-            document.getElementById("hide-1").style.display = "block";
-
-            // if (device_type == "mobile") {
-            //     document.getElementById("hide-para-2").style.display = "block";
-            // } else {
-            //     document.getElementById("hide-para-1").style.display = "block";
-            // }
-            if (show_survey_block) {
-                document.getElementById("hide-2").style.display = "block";
-            }
-            // document.getElementById("hide-1").style.display = "block";
-
-            document.getElementById("page-3").style.display = "block";
-            // create_json();
-        }
-
-        function show_next_2() {
-            // if (document.getElementById("password-1").value == document.getElementById("password-2").value &&
-            // document.getElementById(
-            //   "password-1").value != "") {
-            //     document.getElementById("page-2").style.display = "none";
-            //     document.getElementById("page-3").style.display = "block";
-            //     // end_overall_time = Date.now() - overall_time;
-            //     // create_json();
-            //   }
-
-            // document.getElementById("page-2").style.display = "none";
-            // document.getElementById("page-3").style.display = "block";
-            if (document.getElementById("password-1").value == document.getElementById("password-2").value &&
-                document.getElementById(
-                    "password-1").value != "") {
-                end_overall_time = Date.now() - overall_time;
-                document.getElementById("continue-button-text").style.display = "none";
-                document.getElementById("spinner-image").style.display = "inline-block";
-                setTimeout(function () {
-                    // show_survey();
-                    show_next_timeout();
-                }, 2500);
-            }
-        }
-
-        // function show_survey() {
-        //     check_device_type();
-        //     // if (user_info.valid) {
-        //     if ((user_info.turn == "M" && device_type == "mobile") || (user_info.turn == "NM" && device_type ==
-        //             "laptop")) {
-        //         show_survey_block = true;
-        //     }
-        //     // }
+        // if (overall_time == 0) //total time to create password
+        //     overall_time = Date.now();
+        // if (start_timer_1 == 0) {
+        //     start_timer_1 = Date.now();
         // }
-
-        // View password toggle
-        function view_password_1() {
-            if (document.getElementById("password-1").type == "password") {
-                document.getElementById("password-1").type = "text";
-                document.getElementById("toggle1").style.backgroundImage = "url(eye-open.png)";
-                password_toggle_1++;
-            } else {
-                document.getElementById("password-1").type = "password";
-                document.getElementById("toggle1").style.backgroundImage = "url(eye-close.png)";
-            }
+      } else if (password.id == "password-2") {
+        if (password.value != log_password_2) {
+          count_times_password_2++;
+          log_password_2 = password.value;
         }
+        // if (start_timer_2 == 0) {
+        //     start_timer_2 = Date.now();
+        // }
+      }
+    }
 
-        function view_password_2() {
-            if (document.getElementById("password-2").type == "password") {
-                document.getElementById("password-2").type = "text";
-                document.getElementById("toggle2").style.backgroundImage = "url(eye-open.png)";
-                password_toggle_2++;
-            } else {
-                document.getElementById("password-2").type = "password";
-                document.getElementById("toggle2").style.backgroundImage = "url(eye-close.png)";
-            }
+    // Create JSON
+    // works on clicking the change password button
+    // json_file is the file to be exported
+    function create_json() {
+      // if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      //     device_type = "mobile";
+      // }
+      var current_time = new Date();
+      var json_file = [{
+          "id": user_info.userId,
+          "timestamp": current_time,
+          "mismatch": mismatch,
+          "creation_attempt": creation_attempt
+        },
+        {
+          "value": document.getElementById("password-1").value,
+          "device-type": device_type,
+          "end_overall-time": end_overall_time / 1000,
+          "paste-count": count_paste
+          // "unique-ID":
+        }, {
+          "type": "password-1",
+          "pressed": count_times_password_1,
+          // "time": total_1 / 1000,
+          "delete-count": delete_count_1,
+          "toggle-count": password_toggle_1
+        },
+        {
+          "type": "password-2",
+          "pressed": count_times_password_2,
+          // "time": total_2 / 1000,
+          "delete-count": delete_count_2,
+          "toggle-count": password_toggle_2
         }
-    </script>
+      ];
+
+      //concating password error time json with original json
+      json_file = json_file.concat(password_error_json)
+      //console.log(json_file);
+      return json_file;
+    }
+
+    function ajax_post_1() {
+      // Create our XMLHttpRequest object
+      var hr = new XMLHttpRequest();
+      var url = "user-validate.php";
+      var email = document.getElementById("email_id").value;
+      var vars = "email=" + email;
+      hr.open("POST", url, true);
+      hr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+      // Set content type header information for sending url encoded variables in the request
+      hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      // Access the onreadystatechange event for the XMLHttpRequest object
+      hr.onreadystatechange = function() {
+        if (hr.readyState == 4 && hr.status == 200) {
+          // var return_data = hr.responseText;
+          var return_json = JSON.parse(hr.responseText);
+          user_info = return_json;
+          //console.log(return_json);
+          document.getElementById("isValidUser").value = return_json.valid;
+          if (return_json.valid == false) {
+            var statusClass = document.getElementById("status");
+            statusClass.className += " alert";
+            statusClass.className += " alert-danger";
+
+            document.getElementById("status").innerHTML =
+              "<b>Invalid user email or too many attempts. <br>Please contact administrator if you think this is an error.</b>";
+          }
+          initial_check();
+        }
+      }
+      // Send the data to PHP now... and wait for response to update the status div
+      hr.send(vars); // Actually execute the request
+      document.getElementById("status").innerHTML = "processing...";
+    }
+
+    function ajax_post_2() {
+      end_overall_time = Date.now() - overall_time;
+      // Create our XMLHttpRequest object
+      var hr = new XMLHttpRequest();
+      // Create some variables we need to send to our PHP file
+      var url = "backend-data-store.php";
+      var jsondata = JSON.stringify(create_json());
+      hr.open("POST", url, true);
+      hr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+      // Set content type header information for sending url encoded variables in the request
+      hr.setRequestHeader("Content-type", "application/json");
+      // Access the onreadystatechange event for the XMLHttpRequest object
+      hr.onreadystatechange = function() {
+        if (hr.readyState == 4 && hr.status == 200) {
+          // var return_data = hr.responseText;
+          var return_json = JSON.parse(hr.responseText);
+          show_survey_block = return_json.survey;
+          //console.log(return_json);
+          show_next_2();
+        }
+      }
+      // Send the data to PHP now... and wait for response to update the status div
+      hr.send(jsondata); // Actually execute the request
+      // document.getElementById("status").innerHTML = "processing...";
+
+    }
+
+    //check paste
+    var text_ID = document.getElementById("password-2");
+    text_ID.addEventListener("paste", function() {
+      count_paste++;
+      // alert(count_paste);
+    });
+
+    function check_device_type() {
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        device_type = "mobile";
+      }
+    }
+
+    function show_next_timeout() {
+      document.getElementById("page-2").style.display = "none";
+      document.getElementById("hide-1").style.display = "block";
+
+      // if (device_type == "mobile") {
+      //     document.getElementById("hide-para-2").style.display = "block";
+      // } else {
+      //     document.getElementById("hide-para-1").style.display = "block";
+      // }
+      if (show_survey_block) {
+        document.getElementById("hide-2").style.display = "block";
+      }
+      // document.getElementById("hide-1").style.display = "block";
+
+      document.getElementById("page-3").style.display = "block";
+      // create_json();
+    }
+
+    function show_next_2() {
+      // if (document.getElementById("password-1").value == document.getElementById("password-2").value &&
+      // document.getElementById(
+      //   "password-1").value != "") {
+      //     document.getElementById("page-2").style.display = "none";
+      //     document.getElementById("page-3").style.display = "block";
+      //     // end_overall_time = Date.now() - overall_time;
+      //     // create_json();
+      //   }
+
+      // document.getElementById("page-2").style.display = "none";
+      // document.getElementById("page-3").style.display = "block";
+      if (document.getElementById("password-1").value == document.getElementById("password-2").value &&
+        document.getElementById(
+          "password-1").value != "") {
+        end_overall_time = Date.now() - overall_time;
+        document.getElementById("continue-button-text").style.display = "none";
+        document.getElementById("spinner-image").style.display = "inline-block";
+        setTimeout(function() {
+          // show_survey();
+          show_next_timeout();
+        }, 2500);
+      }
+    }
+
+    // function show_survey() {
+    //     check_device_type();
+    //     // if (user_info.valid) {
+    //     if ((user_info.turn == "M" && device_type == "mobile") || (user_info.turn == "NM" && device_type ==
+    //             "laptop")) {
+    //         show_survey_block = true;
+    //     }
+    //     // }
+    // }
+
+    // View password toggle
+    function view_password_1() {
+      if (document.getElementById("password-1").type == "password") {
+        document.getElementById("password-1").type = "text";
+        document.getElementById("toggle1").style.backgroundImage = "url(eye-open.png)";
+        password_toggle_1++;
+      } else {
+        document.getElementById("password-1").type = "password";
+        document.getElementById("toggle1").style.backgroundImage = "url(eye-close.png)";
+      }
+    }
+
+    function view_password_2() {
+      if (document.getElementById("password-2").type == "password") {
+        document.getElementById("password-2").type = "text";
+        document.getElementById("toggle2").style.backgroundImage = "url(eye-open.png)";
+        password_toggle_2++;
+      } else {
+        document.getElementById("password-2").type = "password";
+        document.getElementById("toggle2").style.backgroundImage = "url(eye-close.png)";
+      }
+    }
+  </script>
 </body>
 
 </html>

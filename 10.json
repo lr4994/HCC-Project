@@ -1,0 +1,34 @@
+[{
+  "id": "10",
+  "timestamp": "2018-03-16T22:42:08.423Z",
+  "mismatch": 0,
+  "creation_attempt": 9
+}, {
+  "value": "200912696ChEn!",
+  "device-type": "laptop",
+  "end_overall-time": 43.148,
+  "paste-count": 0
+}, {
+  "type": "password-1",
+  "pressed": 2,
+  "delete-count": 15,
+  "toggle-count": 0
+}, {
+  "type": "password-2",
+  "pressed": 1,
+  "delete-count": 0,
+  "toggle-count": 0
+}, {
+  "lowercase": {
+    "time": 7010
+  },
+  "lessthan": {
+    "time": 7242
+  },
+  "special": {
+    "time": 21560
+  },
+  "uppercase": {
+    "time": 34038
+  }
+}]
