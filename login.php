@@ -9,7 +9,7 @@ $data = json_decode($jsonString, true);
 // $myObj = new stdClass();
 $email = trim($_POST['email']);
 $password = trim($_POST['pass']);
-echo $password."-----".$email;
+// echo $password."-----".$email;
 $valid_user = 0;
 
 $responseJson = new stdClass();
@@ -18,10 +18,10 @@ foreach ($data as $key => $entry) {
     if ($entry['email'] == $email && $entry['attempt'] < 2) {
         $valid_user = 1;
         $userJsonFile = $entry['id'].'.json';
-        echo $userJsonFile;
         $userJsonString = file_get_contents($userJsonFile);
         $userData = json_decode($userJsonString, true);
 
+        $responseJson->userId = $entry['id'];
         //check password
         if($password==$userData[1]['value']){
           $responseJson->login = true;
