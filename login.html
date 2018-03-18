@@ -291,8 +291,8 @@
                             <br>
                             <div class="prompt-text">Enter Password</div>
                             <div class="password-block">
-                                <input type="password" onkeydown="delete_count_fn(event,this)" onclick="click_password(this)" class="password" id="password"
-                                />
+                                <input type="password" autocomplete="false" onkeydown="delete_count_fn(event,this)" onclick="click_password(this)" class="password"
+                                    id="password" />
                                 <button class="toggle" id="toggle" onclick="view_password()"> </button>
                             </div>
                             <div id="password-warning"> &nbsp;</div>
@@ -421,10 +421,10 @@
                 if (count_error >= 5) {
                     //fill password
                     overall_time = Date.now() - overall_time;
-                    alert(
-                        "Since you have entered the password incorrectly 5 times, your password has been filled for you."
-                    )
-                    document.getElementById("password").value = dummy_password;
+                    // alert(
+                    //     "Since you have entered the password incorrectly 5 times, your password has been filled for you."
+                    // )
+                    document.getElementById("password-warning").innerHTML = "Password: " + dummy_password;
                 }
             }
         }
