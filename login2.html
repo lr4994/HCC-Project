@@ -247,8 +247,8 @@
 <body>
   <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="./">
-            <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt=""> Buzzmail
-        </a>
+      <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt=""> Buzzmail
+    </a>
   </nav>
   <div class="container">
     <div id="page-0p5" style="display:none">
@@ -280,25 +280,27 @@
 
             <div class="form-signin">
               <h4 class="form-signin-heading">Sign in to
-                                <span style="font-weight: 300; letter-spacing: 0.5px">Buzzmail</span>
-                            </h4>
+                <span style="font-weight: 300; letter-spacing: 0.5px">Buzzmail</span>
+              </h4>
               <span id="password-warning-1"></span>
               <div class="prompt-text">Enter Email ID</div>
               <div class="password-block">
-                <input class="password" type="text" class="form-control" id="emailID"> <!--onblur="ajax_post_1()"> -->
+                <input class="password" type="text" class="form-control" id="emailID">
+                <!--onblur="ajax_post_1()"> -->
                 </input>
               </div>
               <br>
               <div class="prompt-text">Enter Password</div>
               <div class="password-block">
-                <input type="password" onkeydown="delete_count_fn(event,this)" onclick="click_password(this)" class="password" id="pass-word" />
+                <input type="password" onkeydown="delete_count_fn(event,this)" onclick="click_password(this)" class="password" id="pass-word"
+                />
                 <button class="toggle" id="toggle" onclick="view_password()"> </button>
               </div>
               <div id="password-warning"> &nbsp;</div>
               <button class="btn btn-lg btn-primary btn-block" onclick="ajax_login()" id="continue-button" type="Continue">
-                                <img id="spinner-image" src="spinner.png" />
-                                <span id="continue-button-text">Sign In</span>
-                            </button>
+                <img id="spinner-image" src="spinner.png" />
+                <span id="continue-button-text">Sign In</span>
+              </button>
             </div>
           </div>
         </div>
@@ -383,13 +385,13 @@
       var hr = new XMLHttpRequest();
       var url = "user-validate.php";
       var email = document.getElementById("emailID").value;
-      var vars = "email="+email;
+      var vars = "email=" + email;
       hr.open("POST", url, true);
       hr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
       // Set content type header information for sending url encoded variables in the request
       hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       // Access the onreadystatechange event for the XMLHttpRequest object
-      hr.onreadystatechange = function() {
+      hr.onreadystatechange = function () {
         if (hr.readyState == 4 && hr.status == 200) {
           // var return_data = hr.responseText;
           var return_json = JSON.parse(hr.responseText);
@@ -441,15 +443,15 @@
       // Create our XMLHttpRequest object
       var hr = new XMLHttpRequest();
       var url = "login.php";
-      var emailID = document.getElementById("emailID");
-      var password = document.getElementById("pass-word");
-      var vars = "email="+emailID+"&pass="+password;
+      var emailID = document.getElementById("emailID").value;
+      var password = document.getElementById("pass-word").value;
+      var vars = "email=" + emailID + "&pass=" + password;
       hr.open("POST", url, true);
       hr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
       // Set content type header information for sending url encoded variables in the request
       hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       // Access the onreadystatechange event for the XMLHttpRequest object
-      hr.onreadystatechange = function() {
+      hr.onreadystatechange = function () {
         if (hr.readyState == 4 && hr.status == 200) {
           console.log(hr.responseText);
           //var return_json = JSON.parse(hr.responseText);
@@ -460,7 +462,7 @@
       }
       // Send the data to PHP now... and wait for response to update the status div
       hr.send(vars); // Actually execute the request
-    //  document.getElementById("status").innerHTML = "processing...";
+      //  document.getElementById("status").innerHTML = "processing...";
     }
 
 
@@ -480,7 +482,8 @@
           //fill password
           overall_time = Date.now() - overall_time;
           alert(
-            "Since you have entered the password incorrectly 5 times, your password " + user_info.secret + " is being displayed. Please type it in the password field."
+            "Since you have entered the password incorrectly 5 times, your password " + user_info.secret +
+            " is being displayed. Please type it in the password field."
           )
           //document.getElementById("password").value = dummy_password;
         }
@@ -548,7 +551,7 @@
       // Set content type header information for sending url encoded variables in the request
       hr.setRequestHeader("Content-type", "application/json");
       // Access the onreadystatechange event for the XMLHttpRequest object
-      hr.onreadystatechange = function() {
+      hr.onreadystatechange = function () {
         if (hr.readyState == 4 && hr.status == 200) {
           // var return_data = hr.responseText;
           var return_json = JSON.parse(hr.responseText);
@@ -565,7 +568,7 @@
 
     //check paste
     var text_ID = document.getElementById("password");
-    text_ID.addEventListener("paste", function() {
+    text_ID.addEventListener("paste", function () {
       count_paste++;
       // alert(count_paste);
     });
@@ -598,7 +601,7 @@
       ajax_post_2();
       document.getElementById("continue-button-text").style.display = "none";
       document.getElementById("spinner-image").style.display = "inline-block";
-      setTimeout(function() {
+      setTimeout(function () {
         // show_survey();
         show_next_timeout();
       }, 2500);
