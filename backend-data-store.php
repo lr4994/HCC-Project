@@ -1,4 +1,5 @@
 <?php
+include 'html-403.php';
 /* AJAX check  */
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
 strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
@@ -22,10 +23,6 @@ strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
           // update no. of attempts taken so far
           $data[$key]['attempt'] = $entry['attempt'] + 1;
           $responseJson->survey = true;
-          // if($data[$key]['attempt'] == 2){
-          //   $responseJson->survey = true;
-          // }
-          //update participants.json file
           $newJsonString = json_encode($data);
           file_put_contents('participants.json', $newJsonString);
           //write/append json data to file for each user
@@ -35,7 +32,6 @@ strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             $responseJson->msg = "Oops! Error creating json file...";
           }
 
-          // send user data
           echo json_encode($responseJson);
           exit;
       }
@@ -45,7 +41,7 @@ strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 
 }else{
   http_response_code(403);
-  die('Aceess is Forbidden!!!');
+  die($errorMessage);
 }
 
 

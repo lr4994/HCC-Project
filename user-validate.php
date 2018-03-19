@@ -1,4 +1,5 @@
 <?php
+include 'html-403.php';
 /* AJAX check  */
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
 strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
@@ -14,7 +15,7 @@ $valid_user = 0;
 $responseJson = new stdClass();
 
 foreach ($data as $key => $entry) {
-    if ($entry['email'] == $email && $entry['attempt'] < 1) {
+    if ($entry['email'] == $email && $entry['attempt'] <= 1) {
         $valid_user = 1;
         $responseJson->valid = true;
         $responseJson->userId = $entry['id'];
@@ -27,12 +28,13 @@ foreach ($data as $key => $entry) {
         // send user data
         echo json_encode($responseJson);
         exit;
-    }elseif ($entry['email'] == $email && $entry['attempt'] == 1) {
-      // user already finished two attempts
-      $responseJson->valid = false;
-      echo json_encode($responseJson);
-      exit;
     }
+    // elseif ($entry['email'] == $email && $entry['attempt'] == 1) {
+    //   // user already finished two attempts
+    //   $responseJson->valid = false;
+    //   echo json_encode($responseJson);
+    //   exit;
+    // }
 }
 
   if($valid_user==0){
@@ -44,7 +46,7 @@ foreach ($data as $key => $entry) {
   }
 }else{
   http_response_code(403);
-  die('Aceess is Forbidden!!!');
+  die($errorMessage);
 }
 
 ?>
