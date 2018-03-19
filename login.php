@@ -1,4 +1,6 @@
 <?php
+
+include 'html-403.php';
 /* AJAX check  */
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
 strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
@@ -49,7 +51,7 @@ foreach ($data as $key => $entry) {
   }
 }else{
   http_response_code(403);
-  die('Aceess is Forbidden!!!');
+  die($errorMessage);
 }
 
 ?>

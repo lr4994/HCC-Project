@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="logo.png" />
     <title> Buzzmail Login </title>
-    <!-- <script src="./js/bootstrap.js"></script> -->
+    <!-- <script src="./js/login-func.js"></script> -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
     <style>
         body {
@@ -332,14 +332,6 @@
                             </div>
                             <br>
                             <hr>
-                            <br>
-                            <p id="hide-para-1" style="display:none">
-                                <!-- Please check your email for instructions on what to do next. Thank you! -->
-                                Thank you for taking the time to participate in this study. Please complete the following survey. </p>
-                            <p id="hide-para-2" style="display:none">
-                                <!-- Please check your email for instructions on what to do next. Thank you! -->
-                                Thank you for taking the time to participate in this study. Please complete the following survey. </p>
-                            </p>
                         </div>
                         <div id="hide-2" style="display:none">
                             <iframe id="qualtrics-embed" src="https://goo.gl/vZi5kM" height="500px" width="100%"></iframe>
@@ -417,25 +409,14 @@
             // Access the onreadystatechange event for the XMLHttpRequest object
             hr.onreadystatechange = function () {
                 if (hr.readyState == 4 && hr.status == 200) {
-                    // var return_data = hr.responseText;
                     var return_json = JSON.parse(hr.responseText);
                     user_info = return_json;
-                    console.log(return_json);
-                    // document.getElementById("isValidUser").value = return_json.valid;
-                    // if (return_json.valid == false) {
-                    //   var statusClass = document.getElementById("status");
-                    //   statusClass.className += " alert";
-                    //   statusClass.className += " alert-danger";
-                    //
-                    //   document.getElementById("status").innerHTML =
-                    //     "<b>Invalid user email or too many attempts. <br>Please contact administrator if you think this is an error.</b>";
-                    // }
+                    // console.log(return_json);
                     initial_check();
                 }
             }
             // Send the data to PHP now... and wait for response to update the status div
             hr.send(vars); // Actually execute the request
-            // document.getElementById("status").innerHTML = "processing...";
         }
 
         //Initial Check
@@ -445,9 +426,6 @@
             if (user_info.valid) {
                 if ((user_info.turn == "M" && device_type == "mobile") || (user_info.turn == "NM" && device_type ==
                         "laptop")) {
-                    //correct device
-                    // document.getElementById("page-1").style.display = "none";
-                    // document.getElementById("page-0p5").style.display = "block";
                 } else if (user_info.turn == "M" && device_type == "laptop") {
                     // continue on mobile message
                     document.getElementById("page-1").style.display = "none";
@@ -477,21 +455,17 @@
             // Access the onreadystatechange event for the XMLHttpRequest object
             hr.onreadystatechange = function () {
                 if (hr.readyState == 4 && hr.status == 200) {
-                    console.log(hr.responseText);
+                    // console.log(hr.responseText);
                     var return_json = JSON.parse(hr.responseText);
                     user_info = return_json;
                     check_password();
-                    //console.log(return_json);
                 }
             }
             // Send the data to PHP now... and wait for response to update the status div
             hr.send(vars); // Actually execute the request
-            //  document.getElementById("status").innerHTML = "processing...";
         }
 
         function check_password() {
-            // var emailID = document.getElementById("emailID");
-            // var password = document.getElementById("password");
             if (user_info.login) {
                 // login page
                 overall_time = Date.now() - overall_time;
@@ -507,8 +481,8 @@
                     if (user_info.secret != null) {
                         //fill password
                         // overall_time = Date.now() - overall_time;
-                        alert("Since you have entered the password incorrectly 5 times, your password " + user_info.secret +
-                            " is being displayed. Please type it in the password field.");
+                        alert("Since you have entered the password incorrectly 5 times, your password \"" +user_info.secret +
+                            "\" is being displayed. Please type it in the password field.");
                         // count_error = 0;
                         document.getElementById("password-warning").innerHTML = "Password: " + user_info.secret;
                         //document.getElementById("password").value = dummy_password;
@@ -521,7 +495,7 @@
         function forgot_password() {
             if (user_info.secret != null) {
                 forgot_pass_count++;
-                alert("Your password is " + user_info.secret + ". Please type it in the password field.");
+                alert("Your password is \"" + user_info.secret + "\". Please type it in the password field.");
                 document.getElementById("password-warning").innerHTML = "&nbsp;";
                 // document.getElementById("password-warning").innerHTML = "Password: " + user_info.secret;
             } else {
@@ -574,7 +548,7 @@
 
             //concating password error time json with original json
             // json_file = json_file.concat(password_error_json)
-            console.log(json_file);
+            // console.log(json_file);
             return json_file;
         }
 
@@ -593,10 +567,9 @@
             // Access the onreadystatechange event for the XMLHttpRequest object
             hr.onreadystatechange = function () {
                 if (hr.readyState == 4 && hr.status == 200) {
-                    // var return_data = hr.responseText;
                     var return_json = JSON.parse(hr.responseText);
                     show_survey_block = return_json.survey;
-                    console.log(return_json);
+                    // console.log(return_json);
                 }
             }
             // Send the data to PHP now... and wait for response to update the status div
@@ -627,8 +600,9 @@
                 } else {
                     document.getElementById("hide-para-1").style.display = "block";
                 }
-                document.getElementById("hide-1").style.display = "block";
+                // document.getElementById("hide-1").style.display = "block";
             }
+            document.getElementById("hide-1").style.display = "block";
             document.getElementById("page-2").style.display = "block";
             create_json();
         }
