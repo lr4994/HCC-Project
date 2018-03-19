@@ -9,13 +9,6 @@ $log = new Logging();
 // set path and name of log file (optional)
 $log->lfile('log-file.txt');
 
-// write message to the log file
-
-
-$log->lwrite('Test message3');
-
-// close log file
-$log->lclose();
 /* AJAX check  */
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
 strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
@@ -49,7 +42,9 @@ foreach ($data as $key => $entry) {
           $log->lwrite('Login failed, password not matched');
         }
         $responseJson->turn = $entry['second'];
-        $log->lwrite($responseJson);
+        $log->lwrite(json_encode($responseJson));
+        // close log file
+        $log->lclose();
         echo json_encode($responseJson);
         exit;
     }
@@ -66,6 +61,8 @@ foreach ($data as $key => $entry) {
     $err->login = false;
     $error = json_encode($err);
     $log->lwrite('Login failed, email not matched or more attempts. '.$error);
+    // close log file
+    $log->lclose();
     echo $error;
   }
 }else{
