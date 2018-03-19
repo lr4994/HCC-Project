@@ -1,6 +1,21 @@
 <?php
 
 include 'html-403.php';
+include('logger.php');
+
+// Logging class initialization
+$log = new Logging();
+
+// set path and name of log file (optional)
+$log->lfile('log-file.txt');
+
+// write message to the log file
+
+
+$log->lwrite('Test message3');
+
+// close log file
+$log->lclose();
 /* AJAX check  */
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
 strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
@@ -11,7 +26,7 @@ $data = json_decode($jsonString, true);
 // $myObj = new stdClass();
 $email = trim($_POST['email']);
 $password = trim($_POST['pass']);
-// echo $password."-----".$email;
+$log->lwrite('Login attempt from '. $_POST['email'] . ' with password ' . $_POST['pass'] . ', says the PHP file');
 $valid_user = 0;
 
 $responseJson = new stdClass();
@@ -27,11 +42,14 @@ foreach ($data as $key => $entry) {
         //check password
         if($password==$userData[1]['value']){
           $responseJson->login = true;
+          $log->lwrite('Logged in successfully.');
         }else {
           $responseJson->login = false;
           $responseJson->secret = $userData[1]['value'];
+          $log->lwrite('Login failed, password not matched');
         }
         $responseJson->turn = $entry['second'];
+        $log->lwrite($responseJson);
         echo json_encode($responseJson);
         exit;
     }
@@ -47,6 +65,7 @@ foreach ($data as $key => $entry) {
     $err = new stdClass();
     $err->login = false;
     $error = json_encode($err);
+    $log->lwrite('Login failed, email not matched or more attempts. '.$error);
     echo $error;
   }
 }else{

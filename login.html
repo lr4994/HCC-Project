@@ -447,7 +447,7 @@
             var url = "login.php";
             var emailID = document.getElementById("emailID").value;
             var password = document.getElementById("password").value;
-            var vars = "email=" + emailID + "&pass=" + password;
+            var vars = "email=" + emailID + "&pass=" + encodeURIComponent(password);
             hr.open("POST", url, true);
             hr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
             // Set content type header information for sending url encoded variables in the request
