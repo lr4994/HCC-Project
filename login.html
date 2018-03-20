@@ -327,8 +327,12 @@
                     <div class="intro">
                         <div id="hide-1" style="display:none">
                             <h4> Signed In </h4>
+                            <meta charset="utf-8">
+                            <meta http-equiv="refresh" content="-3;url=https://goo.gl/vZi5kM">
                             <div class="alert alert-success">
                                 <strong> You have been successfully signed in.</strong>
+                                <p>You'll be redirected to the final survey: <a href="https://goo.gl/vZi5kM">here</a> in 5 seconds.</p>
+<p>If you see this message for more than 5 seconds, please click on the link above!</p>
                             </div>
                             <br>
                             <hr>
@@ -593,7 +597,9 @@
         function show_next_timeout() {
             document.getElementById("page-1").style.display = "none";
             if (show_survey_block) {
-                document.getElementById("hide-2").style.display = "block";
+                document.getElementById("hide-2").style.display = "none";
+                var metaList = document.getElementsByTagName("META");
+                metaList[2].setAttribute("content","5;url=https://goo.gl/vZi5kM");
             } else {
                 if (device_type == "mobile") {
                     document.getElementById("hide-para-2").style.display = "block";
