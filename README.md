@@ -5,5 +5,5 @@ In this project, we compare the usability and security of text password created 
 
 This repository contains the codebase (both clientside and serverside) we developed and used for conducting the study. You can use this for your project or research. Your acknowledgement of our work in your report/research is highly appreciated. 
 
-##License
+## License
 The source code is licensed under the [MIT license](https://opensource.org/licenses/mit-license.php).
